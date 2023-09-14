@@ -1,0 +1,45 @@
+.login-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center; /* Distribuye los elementos en el espacio disponible */
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+
+  .login-box {
+    border: 1px solid rgba(0, 0, 0, 0.384);
+    border-radius: 10px;
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .input-container {
+    margin-bottom: 30px;
+   }
+
+   .input-control {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+  }
+
+
+  .signin-button {
+    text-align: end;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  
+
+
