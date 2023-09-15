@@ -66,11 +66,13 @@ const LoginForm = () => {
         <button
           onClick={handleLoginClick}
           className="signin-button"
-          type="button"
-        >
+          type="button">
           Iniciar sesión
         </button>
       </div>
+      <div className="image-background">
+      {/* Coloca aquí tu imagen de fondo */}
+    </div>
     </div>
   );
 }
