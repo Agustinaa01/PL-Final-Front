@@ -24,27 +24,20 @@ const LoginForm = () => {
     setPassword(event.target.value);
   };
 
-  // Manejador de evento para mostrar la alerta con los valores ingresados
+  
     const handleLoginClick = () => {
-      if (emailRef.current.value.length === 0) {
+      if (emailRef.current.value.length === 0 || passwordRef.current.value.length === 0) {
         emailRef.current.focus();
         emailRef.current.style.borderColor = 'red';
-        emailRef.current.style.outline = 'none';
-        return;
-      }
-      if (passwordRef.current.value.length === 0) {
-        passwordRef.current.focus();
-        passwordRef.current.style.borderColor = 'red';
-        passwordRef.current.style.outline = 'none';
+        emailRef.current.style.outline = '';
+        alert("Completa todos los campos")
         return;
       }   
-      alert( `El email ingresado es: ${email} y el password es: ${password}`);
     };
 
   
 
   return (
-    // <div className="login-container">
       <div className="login-box">
         <h2>Iniciar Sesión</h2>
         <div className="input-container">
@@ -58,6 +51,7 @@ const LoginForm = () => {
             onChange={handlePasswordChange}
             placeholder="Password"
             type="password"
+            value="password"
             ref={passwordRef}
           />
         </div><br></br>
@@ -70,7 +64,6 @@ const LoginForm = () => {
         </button>
         </div>
       </div>
-    // </div>
   );
 }
 
