@@ -1,23 +1,27 @@
 import React, { useRef, useState } from "react";
-import "./Login.css";
-import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
-const LoginForm = () => {
+
+const RegisterForm = () => {
   // estados para el correo electrónico y la contraseña
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   const emailRef= useRef(null);
   const passwordRef = useRef(null);
-  const navigate = useNavigate();
- 
-  // Manejadores de eventos para actualizar los estados
+
   const handleEmailChange = (event) => {
     emailRef.current.style.borderColor = '';
     emailRef.current.style.outline = '';
     setEmail(event.target.value);
   };
 
+  const handleNameChange = (event) => {
+    emailRef.current.style.borderColor = '';
+    emailRef.current.style.outline = '';
+    setEmail(event.target.value);
+  };
   const handlePasswordChange = (event) => {
     passwordRef.current.style.borderColor = '';
     passwordRef.current.style.outline = '';
@@ -25,7 +29,7 @@ const LoginForm = () => {
   };
 
   
-    const handleLoginClick = () => {
+    const handleRegisterClick = () => {
       if (emailRef.current.value.length === 0 || passwordRef.current.value.length === 0) {
         emailRef.current.focus();
         emailRef.current.style.borderColor = 'red';
@@ -35,16 +39,18 @@ const LoginForm = () => {
       }   
     };
 
-    const handleRegister = () => {
-      navigate("/register")
-    };
   
 
   return (
-    <div className="login">
-      <div className="login-box">
-        <h2>Iniciar Sesión</h2>
+    <div className="register">
+      <div className="register-box">
+        <h2>Registrarse</h2>
         <div className="input-container">
+        <input
+            onChange={handleNameChange}
+            placeholder="Nombre"
+            type="name"
+          /><br></br>
           <input
             onChange={handleEmailChange}
             placeholder="Email"
@@ -61,16 +67,15 @@ const LoginForm = () => {
         </div><br></br>
         <div className="input-button">
         <button
-          onClick={handleLoginClick}
+          onClick={handleRegisterClick}
           className="signin-button"
           type="button">
-          Iniciar sesión
+          Registrarse
         </button>
-        <h4 className="signup-button" onClick={handleRegister} >¿No tenes cuenta? Registrarse</h4>
         </div>
       </div>
       </div>
   );
 }
 
-export default LoginForm;
+export default RegisterForm;

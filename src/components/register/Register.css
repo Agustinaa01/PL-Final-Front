@@ -1,20 +1,19 @@
 /* Establece el fondo de la página */
-.login {
+.register {
   margin: 0;
   padding: 0;
   background-color: #0F0F0F;
   position: absolute;
   width: 100%;
   height: 100%;
-  /* background-image: url('https://i.pinimg.com/736x/0f/3b/bd/0f3bbd417310407453a18f1d96eef898.jpg'); */
-  background-image: url("./login.png");
-  background-size: cover; /* Ajusta la imagen al 100% del ancho y alto de la ventana */
+  /* background-image: url("https://i.pinimg.com/564x/24/f1/c5/24f1c5eabfcc243ee2501c37a17caca7.jpg");*/
+  background-image: url("./register.png");
+  background-size: cover; 
   background-repeat: no-repeat;
   background-attachment: fixed; /* Fija el fondo en su posición */
 }
 
-/* Establece el cuadro de inicio de sesión */
-.login-box {
+.register-box {
   /* background-color: black; Fondo negro con opacidad */
   color: white;
   width: 600px; /* Ancho del cuadro de inicio de sesión */
@@ -30,7 +29,7 @@
 }
 
 /* Ajusta la opacidad del fondo detrás del cuadro de inicio de sesión solo a la derecha */
-.login-box::before {
+.register-box::before {
   content: "";
   background-color: black; 
    position: absolute;
@@ -44,15 +43,16 @@
   transform: rotate(-10deg);
 }
 
-.login-box h2 {
+.register-box h2 {
   font-size: 30px;
   line-height: .5; /* Ajusta el line-height para centrar verticalmente el texto */
   margin-left: 20px; /* Centra el texto horizontalmente */
 }
 
 /* Aumentar el tamaño de los campos de entrada (inputs) */
-.login-box input[type="email"],
-.login-box input[type="password"] {
+.register-box input[type="email"],
+.register-box input[type="password"],
+.register-box input[type="name"] {
   width: 100%;
   padding: 15px; /* Ajusta el espacio alrededor del texto en los inputs */
   margin: 10px 0;
@@ -62,35 +62,29 @@
 }
 
 /* Aumentar el tamaño del botón */
-.login-box .signin-button {
+.register-box .signin-button {
   width: 100%;
   padding: 15px 15px; /* Ajusta el espacio alrededor del texto en el botón */
   font-size: 16px; /* Ajusta el tamaño del texto en el botón */
 }
 
-.login-box input[type="email"]::placeholder,
-.login-box input[type="password"]::placeholder {
+.register-box input[type="email"]::placeholder,
+.register-box input[type="password"]::placeholder,
+.register-box input[type="name"]::placeholder {
   color: #999; /* Color del texto de marcador de posición */
 }
 
-.login-box .signin-button {
+/* Estiliza el botón de inicio de sesión */
+.register-box .signin-button {
   background-color: white; /* Fondo blanco */
   color: #0F0F0F; /* Color del texto #0F0F0F */
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  margin-left: 10px; /* Espacio superior para separar el botón de los campos de entrada */
-  text-align: center; /* Centra el texto horizontalmente en el botón */
 }
 
-.login-box .signin-button:hover {
+.register-box .signin-button:hover {
   background-color: #0F0F0F;
   color: white; /* Cambia el color de fondo al pasar el mouse por encima */
 }
-.signup-button{
-  color: white; 
-  cursor: pointer;
-}
-.signup-button:hover {
-  text-decoration: underline; /* Agrega subrayado al hacer hover */
-}
+
