@@ -55,7 +55,6 @@ const LoginForm = () => {
             onChange={handlePasswordChange}
             placeholder="Password"
             type="password"
-            value="password"
             ref={passwordRef}
           />
         </div><br></br>

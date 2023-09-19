@@ -1,4 +1,5 @@
 import './App.css';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import {
@@ -16,6 +17,9 @@ function App() {
     },    {
       path: "/register",
       element: <Register />,
+    },  {
+      path: "*",
+      element: <PageNotFound />,
     },
   ]);
   return (

@@ -1,4 +1,3 @@
-/* Establece el fondo de la página */
 .register {
   margin: 0;
   padding: 0;
@@ -6,19 +5,17 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  /* background-image: url("https://i.pinimg.com/564x/24/f1/c5/24f1c5eabfcc243ee2501c37a17caca7.jpg");*/
   background-image: url("./register.png");
   background-size: cover; 
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Fija el fondo en su posición */
+  background-attachment: fixed; 
 }
 
 .register-box {
-  /* background-color: black; Fondo negro con opacidad */
   color: white;
-  width: 600px; /* Ancho del cuadro de inicio de sesión */
-  height: 100vh; /* Alto del cuadro de inicio de sesión (100% del alto de la ventana) */
-  position: fixed; /* Hace que el cuadro de inicio de sesión sea estático y no se mueva con el desplazamiento */
+  width: 600px; 
+  height: 100vh; 
+  position: fixed; 
   right: 0;
   top: 0;
   display: flex;
@@ -28,12 +25,11 @@
   padding: 20px;
 }
 
-/* Ajusta la opacidad del fondo detrás del cuadro de inicio de sesión solo a la derecha */
 .register-box::before {
   content: "";
   background-color: black; 
    position: absolute;
-   width: 700px; /* Ancho del cuadro de inicio de sesión */
+   width: 700px; 
    height: 1000vh;
   top: 0;
   right: 1%; 
@@ -45,39 +41,36 @@
 
 .register-box h2 {
   font-size: 30px;
-  line-height: .5; /* Ajusta el line-height para centrar verticalmente el texto */
-  margin-left: 20px; /* Centra el texto horizontalmente */
+  line-height: .5; 
+  margin-left: 20px; 
 }
 
-/* Aumentar el tamaño de los campos de entrada (inputs) */
 .register-box input[type="email"],
 .register-box input[type="password"],
 .register-box input[type="name"] {
   width: 100%;
-  padding: 15px; /* Ajusta el espacio alrededor del texto en los inputs */
+  padding: 15px; 
   margin: 10px 0;
   border: none;
   border-radius: 15px;
-  font-size: 15px; /* Ajusta el tamaño del texto dentro de los inputs */
+  font-size: 15px; 
 }
 
-/* Aumentar el tamaño del botón */
 .register-box .signin-button {
   width: 100%;
-  padding: 15px 15px; /* Ajusta el espacio alrededor del texto en el botón */
-  font-size: 16px; /* Ajusta el tamaño del texto en el botón */
+  padding: 15px 15px; 
+  font-size: 16px; 
 }
 
 .register-box input[type="email"]::placeholder,
 .register-box input[type="password"]::placeholder,
 .register-box input[type="name"]::placeholder {
-  color: #999; /* Color del texto de marcador de posición */
+  color: #999;
 }
 
-/* Estiliza el botón de inicio de sesión */
 .register-box .signin-button {
-  background-color: white; /* Fondo blanco */
-  color: #0F0F0F; /* Color del texto #0F0F0F */
+  background-color: white; 
+  color: #0F0F0F; 
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -85,6 +78,6 @@
 
 .register-box .signin-button:hover {
   background-color: #0F0F0F;
-  color: white; /* Cambia el color de fondo al pasar el mouse por encima */
+  color: white; 
 }
 
