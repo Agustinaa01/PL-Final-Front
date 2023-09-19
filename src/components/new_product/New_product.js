@@ -43,3 +43,5 @@ const ProductForm = () => {
     setName(event.target.value);
   };
 };
+
+export default ProductForm;
