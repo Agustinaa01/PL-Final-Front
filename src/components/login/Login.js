@@ -6,6 +6,7 @@ const LoginForm = () => {
   // estados para el correo electrónico y la contraseña
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const[error,setError] = useState(null);
 
   const emailRef= useRef(null);
   const passwordRef = useRef(null);
@@ -13,26 +14,32 @@ const LoginForm = () => {
  
   // Manejadores de eventos para actualizar los estados
   const handleEmailChange = (event) => {
-    emailRef.current.style.borderColor = '';
-    emailRef.current.style.outline = '';
     setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
-    passwordRef.current.style.borderColor = '';
-    passwordRef.current.style.outline = '';
     setPassword(event.target.value);
   };
 
   
     const handleLoginClick = () => {
-      if (emailRef.current.value.length === 0 || passwordRef.current.value.length === 0) {
+      let isError = false;
+      if (email.length === 0) {
         emailRef.current.focus();
-        emailRef.current.style.borderColor = 'red';
-        emailRef.current.style.outline = '';
-        alert("Completa todos los campos")
+        setError({...error, emailError: "Por favor complete el email"})
+        isError = true;
+      }  
+      if(password.length === 0){
+        passwordRef.current.focus();
+        setError({...error, passwordError: "Por favor complete la contraseña"})
+        isError = true;
+      } 
+
+      if(isError)
         return;
-      }   
+
+      alert("Todo bien!");
+      setError(null)
     };
 
     const handleRegister = () => {
@@ -50,14 +57,18 @@ const LoginForm = () => {
             placeholder="Email"
             type="email"
             ref={emailRef}
-          /><br></br>
+          />
+          {error?.emailError && <p className="input-vacio">{error.emailError}</p>}
+          <br/>
           <input
             onChange={handlePasswordChange}
             placeholder="Password"
             type="password"
             ref={passwordRef}
           />
-        </div><br></br>
+        </div>
+        {error?.passwordError && <p className="input-vacio">{error.passwordError}</p>}
+        <br />
         <div className="input-button">
         <button
           onClick={handleLoginClick}

@@ -47,7 +47,8 @@
 
 .register-box input[type="email"],
 .register-box input[type="password"],
-.register-box input[type="name"] {
+.register-box input[type="text"],
+.register-box input[type="phone"] {
   width: 100%;
   padding: 15px; 
   margin: 10px 0;
@@ -64,7 +65,8 @@
 
 .register-box input[type="email"]::placeholder,
 .register-box input[type="password"]::placeholder,
-.register-box input[type="name"]::placeholder {
+.register-box input[type="text"]::placeholder,
+.register-box input[type="phone"]::placeholder {
   color: #999;
 }
 
@@ -81,3 +83,15 @@
   color: white; 
 }
 
+.input-vacio{
+  color: white;
+  text-align: center;
+  margin-left: 35px;
+  margin-top:0px;
+  margin-bottom: 0px;
+}
+.password-vacio{
+  color: white;
+  text-align: center;
+  margin-left: 35px;
+}
