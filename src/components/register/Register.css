@@ -48,7 +48,7 @@
 .register-box input[type="email"],
 .register-box input[type="password"],
 .register-box input[type="text"],
-.register-box input[type="phone"] {
+.register-box input[type="number"] {
   width: 100%;
   padding: 15px; 
   margin: 10px 0;
@@ -66,7 +66,7 @@
 .register-box input[type="email"]::placeholder,
 .register-box input[type="password"]::placeholder,
 .register-box input[type="text"]::placeholder,
-.register-box input[type="phone"]::placeholder {
+.register-box input[type="number"]::placeholder {
   color: #999;
 }
 

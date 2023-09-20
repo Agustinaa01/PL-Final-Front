@@ -94,7 +94,8 @@ const RegisterForm = () => {
           <input
             onChange={handleCelularChange}
             placeholder="Celular"
-            type="text"
+            type="number"
+            inputMode="numeric"
             ref={celularRef}
           />
           {error?.celularError && <p className="input-vacio">{error.celularError}</p>}
