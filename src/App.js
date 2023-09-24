@@ -1,7 +1,8 @@
 import './App.css';
+import Dashboard from './components/dashboard/Dashboard'
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import Login from './components/login/Login';
-import New_product from './components/new_product/New_product';
+import ProductForm from './components/newproduct/NewProduct';
 import Register from './components/register/Register';
 import {
   Navigate,
@@ -15,12 +16,15 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    }, {
+      path: "/dashboard",
+      element: <Dashboard />,
     },    {
       path: "/register",
       element: <Register />,
     }, {
       path: "/newProduct",
-      element: <New_product />,
+      element: <ProductForm />,
     }, 
      {
       path: "*",
