@@ -1,9 +1,17 @@
 import React from "react";
+
+import Products from "../products/Products";
+
 import "./Dashboard.css"; // Importa tu archivo CSS donde definirás los estilos
+
 
 const Dashboard = () => {
   return (
     <div>
+
+      <h4>este es el dashboard</h4>
+      <Products />
+
       <div className="container">
         <div className="header">
           <div className="left">
@@ -17,6 +25,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
