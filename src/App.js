@@ -1,6 +1,7 @@
 import './App.css';
 import Dashboard from './components/dashboard/Dashboard'
 import PageNotFound from './components/PageNotFound/PageNotFound';
+import Dashboard from './components/dashboard/Dashboard';
 import Login from './components/login/Login';
 import ProductForm from './components/newproduct/NewProduct';
 import Register from './components/register/Register';
@@ -26,6 +27,10 @@ function App() {
       path: "/newProduct",
       element: <ProductForm />,
     }, 
+   {
+    path: "/home",
+    element: <Dashboard />,
+  }, 
      {
       path: "*",
       element: <PageNotFound />,
