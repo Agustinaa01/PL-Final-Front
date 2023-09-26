@@ -44,19 +44,31 @@ const Products = () => {
     },
   ];
 
+
+  const settings = {
+    dots: true,
+    infinite: true, // establece que el carrusel se desplaza de manera infinita
+    speed: 500, //muestra la velocidad
+    slidesToShow: 3, //establece cuantos productos se muestran al la vez
+    slidesToScroll: 1, //establece cuantos productos se desplazaran
+  };
+
+
   return (
     <div className="products">
-      <h2 className="titulo">Nuestros Productos</h2>
-      <div className="lista-productos">
-      {products.map((product) => (
-          <div className="producto" key={product.id}>
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p>Categoría: {product.category}</p>
-            <p>Precio: ${product.price.toFixed(2)}</p>
-            <button>Agregar al carrito</button>
-          </div>
-        ))}
+      <h2 className="titulo">Productos</h2>
+      <div className="slider-container">
+        <Slider {...settings}>
+          {products.map((product) => (
+            <div className="producto" key={product.id}>
+              <img src={product.image} alt={product.name} />
+              <h3>{product.name}</h3>
+              <p>Categoría: {product.category}</p>
+              <p>Precio: ${product.price.toFixed(2)}</p>
+              <button>Agregar al carrito</button>
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );
