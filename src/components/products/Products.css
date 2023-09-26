@@ -6,9 +6,12 @@
   color: #fff; /* Color de texto del cuerpo */
 }
 
+.slider-container{
+  
+}
 .titulo {
   background-color: #0f0f0f; /* Color de fondo del título */
-  color: #fff; /* Color de texto del título */
+  color: #000000; /* Color de texto del título */
   text-align: center;
   padding: 20px;
   margin-bottom: 20px; /* Espacio inferior del título */
