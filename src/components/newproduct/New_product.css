@@ -1,0 +1,62 @@
+/* New_product.css */
+
+/* Apply black background to the root or body element */
+body {
+  background-color: #0f0f0f; /* Black background */
+  color: #fff; /* White text color for better visibility on a black background */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+}
+
+/* Style for the main container */
+.name {
+  text-align: center;
+  margin: 20px;
+}
+
+/* Style for the form container */
+.name-box {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #0f0f0f; /* Black background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the input container */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  width: 500px;
+  margin-top: 20px;
+}
+
+/* Style for input fields */
+.container input {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #fff; /* White border for input fields */
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff; /* Black background */
+  color: #fff; /* White text color */
+}
+
+/* Style for the "Añadir producto" button */
+.add-button button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  background-color: #0f0f0f; /* Black background */
+}
+
+.add-button button:hover {
+  background-color: #0056b3;
+}
+
+/* Additional styles for specific input fields can be added here */
