@@ -9,6 +9,8 @@ const Headers = () => {
             <div className="right">
               <h2>HOME</h2>
               <h2>PRODUCTOS</h2>
+              <h2>Carrito</h2>
+              <image ></image>
               <button className="boton">CERRAR SESION</button>
             </div>
           </div>

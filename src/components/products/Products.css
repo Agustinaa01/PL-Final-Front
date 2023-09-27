@@ -1,77 +1,62 @@
 .products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   text-align: center;
   padding: 20px;
-  background-color: #0f0f0f; /* Dark background color */
-  color: #fff; /* Text color */
+  background-color: #1E1E1E;
 }
 
-.titulo {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.slider-container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.slick-dots {
-  list-style: none;
+.producto-container {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.slick-dots li {
-  margin: 0 5px;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .producto {
-  border: none; /* Remove the border */
-  background-color: transparent; /* Transparent background color for the product card */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px; /* Add padding for better separation */
-  text-align: left; /* Align product information to the left */
-  transition: transform 0.3s; /* Add a smooth transition for zoom effect */
-  margin: 50px; /* Add margin to create space between products */
+  width: 300px;
+  margin: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #D9D9D9;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
-.producto img {
+
+.product-image img {
   max-width: 100%;
   height: auto;
-  transition: transform 0.3s; /* Add a smooth transition for image zoom effect */
+  border-radius: 5px;
+
 }
 
-/* Zoom effect on image hover */
-.producto:hover img {
-  transform: scale(1.1); /* Zoom effect on image hover (adjust the scale factor as needed) */
+.product-image img:hover {
+  transform: scale(1.1); /* Puedes ajustar el valor según el nivel de zoom deseado */
+  transition: transform 0.3s ease-in-out; /* Controla la duración y el tipo de transición */
 }
 
-.producto h3 {
-  font-size: 18px;
-  margin-top: 10px;
-  color: #fff; /* Text color for product name */
+
+.product-info h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #1E1E1E;
 }
 
-.producto p {
-  font-size: 16px;
-  margin: 10px 0;
-  color: #ccc; /* Text color for category and price */
+.product-info p {
+  margin: 5px 0;
 }
 
-.producto button {
+button {
   background-color: #007bff;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
 }
 
-.producto button:hover {
+button:hover {
   background-color: #0056b3;
 }
