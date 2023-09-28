@@ -1,10 +1,15 @@
-import React from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import "./Products.css";
+import { useNavigate } from "react-router";
 
 const Products = () => {
-  // Define el array de productos con el nuevo enlace de la imagen
+  const navigate = useNavigate();
+
+  const handleProductForm = () => {
+    navigate("/productForm")
+  };
+
+
+
   const products = [
     {
       id: 1,
@@ -43,9 +48,13 @@ const Products = () => {
     },
   ];
 
+  
   return (
     <div className="products">
-      <h2 className="titulo">Productos</h2>
+            <button className="boton-agregar-producto" onClick={handleProductForm}>
+        Agregar producto
+      </button>      
+      <h1 className="titulo">Productos</h1>
       <div className="producto-container">
         {products.map((product) => (
           <div className="producto" key={product.id}>
@@ -63,6 +72,6 @@ const Products = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Products;

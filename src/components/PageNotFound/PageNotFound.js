@@ -12,7 +12,7 @@ const PageNotFound = () => {
   return (
     <div className="body">
     <div className="container404">
-      <h1>404</h1>
+      <h1 className="titulo-page-not-found">404</h1>
       <h3>No podemos encontrar la pagina que estas buscando</h3>
       <button className="inicio-button" onClick={goBackHandler} variant="primary">
         Volver a iniciar sesión

@@ -1,8 +1,9 @@
 import './App.css';
 import Dashboard from './components/dashboard/Dashboard'
 import PageNotFound from './components/PageNotFound/PageNotFound';
+import Products from './components/products/Products';
 import Login from './components/login/Login';
-import ProductForm from './components/newproduct/NewProduct';
+import ProductForm from './components/productform/ProductForm';
 import Register from './components/register/Register';
 import {
   Navigate,
@@ -12,18 +13,22 @@ import {
 
 function App() {
   const router = createBrowserRouter([
-    { path: "/", element: <Navigate to="/login" /> },
+    { path: "/", element: <Navigate to="/home" /> },
     {
       path: "/login",
       element: <Login />,
     }, {
       path: "/home",
       element: <Dashboard />,
+    }, 
+    {
+      path: "/products",
+      element: <Products />,
     },    {
       path: "/register",
       element: <Register />,
     }, {
-      path: "/newProduct",
+      path: "/productForm",
       element: <ProductForm />,
     }, 
    {
