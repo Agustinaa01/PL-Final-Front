@@ -1,0 +1,36 @@
+.carrito {
+    width: 30px;
+    height: 30px;
+    margin-top: 6px;
+    cursor: pointer;
+  }
+  .title {
+    cursor: pointer;
+  }
+  
+  /* Estilo para el botón */
+  .boton {
+    background-color: #0056b3;
+    color: #fff;
+  }
+  .boton:hover {
+    background-color: #fff;
+    color: #007bff;
+  }
+  @media (max-width: 1140px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      /* Establece "TI" a la izquierda */
+      .left {
+        order: 1; 
+        margin-bottom: -28px;
+      }
+      .right {
+        order: 2;
+      }
+  }
+
+    

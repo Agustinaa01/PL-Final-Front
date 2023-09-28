@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./New_product.css";
+import Headers from "../header/Headers";
 
 const ProductForm = () => {
   // estados para nombre,precio,color,stock y descripcion
@@ -94,6 +95,7 @@ const ProductForm = () => {
 
   return (
     <div className= "page">
+      <Headers />
     <div className="name">
       <div className="name-box">
         <h2 className="title">Agregar producto</h2>
