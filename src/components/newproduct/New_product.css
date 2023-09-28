@@ -8,7 +8,7 @@ body {
   display: flex;
   justify-content: center; 
   align-items: center; 
-  height: 100vh;
+  height: 80vh;
   position: relative; 
 }
 
@@ -44,7 +44,7 @@ input[type="number"] {
   margin-top: 10px;
 }
 
-button {
+.add-button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -55,6 +55,7 @@ button {
 button:nth-child(2) {
   background-color: #007bff; 
   color: #fff;
+  font-size: 15px;
 }
 
 button:nth-child(2):hover {
@@ -64,6 +65,7 @@ button:nth-child(2):hover {
 button:nth-child(1) {
   background-color: #ccc;
   color: #333;
+  font-size: 15px;
 }
 
 button:nth-child(1):hover {
@@ -125,8 +127,14 @@ button:nth-child(1):hover {
     transition: background-color 0.3s, color 0.3s;
     margin: 20px;
   }
-}
+  .name-box {
+    order: 2;
+  }
 
+  .container {
+    order: 1;
+  }
+}
 
 
 
