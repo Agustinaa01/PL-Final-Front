@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./New_product.css";
+import "./ProductForm.css";
 import Headers from "../header/Headers";
 
 const ProductForm = () => {
@@ -19,8 +19,6 @@ const ProductForm = () => {
   const stockRef = useRef(0);
   const descRef = useRef(null);
   const imageInputRef = useRef(null);
-  const navigate = useNavigate();
-
   //manejadores de eventos
   const handleImageChange = (event) => {
     const file = event.target.files[0];

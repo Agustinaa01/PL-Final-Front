@@ -10,7 +10,7 @@ const Dashboard = () => {
   return (
     <div>
       <Headers />
-      <Products />
+      {/* <Products /> */}
     </div>
   );
 };
