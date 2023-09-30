@@ -8,6 +8,9 @@ const Headers = () => {
   const goBackHandler = () => {
     navigate("/login");
   };
+  const handlerProducts= () => {
+    navigate("/products");
+  };
   return (
     <div>
       <div className="container">
@@ -17,7 +20,7 @@ const Headers = () => {
           </div>
           <div className="right">
             <h2 className="title">HOME</h2>
-            <h2 className="title">PRODUCTOS</h2>
+            <h2 className="title" onClick={handlerProducts}>PRODUCTOS</h2>
             <img className="carrito" src={carritoImage} alt="Carrito de compras" />
             <button className="boton"  onClick={goBackHandler}>CERRAR SESIÓN</button>
           </div>
