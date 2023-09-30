@@ -1,36 +1,64 @@
+.container {
+  background-color: transparent; /* Fondo completamente transparente */
+  color: white; 
+  padding: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  margin-left: 20px;
+}
+
+.right {
+  display: flex;
+  gap: 20px;
+  font-size: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 .carrito {
-    width: 30px;
-    height: 30px;
-    margin-top: 6px;
-    cursor: pointer;
-  }
-  .title {
-    cursor: pointer;
-  }
-  
-  /* Estilo para el botón */
-  .boton {
-    background-color: #0056b3;
-    color: #fff;
-  }
-  .boton:hover {
-    background-color: #fff;
-    color: #007bff;
-  }
-  @media (max-width: 1140px) {
-    .header {
-        flex-direction: column;
-        align-items: center;
-      }
-    
-      /* Establece "TI" a la izquierda */
-      .left {
-        order: 1; 
-        margin-bottom: -28px;
-      }
-      .right {
-        order: 2;
-      }
+  width: 30px;
+  height: 30px;
+  margin-top: 6px;
+  cursor: pointer;
+}
+
+.title {
+  cursor: pointer;
+}
+
+/* Estilo para el botón */
+.boton {
+  background-color: #0056b3;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.boton:hover {
+  background-color: #fff;
+  color: #007bff;
+}
+
+@media (max-width: 1140px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
   }
 
-    
+  /* Establece "TI" a la izquierda */
+  .left {
+    order: 1; 
+    margin-bottom: -28px;
+  }
+  .right {
+    order: 2;
+  }
+}
