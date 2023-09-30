@@ -8,8 +8,6 @@ const Products = () => {
     navigate("/productForm")
   };
 
-
-
   const products = [
     {
       id: 1,
