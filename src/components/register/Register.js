@@ -72,6 +72,7 @@ const RegisterForm = () => {
 
     alert("Todo bien!");
     setError(null);
+    navigate("/home")
   };
 
   const handleLogin = () => {

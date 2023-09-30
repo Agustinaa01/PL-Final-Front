@@ -40,12 +40,12 @@ const LoginForm = () => {
 
       alert("Todo bien!");
       setError(null)
+      navigate("/home")
     };
 
     const handleRegister = () => {
       navigate("/register")
     };
-  
 
   return (
     <div className="login">
