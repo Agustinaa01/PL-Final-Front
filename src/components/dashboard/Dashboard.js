@@ -16,13 +16,9 @@ const Dashboard = () => {
         </div>
         <div className="about-us-container">
           <img className="img-about" src={AboutImage} alt="About Us" />
-          <h4 className="about-us">About us</h4>
-          <p className="texto-about">
-            Somos apasionados de la tecnología. Ofrecemos una amplia gama de
+          <p className="texto-about">ABOUT US<br></br>  Ofrecemos una amplia gama de
             productos de informática, desde equipos y accesorios hasta soluciones
-            innovadoras. Nuestra misión es brindar productos de alta calidad y un
-            servicio al cliente excepcional. ¡Únete a nosotros y descubre la mejor
-            experiencia en artículos de informática!
+            innovadoras. Nuestra misión es brindar productos de alta calidad.
           </p>
         </div>
       </div>

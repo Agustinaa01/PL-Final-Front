@@ -54,21 +54,21 @@
   }
   
 
-  @media (max-width: 10000px) {
+  @media (max-width: 800px) {
     .button-on-image {
       top: 20%;
       left: 20px;
     }
     
     .about-us {
-        top: 60px;
-      font-size: 35px;
+        top: 35px;
+      font-size: 30px;
     }
     
     .texto-about {
       display: flex;
       text-align: center;
-      font-size: 20px;
+      font-size: 14px;
     }
   }
   
