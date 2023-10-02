@@ -16,7 +16,7 @@ const Headers = () => {
       <div className="container">
         <div className="header">
           <div className="left">
-            <h2>TI</h2>
+            <h2>EvoTech</h2>
           </div>
           <div className="right">
             <h2 className="title">HOME</h2>

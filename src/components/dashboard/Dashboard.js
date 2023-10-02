@@ -1,9 +1,9 @@
 import React from "react";
 import Headers from "../header/Headers";
-import homeImage from "./pad.png"; 
-import AboutImage from "./auri.png"; 
-
-import "./Dashboard.css"; 
+import Footer from "../Footer/footer";
+import homeImage from "./homeA.png";
+import AboutImage from "./homeAu.png";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   return (
@@ -16,12 +16,12 @@ const Dashboard = () => {
         </div>
         <div className="about-us-container">
           <img className="img-about" src={AboutImage} alt="About Us" />
-          <p className="texto-about">ABOUT US<br></br>  Ofrecemos una amplia gama de
-            productos de informática, desde equipos y accesorios hasta soluciones
-            innovadoras. Nuestra misión es brindar productos de alta calidad.
+          <p className="texto-about">
+            ABOUT US<br></br> Ofrecemos una amplia gama de productos de informática, desde equipos y accesorios hasta soluciones innovadoras. Nuestra misión es brindar productos de alta calidad.
           </p>
         </div>
       </div>
+      <Footer /> 
     </div>
   );
 };
