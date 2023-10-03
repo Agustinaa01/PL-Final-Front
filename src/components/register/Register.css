@@ -60,10 +60,18 @@
 }
 
 
-.register-box .signin-button {
-  width: 100%;
+.input-button .signin-button {
   padding: 15px 15px; 
   font-size: 16px; 
+  background-color: white; 
+  color: #0F0F0F; 
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 30%;
 }
 
 .register-box input[type="email"]::placeholder,
@@ -73,15 +81,8 @@
   color: #999;
 }
 
-.register-box .signin-button {
-  background-color: white; 
-  color: #0F0F0F; 
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-}
 
-.register-box .signin-button:hover {
+.input-button  .signin-button:hover {
   background-color: #0F0F0F;
   color: white; 
 }
