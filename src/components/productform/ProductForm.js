@@ -55,6 +55,9 @@ const ProductForm = () => {
     descRef.current.style.outline = "";
     setDesc(event.target.value);
   };
+  const handleURLChange = (event) => {
+    setStock(event.target.value);
+  };
   // Alerta de campos vacios
   const handleAddClick = () => {
     let isError = false;
@@ -129,9 +132,14 @@ const ProductForm = () => {
           <input
             onChange={handleDescChange}
             placeholder="Descripcion"
-            type="text"
+            type="description"
             ref={descRef}
           />{error?.descError && <p className="input-vacio">{error.descError}</p>}
+          <input
+            onChange={handleURLChange}
+            placeholder="URL de la imagen"
+            type="text"
+          />
         </div>
         <div className="add-button">
           <button
@@ -150,29 +158,7 @@ const ProductForm = () => {
           </button>
         </div>
       </div>
-      <div className="image-upload">
-        <h2 className="imagen">Foto de producto</h2>
-        <div className="file-input-container">
-          <input
-            className="input"
-            type="file"
-            accept="image/*"
-            ref={imageInputRef}
-            onChange={handleImageChange}
-          />
-          {image && (
-            <div className="preview-image">
-              <img
-                className="img-product"
-                src={image}
-                style={{ width: "500px", height: "500px" }}
-                alt="Imagen cargada"
-              />
-            </div>
-          )}
         </div>
-      </div>
-      </div>
       </div>
   );
 };

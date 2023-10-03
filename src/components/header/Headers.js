@@ -11,15 +11,17 @@ const Headers = () => {
   const handlerProducts= () => {
     navigate("/products");
   };
+  const handlerHome= () => {
+    navigate("/home");
+  };
   return (
     <div>
       <div className="container">
         <div className="header">
           <div className="left">
-            <h2>EvoTech</h2>
+            <h2 className="home" onClick={handlerHome}>EvoTech</h2>
           </div>
           <div className="right">
-            <h2 className="title">HOME</h2>
             <h2 className="title" onClick={handlerProducts}>PRODUCTOS</h2>
             <img className="carrito" src={carritoImage} alt="Carrito de compras" />
             <button className="boton"  onClick={goBackHandler}>CERRAR SESIÓN</button>
