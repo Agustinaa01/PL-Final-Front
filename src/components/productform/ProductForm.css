@@ -32,11 +32,6 @@ input[type="number"] {
   box-shadow: 0 4px 8px rgba(42, 41, 41, 0.2);
 }
 
-.add-button {
-  display: flex;
-  justify-content:space-evenly;
-  margin-top: 10px;
-}
 
 .add-button {
   padding: 10px 20px;
@@ -44,19 +39,25 @@ input[type="number"] {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-button:nth-child(2) {
+.button-accept {
   background-color: #007bff; 
   color: #fff;
   font-size: 15px;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  margin-top: 25px;
 }
 
-button:nth-child(2):hover {
+.button-accept:hover {
   background-color: #0056b3;
 }
 
-button:nth-child(1) {
+.button-cancel {
   background-color: #ccc;
   color: #333;
   font-size: 15px;

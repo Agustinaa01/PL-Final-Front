@@ -35,11 +35,11 @@
   cursor: pointer;
 }
 
-/* Estilo para el botón */
 .boton {
   background-color: #0056b3;
   color: #fff;
   border-radius: 20px;
+  border: none;
 }
 
 .boton:hover {
