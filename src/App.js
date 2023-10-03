@@ -22,7 +22,7 @@ function App() {
       element: <Dashboard />,
     }, 
     {
-      path: "/products",
+      path: "/product/:id",
       element: <Products />,
     },    {
       path: "/register",

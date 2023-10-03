@@ -34,6 +34,9 @@
 .title {
   cursor: pointer;
 }
+.home {
+  cursor: pointer;
+}
 
 .boton {
   background-color: #0056b3;
