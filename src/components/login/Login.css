@@ -67,15 +67,12 @@
   color: #999;
 }
 
-.signin-button {
+.input-button .signin-button {
   background-color: white;
   color: #0f0f0f;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  margin-left: 10px;
-  text-align: center;
-  margin-left: 14px;
 }
 
 .login-box .signin-button:hover {
