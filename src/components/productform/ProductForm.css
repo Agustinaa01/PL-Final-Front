@@ -1,4 +1,4 @@
-.name {
+/* .name {
   display: flex;
   justify-content: center; 
   align-items: center; 
@@ -13,56 +13,49 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
   position: absolute; 
   right: 190px; 
-}
+} */
 
 .container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 10px; /* Centra los elementos en el eje vertical */
 }
 
 input[type="description"],
 input[type="text"],
 input[type="number"] {
   padding: 10px;
-  border: none; 
-  background-color: transparent; 
+  border: none;
+  background-color: transparent;
   outline: none;
   width: 350px;
-  color: #fff; 
+  color: #fff;
+  align-items: center; /* Centra los elementos en el eje horizontal */
+  justify-content: center;
   box-shadow: 0 4px 8px rgba(42, 41, 41, 0.2);
 }
 
-
 .add-button {
+  display: flex;
+  justify-content: center; /* Cambia 'space-evenly' a 'center' */
+  margin-top: 10px;
+}
+
+.button-accept,
+.button-cancel {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  display: flex;
-  justify-content: space-evenly;
+  margin: 0; /* Agrega un margen horizontal para separar los botones */
 }
 
-.button-accept {
-  background-color: #007bff; 
-  color: #fff;
-  font-size: 15px;
-  border-radius: 10px;
-  padding: 10px;
-  border: none;
-  margin-top: 25px;
-}
 
 .button-accept:hover {
   background-color: #0056b3;
 }
 
-.button-cancel {
-  background-color: #ccc;
-  color: #333;
-  font-size: 15px;
-}
 
 button:nth-child(1):hover {
   background-color: #999;
@@ -74,13 +67,6 @@ button:nth-child(1):hover {
   margin-bottom: 20px; 
 }
 
-.image-upload{
-  margin-right: 600px;
-  color: #fff;
-}
-.img-product{
-  border-radius: 50px;
-}
 body {
   margin: 0;
   padding: 0;
