@@ -1,0 +1,35 @@
+/* Estilo para el contenedor principal */
+.about-us-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+    padding: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Añade una sombra más notoria */
+  }
+    
+  .text-container {
+    flex: 1;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    margin: 0;
+  }
+  
+  /* Estilo para la imagen */
+  .about-image {
+    max-width: 100%; /* Ajusta el tamaño de la imagen según lo necesites */
+    height: auto;
+    display: block;
+  }
+  
+  /* Estilo para el contenedor de la imagen */
+  .image-container {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    margin: 0; /* Elimina el margen en todos los lados */
+  }
+  
