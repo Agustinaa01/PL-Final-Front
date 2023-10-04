@@ -14,6 +14,9 @@ const Headers = () => {
   const handlerHome= () => {
     navigate("/home");
   };
+  const handlerAboutUs = () => {
+    navigate("/nosotros");
+  };
   return (
     <div>
       <div className="container">
@@ -23,6 +26,7 @@ const Headers = () => {
           </div>
           <div className="right">
             <h2 className="title" onClick={handlerProducts}>PRODUCTOS</h2>
+            <h2 className="title" onClick={handlerAboutUs}>NOSOTROS</h2>
             <img className="carrito" src={carritoImage} alt="Carrito de compras" />
             <button className="boton"  onClick={goBackHandler}>CERRAR SESIÓN</button>
           </div>

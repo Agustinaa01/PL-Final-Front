@@ -10,6 +10,7 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
+import AboutUs from './components/about-us/aboutUs';
 
 function App() {
   const router = createBrowserRouter([
@@ -22,7 +23,7 @@ function App() {
       element: <Dashboard />,
     }, 
     {
-      path: "/product/:id",
+      path: "/products",
       element: <Products />,
     },    {
       path: "/register",
@@ -30,6 +31,9 @@ function App() {
     }, {
       path: "/productForm",
       element: <ProductForm />,
+    }, {
+      path: "/nosotros",
+      element: <AboutUs />,
     }, 
    {
     path: "/home",

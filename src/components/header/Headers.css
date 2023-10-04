@@ -1,7 +1,7 @@
 .container {
-  background-color: transparent; /* Fondo completamente transparente */
+  background-color: #0f0f0f; 
   color: white; 
-  padding: 10px;
+  padding: 5px;
 }
 
 .header {
@@ -56,7 +56,6 @@
     align-items: center;
   }
 
-  /* Establece "TI" a la izquierda */
   .left {
     order: 1; 
     margin-bottom: -28px;
