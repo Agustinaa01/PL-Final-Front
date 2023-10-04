@@ -72,7 +72,7 @@ const RegisterForm = () => {
 
     alert("Todo bien!");
     setError(null);
-    navigate("/home")
+    navigate("/login")
   };
 
   const handleLogin = () => {
