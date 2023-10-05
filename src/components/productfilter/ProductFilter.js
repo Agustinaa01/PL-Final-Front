@@ -14,12 +14,12 @@ const ProductFilter = ({filterCategory, onCategoryChange}) => {
             <select value={filterCategory} onChange={handleChange}>
               <option value="">CATEGORIAS</option>
               <option value="Tablet">Tablet</option>
-              <option value="Celulares">celulares</option>
-              <option value="Auriculares">auriculares</option>
-              <option value="Laptops">computadoras</option>
-              <option value="Camaras">camaras</option>
-              <option value="Parlantes">palantes</option>
-              <option value="Consolas">consolas</option>
+              <option value="Celulares">Celulares</option>
+              <option value="Auriculares">Auriculares</option>
+              <option value="Laptops">Computadoras</option>
+              <option value="Camaras">Camaras</option>
+              <option value="Parlantes">Palantes</option>
+              <option value="Consolas">Consolas</option>
             </select>
           </div>
         </div>
