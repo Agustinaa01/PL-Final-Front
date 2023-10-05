@@ -6,12 +6,12 @@ const LoginForm = () => {
   // estados para el correo electrónico y la contraseña
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const[error,setError] = useState(null);
+  const [error, setError] = useState(null);
 
-  const emailRef= useRef(null);
+  const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
- 
+
   // Manejadores de eventos para actualizar los estados
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -21,31 +21,31 @@ const LoginForm = () => {
     setPassword(event.target.value);
   };
 
-  
-    const handleLoginClick = () => {
-      let isError = false;
-      if (email.length === 0) {
-        emailRef.current.focus();
-        setError({...error, emailError: "Por favor complete el email"})
-        isError = true;
-      }  
-      if(password.length === 0){
-        passwordRef.current.focus();
-        setError({...error, passwordError: "Por favor complete la contraseña"})
-        isError = true;
-      } 
 
-      if(isError)
-        return;
+  const handleLoginClick = () => {
+    let isError = false;
+    if (email.length === 0) {
+      emailRef.current.focus();
+      setError({ ...error, emailError: "Por favor complete el email" })
+      isError = true;
+    }
+    if (password.length === 0) {
+      passwordRef.current.focus();
+      setError({ ...error, passwordError: "Por favor complete la contraseña" })
+      isError = true;
+    }
 
-      alert("Todo bien!");
-      setError(null)
-      navigate("/home")
-    };
+    if (isError)
+      return;
 
-    const handleRegister = () => {
-      navigate("/register")
-    };
+    alert("Todo bien!");
+    setError(null)
+    navigate("/home")
+  };
+
+  const handleRegister = () => {
+    navigate("/register")
+  };
 
   return (
     <div className="login">
@@ -59,7 +59,7 @@ const LoginForm = () => {
             ref={emailRef}
           />
           {error?.emailError && <p className="input-vacio">{error.emailError}</p>}
-          <br/>
+          <br />
           <input
             onChange={handlePasswordChange}
             placeholder="Password"
@@ -70,16 +70,15 @@ const LoginForm = () => {
         {error?.passwordError && <p className="input-vacio">{error.passwordError}</p>}
         <br />
         <div className="input-button">
-        <button
-          onClick={handleLoginClick}
-          className="signin-button"
-          type="button">
-          Iniciar sesión
-        </button>
-        <h4 className="signup-button" onClick={handleRegister} >¿No tenes cuenta? Registrarse</h4>
+          <button onClick={handleLoginClick} className="signin-button" type="button">
+            Iniciar sesión
+          </button>
+          <h4 className="signup-button" onClick={handleRegister}>
+            ¿No tienes cuenta? Registrarse
+          </h4>
         </div>
       </div>
-      </div>
+    </div>
   );
 }
 

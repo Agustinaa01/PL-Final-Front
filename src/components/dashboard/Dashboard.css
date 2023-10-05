@@ -1,37 +1,21 @@
-/* Estilo para el encabezado */
-.Headers {
-  /* Mantén los estilos del encabezado sin cambios */
-  z-index: 3; /* Establece un z-index más alto que la imagen */
-}
-
-/* Estilo para el contenido */
 .content {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  overflow: hidden; /* Evita el scroll vertical */
+  overflow-y: hidden;
 }
-
-/* Estilo para la imagen */
-.img-prom {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  margin-top: 0px; /* Mantén el margen superior */
-  z-index: 2; /* Un z-index más bajo que el encabezado */
+.img-fluid2{
+  width: 100%;
 }
-
-/* Estilo para el botón en la imagen */
-.button-on-image {
-  position: absolute;
-  top: 50%;
-  left: 10%;
-  transform: translate(-50%, -50%); /* Centra el botón vertical y horizontalmente en la imagen */
-  border: none;
-  border-radius: 4px;
-  background-color: transparent;
+.product {
   color: white;
-  padding: 10px 20px;
-  cursor: pointer;
+  background-color: #007bff;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.carousel-caption h3 {
+  font-size: 24px;
+}
+
+.carousel-caption p {
+  font-size: 17px; 
 }

@@ -14,7 +14,7 @@ const Footer = () => {
       <a href="https://www.whatsapp.com"><img src={whatsappImage} alt="WhatsApp" /></a>
       <a href="https://www.instagram.com"><img src={instagramImage} alt="Instagram" /></a>
       <a href="https://www.telegram.com"><img src={telegramImage} alt="Telegram" /></a>
-      <p className="copy-text">Copyright © 2023 TI. Todos los derechos reservados.</p>
+      <p className="copy-text">Copyright © 2023 EvoTech. Todos los derechos reservados.</p>
     </div>
   );
 };
