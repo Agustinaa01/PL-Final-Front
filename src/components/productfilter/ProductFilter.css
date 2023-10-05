@@ -1,1 +1,38 @@
- 
+ /* Estilos para el contenedor del filtro de productos */
+.products-filter {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para el control del filtro */
+  .products-filter__control {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Estilos para el select */
+  select {
+    padding: 5px;
+    font-size: 16px;
+  }
+  
+  /* Estilos para las opciones del select */
+  option {
+    font-size: 16px;
+  }
+  
+  /* Estilos para resaltar el select cuando está enfocado */
+  select:focus {
+    outline: none;
+    border: 2px solid #007bff;
+    transition: border 0.3s ease-in-out;
+  }
+  
+  /* Estilos para las opciones seleccionadas */
+  option[selected] {
+    background-color: #007bff;
+    color: white;
+  }
+  
