@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 import Headers from "../header/Headers";
 import ProductFilter from "../productfilter/ProductFilter";
 import { useState } from "react";
+import SearchBar from "../searchbar/SearchBar";
+
 
 const PRODUCTS = [
   {
@@ -67,8 +69,11 @@ const Products = () => {
   const[products, setProducts] = useState(PRODUCTS);
   const[productsFiltered, setProductsFiltered] = useState(PRODUCTS);
   const[filterCategory,setFilterCategory] = useState(""); //estado almacena la categoria de productos seleccinada actualmente
+  const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const navigate = useNavigate();
+
 
   const handleProductForm = () => {
     navigate("/productForm")
@@ -101,6 +106,13 @@ const Products = () => {
     }
   }
   
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+
+    // Filtra los productos por término de búsqueda.
+    setFilteredProducts(products.filter(product => product.name.toLowerCase().includes(term.toLowerCase())));
+
+  }
   
   
 
@@ -109,6 +121,7 @@ const Products = () => {
     <div className="products">
       <Headers />
       <ProductFilter filterCategory={filterCategory} onCategoryChange={handleFilterCategoryChange} />
+      <SearchBar onSearch={handleSearch} />
       <h1 className="titulo">Productos</h1>
         <div className="producto-container">
         <button className="boton-agregar-producto" onClick={handleProductForm}>
