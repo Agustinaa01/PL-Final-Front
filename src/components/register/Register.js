@@ -95,7 +95,7 @@ const RegisterForm = () => {
           <input
             onChange={handleCelularChange}
             placeholder="Celular"
-            type="number"
+            type="phone"
             inputMode="numeric"
             ref={celularRef}
           />
