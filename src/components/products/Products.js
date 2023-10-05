@@ -66,8 +66,7 @@ const PRODUCTS = [
 const Products = () => {
   const[products, setProducts] = useState(PRODUCTS);
   const[productsFiltered, setProductsFiltered] = useState(PRODUCTS);
-  const[filterCategory,setFilterCategory] = useState("");
-
+  const[filterCategory,setFilterCategory] = useState(""); //estado almacena la categoria de productos seleccinada actualmente
 
   const navigate = useNavigate();
 
@@ -75,11 +74,34 @@ const Products = () => {
     navigate("/productForm")
   };
 
-  const handleFilterCategoryChange = (category) => {
-    setFilterCategory(category);
-    setProductsFiltered(prevProducts => products.filter(product => product.category === category))
-  }
+  //const handleFilterCategoryChange = (category) => {
+    //setFilterCategory(category); 
+    //setProductsFiltered(prevProducts => products.filter(product => product.category === category)) /
+  //} 
 
+
+  const handleFilterCategoryChange = (category) => {
+    if (category === "") {
+      // Si se selecciona "CATEGORIAS", establece filterCategory en una cadena vacía
+      // para mostrar todos los productos.
+      setFilterCategory("");
+      
+      // Restaura la lista completa de productos (PRODUCTS)
+      setProductsFiltered(PRODUCTS);
+    } else {
+      // Si se selecciona una categoría distinta a "CATEGORIAS",
+      // actualiza filterCategory con la categoría seleccionada.
+      setFilterCategory(category);
+      
+      // Filtra los productos según la categoría seleccionada
+      // y actualiza productsFiltered con los productos filtrados.
+      setProductsFiltered(prevProducts =>
+        products.filter(product => product.category === category)
+      );
+    }
+  }
+  
+  
   
 
   
