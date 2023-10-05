@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProductForm.css";
 import Headers from "../header/Headers";
+import productImage from "./productAdd.png"; // Reemplaza con la ruta correcta de tu imagen
 
 const ProductForm = () => {
   // estados para nombre,precio,color,stock y descripcion
@@ -11,7 +12,7 @@ const ProductForm = () => {
   const [stock, setStock] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState(null);
-  const[error,setError] = useState(null);
+  const [error, setError] = useState(null);
 
   const nameRef = useRef(null);
   const priceRef = useRef(0);
@@ -63,31 +64,31 @@ const ProductForm = () => {
     let isError = false;
     if (name.length === 0) {
       nameRef.current.focus();
-      setError({...error, nameError: "Por favor complete el nombre"})
+      setError({ ...error, nameError: "Por favor complete el nombre" })
       isError = true;
-    }  
-    if(price.length === 0){
+    }
+    if (price.length === 0) {
       priceRef.current.focus();
-      setError({...error, priceError: "Por favor complete el precio"})
+      setError({ ...error, priceError: "Por favor complete el precio" })
       isError = true;
-    } 
+    }
     if (color.length === 0) {
       colorRef.current.focus();
-      setError({...error, colorError: "Por favor complete el color"})
+      setError({ ...error, colorError: "Por favor complete el color" })
       isError = true;
-    }  
-    if(stock.length === 0){
+    }
+    if (stock.length === 0) {
       stockRef.current.focus();
-      setError({...error, stockError: "Por favor complete el stock"})
+      setError({ ...error, stockError: "Por favor complete el stock" })
       isError = true;
     }
     if (desc.length === 0) {
       descRef.current.focus();
-      setError({...error, descError: "Por favor complete la descripcion"})
+      setError({ ...error, descError: "Por favor complete la descripcion" })
       isError = true;
-    }  
+    }
 
-    if(isError)
+    if (isError)
       return;
 
     alert("Todo bien!");
@@ -95,71 +96,76 @@ const ProductForm = () => {
   };
 
   return (
-    <div className= "page">
+    <div className="page">
       <Headers />
-    <div className="name">
-      <div className="name-box">
-        <h2 className="title">Agregar producto</h2>
-        <div className="container">
-          <input
-            onChange={handleNameChange}
-            placeholder="Nombre"
-            type="text"
-            ref={nameRef}
+      <div className="name">
+        <div className="name-box">
+          <img
+            className="img"
+            src={productImage}
+            alt="Descripción de la imagen"
           />
-          {error?.nameError && <p className="input-vacio">{error.nameError}</p>}
-          <input
-            onChange={handlePriceChange}
-            placeholder="Precio"
-            type="number"
-            ref={priceRef}
-          />
-          {error?.priceError && <p className="input-vacio">{error.priceError}</p>}
-          <input
-            onChange={handleStockChange}
-            placeholder="Stock"
-            type="number"
-            ref={stockRef}
-          />
-          {error?.stockError && <p className="input-vacio">{error.stockError}</p>}
-          <input
-            onChange={handleColorChange}
-            placeholder="Color"
-            type="text"
-            ref={colorRef}
-          />
-          {error?.colorError && <p className="input-vacio">{error.colorError}</p>}
-          <input
-            onChange={handleDescChange}
-            placeholder="Descripcion"
-            type="description"
-            ref={descRef}
-          />{error?.descError && <p className="input-vacio">{error.descError}</p>}
-          <input
-            onChange={handleURLChange}
-            placeholder="URL de la imagen"
-            type="text"
-          />
-        </div>
-        <div className="add-button">
-          <button
-          className="button-accept"
-            onClick={handleAddClick}
-            type="button"
-          >
-            Cancelar
-          </button>
-          <button
-            className="button-accept"
-            onClick={handleAddClick}
-            type="button"
-          >
-            Añadir producto
-          </button>
+          <div className="container">
+          <h2 className="add">Agregar producto</h2>
+            <input
+              onChange={handleNameChange}
+              placeholder="Nombre"
+              type="text"
+              ref={nameRef}
+            />
+            {error?.nameError && <p className="input-vacio">{error.nameError}</p>}
+            <input
+              onChange={handlePriceChange}
+              placeholder="Precio"
+              type="number"
+              ref={priceRef}
+            />
+            {error?.priceError && <p className="input-vacio">{error.priceError}</p>}
+            <input
+              onChange={handleStockChange}
+              placeholder="Stock"
+              type="number"
+              ref={stockRef}
+            />
+            {error?.stockError && <p className="input-vacio">{error.stockError}</p>}
+            <input
+              onChange={handleColorChange}
+              placeholder="Color"
+              type="text"
+              ref={colorRef}
+            />
+            {error?.colorError && <p className="input-vacio">{error.colorError}</p>}
+            <input
+              onChange={handleDescChange}
+              placeholder="Descripcion"
+              type="description"
+              ref={descRef}
+            />{error?.descError && <p className="input-vacio">{error.descError}</p>}
+            <input
+              onChange={handleURLChange}
+              placeholder="URL de la imagen"
+              type="text"
+            />
+            <div className="add-button">
+              <button
+                className="button-accept"
+                onClick={handleAddClick}
+                type="button"
+              >
+                Cancelar
+              </button>
+              <button
+                className="button-accept"
+                onClick={handleAddClick}
+                type="button"
+              >
+                Añadir producto
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-        </div>
-      </div>
+    </div>
   );
 };
 
