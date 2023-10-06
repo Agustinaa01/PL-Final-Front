@@ -118,15 +118,14 @@ const Products = () => {
   return (
     <div className="products">
       <Headers />
-      <div className="custom-filter">
-        <ProductFilter filterCategory={filterCategory} onCategoryChange={handleFilterCategoryChange} />
-      </div>
-      <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
-      <h1 className="titulo">Productos</h1>
-      <div className="producto-container">
-        <button className="boton-agregar-producto" onClick={handleProductForm}>
+      <h1 className="titulo">NUESTROS PRODUCTOS</h1>        
+      <button className="boton-agregar-producto" onClick={handleProductForm}>
           Agregar producto
         </button>
+      <div className="custom-filter">
+        <ProductFilter filterCategory={filterCategory} onCategoryChange={handleFilterCategoryChange} />
+        <SearchBar className= "search" searchTerm={searchTerm} onSearch={handleSearch} />
+      </div>
         <div className="producto-container">
           {productsFiltered.map((product) => (
             <div className="producto" key={product.id}>
@@ -142,7 +141,6 @@ const Products = () => {
             </div>
           ))}
         </div>
-      </div>
     </div>
   );
 };
