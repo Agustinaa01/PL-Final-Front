@@ -69,20 +69,13 @@ const Products = () => {
   const[products, setProducts] = useState(PRODUCTS);
   const[productsFiltered, setProductsFiltered] = useState(PRODUCTS);
   const[filterCategory,setFilterCategory] = useState(""); //estado almacena la categoria de productos seleccinada actualmente
-  const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); //estado que se utiluza para lamacenar el termino de busqueda actual
 
   const navigate = useNavigate();
-
-
+  
   const handleProductForm = () => {
     navigate("/productForm")
   };
-
-  //const handleFilterCategoryChange = (category) => {
-    //setFilterCategory(category); 
-    //setProductsFiltered(prevProducts => products.filter(product => product.category === category)) /
-  //} 
 
 
   const handleFilterCategoryChange = (category) => {
@@ -106,22 +99,27 @@ const Products = () => {
     }
   }
   
+  
   const handleSearch = (term) => {
-    setSearchTerm(term);
-
+    if (term === ""){
+      setSearchTerm(term);
+      setProductsFiltered(PRODUCTS)
+    } else {
+      setSearchTerm(term);
     // Filtra los productos por término de búsqueda.
-    setFilteredProducts(products.filter(product => product.name.toLowerCase().includes(term.toLowerCase())));
-
+     setProductsFiltered(products.filter(product => {
+      const productNameWithoutAccents = product.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const termWithoutAccents = term.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      return productNameWithoutAccents.toLowerCase().includes(termWithoutAccents.toLowerCase());
+    }));
+    }
   }
-  
-  
-
-  
+    
   return (
     <div className="products">
       <Headers />
       <ProductFilter filterCategory={filterCategory} onCategoryChange={handleFilterCategoryChange} />
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
       <h1 className="titulo">Productos</h1>
         <div className="producto-container">
         <button className="boton-agregar-producto" onClick={handleProductForm}>
