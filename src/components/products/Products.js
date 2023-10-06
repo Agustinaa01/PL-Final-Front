@@ -119,12 +119,17 @@ const Products = () => {
     <div className="products">
       <Headers />
       <ProductFilter filterCategory={filterCategory} onCategoryChange={handleFilterCategoryChange} />
-      <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} />
       <h1 className="titulo">Productos</h1>
         <div className="producto-container">
         <button className="boton-agregar-producto" onClick={handleProductForm}>
         Agregar producto
         </button>
+        <div className="custom-filter">
+        <ProductFilter filterCategory={filterCategory} onCategoryChange={handleFilterCategoryChange} />
+        </div>
+        <SearchBar onSearch={handleSearch} />
+        <div className="producto-container">
           {productsFiltered.map((product) => (
             <div className="producto" key={product.id}>
               <div className="product-image">

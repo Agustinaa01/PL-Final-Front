@@ -1,4 +1,4 @@
-.producto-container .boton-agregar-producto {
+ .boton-agregar-producto {
   border-radius: 10px;
   padding: 10px;
   text-align: center;
@@ -12,9 +12,10 @@
   height: 10%;
   position: relative;
   top: 20px; 
+  margin-bottom: 0;
 }
 
-.producto-container .boton-agregar-producto:hover {
+.boton-agregar-producto:hover {
   border-radius: 10px;
   padding: 10px;
   text-align: center;
@@ -26,8 +27,6 @@
   width: 10%;
   height: 10%;
   position: relative;
-  right: 155px;
-  top: 20px; 
 }
 
 .boton-agregar-carrito{
@@ -48,16 +47,23 @@
 }
 
 .titulo {
-  font-size: 70px;
+  font-size: 60px;
   color: white;
-  margin-top: 0px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .producto-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: end;
+  justify-content: center;
 }
+
+.products .custom-filter {
+  margin-left: 120px;
+}
+
 
 .producto {
   width: 300px;
