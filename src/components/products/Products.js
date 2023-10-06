@@ -118,34 +118,33 @@ const Products = () => {
   return (
     <div className="products">
       <Headers />
-      <ProductFilter filterCategory={filterCategory} onCategoryChange={handleFilterCategoryChange} />
-      <SearchBar onSearch={handleSearch} />
-      <h1 className="titulo">Productos</h1>
-        <div className="producto-container">
-        <button className="boton-agregar-producto" onClick={handleProductForm}>
-        Agregar producto
-        </button>
-        <div className="custom-filter">
+      <div className="custom-filter">
         <ProductFilter filterCategory={filterCategory} onCategoryChange={handleFilterCategoryChange} />
-        </div>
-        <SearchBar onSearch={handleSearch} />
+      </div>
+      <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
+      <h1 className="titulo">Productos</h1>
+      <div className="producto-container">
+        <button className="boton-agregar-producto" onClick={handleProductForm}>
+          Agregar producto
+        </button>
         <div className="producto-container">
           {productsFiltered.map((product) => (
             <div className="producto" key={product.id}>
               <div className="product-image">
-              <img src={product.image} alt={product.name} />
+                <img src={product.image} alt={product.name} />
+              </div>
+              <div className="product-info">
+                <h3>{product.name}</h3>
+                <p>Categoría: {product.category}</p>
+                <p>Precio: ${product.price.toFixed(2)}</p>
+                <button className="boton-agregar-carrito">Agregar al carrito</button>
+              </div>
             </div>
-            <div className="product-info">
-              <h3>{product.name}</h3>
-              <p>Categoría: {product.category}</p>
-              <p>Precio: ${product.price.toFixed(2)}</p>
-              <button className="boton-agregar-carrito">Agregar al carrito</button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Products;
+export default Products
