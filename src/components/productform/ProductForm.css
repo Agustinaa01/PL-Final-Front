@@ -135,12 +135,11 @@ button:nth-child(1):hover {
     align-items: center;
     margin-top: 20px;
   }
-
   .file-input-container {
     display: none;
   }
 
-  .imagen {
+  .img {
     display: none;
   }
 
