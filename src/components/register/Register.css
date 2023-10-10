@@ -1,112 +1,97 @@
 .register {
   margin: 0;
   padding: 0;
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
   position: absolute;
   width: 100%;
   height: 100%;
   background-image: url("./register.png");
-  background-size: cover; 
+  background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed; 
+  background-attachment: fixed;
 }
 
 .register-box {
   color: white;
-  width: 600px; 
-  height: 100vh; 
-  position: fixed; 
+  width: 600px;
+  height: 100vh;
+  position: fixed;
   right: 0;
   top: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 .register-box::before {
   content: "";
-  background-color: black; 
-   position: absolute;
-   width: 700px; 
-   height: 1000vh;
+  background-color: black;
+  position: absolute;
+  width: 700px;
+  height: 1000vh;
   top: 0;
-  right: 1%; 
-  opacity: 0.8; 
-  transform-origin: 0 0; 
-  z-index: -1; 
+  right: 1%;
+  opacity: 0.8;
+  transform-origin: 0 0;
+  z-index: -1;
   transform: rotate(-10deg);
 }
 
 .register-box h2 {
   font-size: 30px;
-  line-height: .5; 
-  margin-left: 5px; 
+  line-height: 0.5;
   margin-bottom: 20px;
 }
 
 .register-box input[type="email"],
-.register-box input[type="password"],
-.register-box input[type="text"],
-.register-box input[type="number"] {
+.register-box input[type="name"],
+.register-box input[type="password"] {
   width: 100%;
   padding: 15px;
   margin: 10px 0;
   border: none;
   border-radius: 15px;
   font-size: 15px;
-  background-color: white; 
-  color: #0F0F0F;
+  background-color: white;
+  color:#0f0f0f;
 }
 
-
-.input-button .signin-button {
-  padding: 15px 15px; 
-  font-size: 16px; 
-  background-color: white; 
-  color: #0F0F0F; 
+.signin-button-register {
+  background-color: white;
+  color: #0f0f0f;
   border: none;
   border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
   cursor: pointer;
-  margin-left: 30%;
+  padding: 15px;
   margin-top: -20px;
+  margin-bottom: 10px;
 }
 
 .register-box input[type="email"]::placeholder,
-.register-box input[type="password"]::placeholder,
-.register-box input[type="text"]::placeholder,
-.register-box input[type="number"]::placeholder {
+.register-box input[type="name"]::placeholder,
+.register-box input[type="password"]::placeholder {
   color: #999;
 }
 
-
-.input-button  .signin-button:hover {
-  background-color: #0F0F0F;
-  color: white; 
+.register-box .signin-button-register:hover {
+  background-color: #0f0f0f;
+  color: white;
 }
 
-.input-vacio{
+/* para ir a iniciar Sesion */
+.signup-button-register{
+  font-size: 13px;
+  margin-right: 10px;
+}
+.signup-button-register:hover {
+  text-decoration: underline;
+}
+
+.input-vacio {
   color: white;
   text-align: center;
   margin-left: 35px;
-  margin-top:0px;
+  margin-top: 0px;
   margin-bottom: 0px;
-}
-.password-vacio{
-  color: white;
-  text-align: center;
-  margin-left: 35px;
-}
-.signup-button{
-  font-size: 15px;
-  margin-top: 10px;
-  margin-right: 30px;
-}
-
-.button {
-  margin: 0;
 }

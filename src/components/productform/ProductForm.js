@@ -5,10 +5,10 @@ import Headers from "../header/Headers";
 import productImage from "./productAdd.png"; // Reemplaza con la ruta correcta de tu imagen
 
 const ProductForm = () => {
-  // estados para nombre,precio,color,stock y descripcion
+  // estados para nombre,precio,marca,stock y descripcion
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [color, setColor] = useState("");
+  const [brand, setBrand] = useState("");
   const [stock, setStock] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState(null);
@@ -16,7 +16,7 @@ const ProductForm = () => {
 
   const nameRef = useRef(null);
   const priceRef = useRef(0);
-  const colorRef = useRef(null);
+  const brandRef = useRef(null);
   const stockRef = useRef(0);
   const descRef = useRef(null);
   const imageInputRef = useRef(null);
@@ -41,10 +41,10 @@ const ProductForm = () => {
     priceRef.current.style.outline = "";
     setPrice(event.target.value);
   };
-  const handleColorChange = (event) => {
-    colorRef.current.style.bordercolor = "";
-    colorRef.current.style.outline = "";
-    setColor(event.target.value);
+  const handleBrandChange = (event) => {
+    brandRef.current.style.bordercolor = "";
+    brandRef.current.style.outline = "";
+    setBrand(event.target.value);
   };
   const handleStockChange = (event) => {
     stockRef.current.style.bordercolor = "";
@@ -72,9 +72,9 @@ const ProductForm = () => {
       setError({ ...error, priceError: "Por favor complete el precio" })
       isError = true;
     }
-    if (color.length === 0) {
-      colorRef.current.focus();
-      setError({ ...error, colorError: "Por favor complete el color" })
+    if (brand.length === 0) {
+      brandRef.current.focus();
+      setError({ ...error, brandError: "Por favor complete la marca" })
       isError = true;
     }
     if (stock.length === 0) {
@@ -129,12 +129,12 @@ const ProductForm = () => {
             />
             {error?.stockError && <p className="input-vacio">{error.stockError}</p>}
             <input
-              onChange={handleColorChange}
-              placeholder="Color"
+              onChange={handleBrandChange}
+              placeholder="Marca"
               type="text"
-              ref={colorRef}
+              ref={brandRef}
             />
-            {error?.colorError && <p className="input-vacio">{error.colorError}</p>}
+            {error?.brandError && <p className="input-vacio">{error.brandError}</p>}
             <input
               onChange={handleDescChange}
               placeholder="Descripcion"

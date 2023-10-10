@@ -1,16 +1,16 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import "./ProductForm.css";
+// import "./ProductForm.css";
 import Headers from "../header/Headers";
-import productImage from "./productAdd.png";
+// import productImage from "./productAdd.png";
 
 const EditProductForm = ({ productData }) => {
-  const [name, setName] = useState(productData.name || "");
-  const [price, setPrice] = useState(productData.price || "");
-  const [color, setColor] = useState(productData.color || "");
-  const [stock, setStock] = useState(productData.stock || "");
-  const [desc, setDesc] = useState(productData.desc || "");
-  const [imageUrl, setImageUrl] = useState(productData.imageUrl || "");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [color, setColor] = useState("");
+  const [stock, setStock] = useState("");
+  const [desc, setDesc] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState(null);
 
   const nameRef = useRef(null);
@@ -60,20 +60,20 @@ const EditProductForm = ({ productData }) => {
       <Headers />
       <div className="name">
         <div className="name-box">
-          <img className="img" src={productImage} alt="Image Description" />
+          {/* <img className="img" src={productImage} alt="Image Description" /> */}
           <div className="container">
             <h2 className="add">Edit Product</h2>
-            <input
+            {/* Agregar error de nombre */}
+            {error?.nameError && (
+              <p className="input-vacio">{error.nameError}</p>
+            )}
+              <input
               onChange={handleNameChange}
               placeholder="Name"
               type="text"
               value={name}
               ref={nameRef}
             />
-            {/* Agregar error de nombre */}
-            {error?.nameError && (
-              <p className="input-vacio">{error.nameError}</p>
-            )}
             <input
               onChange={handlePriceChange}
               placeholder="Price"

@@ -136,7 +136,7 @@ const Products = () => {
                 <h3>{product.name}</h3>
                 <p>Categoría: {product.category}</p>
                 <p>Precio: ${product.price.toFixed(2)}</p>
-                <button className="boton-agregar-carrito">Agregar al carrito</button>
+                <button className="boton-agregar-carrito">Ver producto</button>
               </div>
             </div>
           ))}
