@@ -26,12 +26,12 @@ const LoginForm = () => {
     let isError = false;
     if (email.length === 0) {
       emailRef.current.focus();
-      setError({ ...error, emailError: "Por favor complete el email" })
+      setError({emailError: "Por favor complete el email" })
       isError = true;
     }
     if (password.length === 0) {
       passwordRef.current.focus();
-      setError({ ...error, passwordError: "Por favor complete la contraseña" })
+      setError({passwordError: "Por favor complete la contraseña" })
       isError = true;
     }
 
@@ -70,13 +70,13 @@ const LoginForm = () => {
         {error?.passwordError && <p className="input-vacio">{error.passwordError}</p>}
         <br />
         <div className="input-button">
-          <button onClick={handleLoginClick} className="signin-button" type="button">
+          <button onClick={handleLoginClick} className="signin-button-login" type="button">
             Iniciar sesión
           </button>
-          <h4 className="signup-button" onClick={handleRegister}>
+          </div>
+          <h4 className="signup-button-login" onClick={handleRegister}>
             ¿No tienes cuenta? Registrarse
           </h4>
-        </div>
       </div>
     </div>
   );
