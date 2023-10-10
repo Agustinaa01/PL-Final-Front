@@ -18,7 +18,7 @@ const Headers = () => {
     navigate("/nosotros");
   };
   return (
-    <div>
+    <div className="header">
       <div className="container">
         <div className="header">
           <div className="left">
