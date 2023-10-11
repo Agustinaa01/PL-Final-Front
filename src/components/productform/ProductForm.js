@@ -107,43 +107,41 @@ const ProductForm = () => {
           />
           <div className="container">
           <h2 className="add">Agregar producto</h2>
+            <label className="label-input">Nombre</label>
             <input
+              className="input"
               onChange={handleNameChange}
-              placeholder="Nombre"
               type="text"
               ref={nameRef}
             />
             {error?.nameError && <p className="input-vacio">{error.nameError}</p>}
+            <label className="label-input">Precio</label>
             <input
+              className="input"
               onChange={handlePriceChange}
-              placeholder="Precio"
               type="number"
               ref={priceRef}
             />
-            {error?.priceError && <p className="input-vacio">{error.priceError}</p>}
-            <input
-              onChange={handleStockChange}
-              placeholder="Stock"
-              type="number"
-              ref={stockRef}
-            />
             {error?.stockError && <p className="input-vacio">{error.stockError}</p>}
+            <label className="label-input">Marca</label>
             <input
+              className="input"
               onChange={handleBrandChange}
-              placeholder="Marca"
               type="text"
               ref={brandRef}
             />
             {error?.brandError && <p className="input-vacio">{error.brandError}</p>}
+            <label className="label-input">Descripcion</label>
             <input
+              className="input"
               onChange={handleDescChange}
-              placeholder="Descripcion"
               type="description"
               ref={descRef}
             />{error?.descError && <p className="input-vacio">{error.descError}</p>}
+            <label className="label-input">URL de la imagen</label>
             <input
+            className="input"
               onChange={handleURLChange}
-              placeholder="URL de la imagen"
               type="text"
             />
             <div className="add-button">
