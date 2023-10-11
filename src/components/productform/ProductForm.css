@@ -4,7 +4,7 @@
   display: flex;
   padding: 40px;
   margin-left: 200px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
 }
 
 .img {
@@ -39,13 +39,13 @@ body {
 
 input[type="text"],
 input[type="description"],
+input[type="url"],
 input[type="number"] {
   padding: 10px;
   background-color: white;
   border: none;
   border-radius: 15px;
   outline: none;
-  color: #fff;
   box-shadow: 0 4px 8px rgba(100, 99, 99, 0.2);
 }
 

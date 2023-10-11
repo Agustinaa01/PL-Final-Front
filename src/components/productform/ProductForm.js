@@ -142,7 +142,7 @@ const ProductForm = () => {
             <input
             className="input"
               onChange={handleURLChange}
-              type="text"
+              type="url"
             />
             <div className="add-button">
               <button
