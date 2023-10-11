@@ -37,18 +37,21 @@ const RegisterForm = () => {
       nameRef.current.focus();
       setError({nameError: "Por favor complete el nombre" });
       isError = true;
+      return;
     }
     
     if (email.length === 0 || !emailRegex.test(email)) {
       emailRef.current.focus();
       setError({emailError: "Por favor, ingrese un correo electrónico válido" });
       isError = true;
+      return;
     }
 
     if (password.length === 0 || !passwordRegex.test(password)) {
       passwordRef.current.focus();
       setError({passwordError: "La contraseña debe tener al menos 8 caracteres, incluyendo letras y números" });
       isError = true;
+      return;
     }
 
     if (isError) {
@@ -91,8 +94,8 @@ const RegisterForm = () => {
             type="password"
             ref={passwordRef}
           />
-        </div>
         {error?.passwordError && <p className="input-vacio">{error.passwordError}</p>}
+        </div>
         <br />
         <div className="input-button">
           <button
