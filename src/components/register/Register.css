@@ -88,6 +88,10 @@
   text-decoration: underline;
 }
 
+.input-container-register{
+  width: 250px;
+}
+
 .input-vacio {
   color: white;
   text-align: center;

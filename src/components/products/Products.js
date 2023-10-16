@@ -165,4 +165,8 @@ const Products = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Products;
+=======
+export default Products;
+>>>>>>> 4c3103dac0b2a6b129d4b80ad4307ae1e03278b5

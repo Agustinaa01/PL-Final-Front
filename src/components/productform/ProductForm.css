@@ -3,62 +3,22 @@
   border-radius: 5px;
   display: flex;
   padding: 40px;
-  margin-top: 10px;
   margin-left: 200px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
 }
 
 .img {
   width: 50%;
+  height: 50%;
   margin-right: 20px;
-}
-
-/* .container {
-  display: flex;
-  flex-direction: column;
-} */
-
-/* input[type="description"],
-input[type="text"],
-input[type="number"] {
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  outline: none;
-  color: #fff;
-  align-items: center;
-  justify-content: center;
-} */
-
-/* .add-button {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-} */
-
-.button-accept,
-.button-cancel {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 75px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.button-accept:hover {
-  background-color: #0056b3;
-}
-
-button:nth-child(1):hover {
-  background-color: #999;
 }
 
 .add {
   color: #fff;
   text-align: center;
-  margin-bottom: 40px;
-  font-size: 25px;
+  margin-top: -0px;
+  margin-bottom: 10px;
+  font-size: 23px;
 }
 
 body {
@@ -74,25 +34,49 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 input[type="text"],
 input[type="description"],
+input[type="url"],
 input[type="number"] {
   padding: 10px;
+  background-color: white;
   border: none;
-  background-color: transparent;
+  border-radius: 15px;
   outline: none;
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(42, 41, 41, 0.2);
+  box-shadow: 0 4px 8px rgba(100, 99, 99, 0.2);
+}
+
+.label-input{
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 5px;
+}
+
+.button-accept,
+.button-cancel {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 75px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-accept:hover {
+  background-color: #0056b3;
+}
+
+button:nth-child(1):hover {
+  background-color: #999;
 }
 
 .add-button {
-  margin-top: 50px;
+  margin-top: 10px;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -103,18 +87,10 @@ button:nth-child(2) {
   font-size: 15px;
 }
 
-button:nth-child(2):hover {
-  background-color: #0056b3;
-}
-
 button:nth-child(1) {
   background-color: #ccc;
   color: #333;
   font-size: 15px;
-}
-
-button:nth-child(1):hover {
-  background-color: #999;
 }
 
 /* Lo que pasa para cuando la pantalla no está completa */
