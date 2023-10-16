@@ -60,7 +60,6 @@ const EditProductForm = ({ productData }) => {
       <Headers />
       <div className="name">
         <div className="name-box">
-          {/* <img className="img" src={productImage} alt="Image Description" /> */}
           <div className="container">
             <h2 className="add">Edit Product</h2>
             {/* Agregar error de nombre */}
@@ -69,9 +68,7 @@ const EditProductForm = ({ productData }) => {
             )}
               <input
               onChange={handleNameChange}
-              placeholder="Name"
               type="text"
-              value={name}
               ref={nameRef}
             />
             <input
