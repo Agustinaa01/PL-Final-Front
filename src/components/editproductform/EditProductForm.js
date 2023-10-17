@@ -1,13 +1,13 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-// import "./ProductForm.css";
+import "./EditProductForm.css";
 import Headers from "../header/Headers";
-// import productImage from "./productAdd.png";
+//import productImage from "./productform/productAdd.png";
 
 const EditProductForm = ({ productData }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [color, setColor] = useState("");
+  const [brand, setBrand] = useState("");
   const [stock, setStock] = useState("");
   const [desc, setDesc] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -15,7 +15,7 @@ const EditProductForm = ({ productData }) => {
 
   const nameRef = useRef(null);
   const priceRef = useRef(null);
-  const colorRef = useRef(null);
+  const brandRef = useRef(null);
   const stockRef = useRef(null);
   const descRef = useRef(null);
   const imageUrlRef = useRef(null);
@@ -30,8 +30,8 @@ const EditProductForm = ({ productData }) => {
     setPrice(event.target.value);
   };
 
-  const handleColorChange = (event) => {
-    setColor(event.target.value);
+  const handleBrandChange = (event) => {
+    setBrand(event.target.value);
   };
 
   const handleStockChange = (event) => {
@@ -48,7 +48,7 @@ const EditProductForm = ({ productData }) => {
 
   const handleEditClick = () => {
     if (name.trim() === "") {
-      setError({ ...error, nameError: "Please enter the name" });
+      setError({ ...error, nameError: "Introduzca un nombre" });
       nameRef.current.focus();
       return;
     }
@@ -61,28 +61,50 @@ const EditProductForm = ({ productData }) => {
       <div className="name">
         <div className="name-box">
           <div className="container">
-            <h2 className="add">Edit Product</h2>
-            {/* Agregar error de nombre */}
-            {error?.nameError && (
-              <p className="input-vacio">{error.nameError}</p>
-            )}
-              <input
+            <h2 className="add">Editar producto</h2>
+            <label className="label-input">Nombre</label>
+            <input
+              className="input"
               onChange={handleNameChange}
               type="text"
               ref={nameRef}
             />
+            {error?.nameError && (
+              <p className="input-vacio">{error.nameError}</p>
+            )}
+            <label className="label-input">Precio</label>
             <input
+              className="input"
               onChange={handlePriceChange}
-              placeholder="Price"
               type="number"
-              value={price}
               ref={priceRef}
             />
+            <label className="label-input">Stock</label>
             <input
-              onChange={handleURLChange}
-              placeholder="Image URL"
+              className="input"
+              onChange={handleStockChange}
+              type="number"
+              ref={stockRef}
+            />
+            <label className="label-input">Marca</label>
+            <input
+              className="input"
+              onChange={handleBrandChange}
               type="text"
-              value={imageUrl}
+              ref={brandRef}
+            />
+            <label className="label-input">Descripcion</label>
+            <input
+              className="input"
+              onChange={handleDescChange}
+              type="text"
+              ref={descRef}
+            />
+            <label className="label-input">Imagen</label>
+            <input
+              className="input"
+              onChange={handleURLChange}
+              type="url"
               ref={imageUrlRef}
             />
             <div className="add-button">
@@ -91,14 +113,14 @@ const EditProductForm = ({ productData }) => {
                 onClick={() => navigate(`/product/${productData.id}`)}
                 type="button"
               >
-                Cancel
+                Cancelar
               </button>
               <button
                 className="button-accept"
                 onClick={handleEditClick}
                 type="button"
               >
-                Edit Product
+                Editar producto
               </button>
             </div>
           </div>
