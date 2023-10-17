@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-// import "./ProductForm.css";
+//import "./EditProductForm.css";
 import Headers from "../header/Headers";
-// import productImage from "./productAdd.png";
 
 const EditProductForm = ({ productData }) => {
   const [name, setName] = useState("");
