@@ -6,12 +6,14 @@ import Login from './components/login/Login';
 import ProductForm from './components/productform/ProductForm';
 import EditProductForm from './components/editproductform/EditProductForm';
 import Register from './components/register/Register';
+import AboutUs from './components/about-us/aboutUs';
+
 import {
   Navigate,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import AboutUs from './components/about-us/aboutUs';
+import ProductDetailsForm from './components/productDetails/productDetails';
 
 function App() {
   const router = createBrowserRouter([
@@ -38,12 +40,13 @@ function App() {
     }, {
       path: "/editForm",
       element: <EditProductForm />,
-    }, 
-   {
+    }, {
     path: "/home",
     element: <Dashboard />,
-  }, 
-     {
+    },{
+       path: "/productDetails",
+       element: <ProductDetailsForm />,
+     }, {
       path: "*",
       element: <PageNotFound />,
     },

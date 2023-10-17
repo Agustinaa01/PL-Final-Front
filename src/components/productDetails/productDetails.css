@@ -1,0 +1,22 @@
+.product-details-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.imagen-details {
+    width: 22%;
+    border-radius: 25px;
+    padding: 5px;
+    background-color: rgb(219, 217, 217);
+    margin-right: 20px;
+    margin-top:20px;
+    margin-left: 60px; /* Añade margen izquierdo para mover la imagen hacia la derecha */
+}
+
+.product-info {
+    flex: 1;
+    padding: 10px;
+    color: white;
+    margin-left: 50px;
+    margin-top: 40px;
+}

@@ -2,12 +2,12 @@
     font-size: 18px; /* Tamaño de fuente más grande */
     padding: 10px; /* Espacio de relleno para aumentar el tamaño */
     width: 200px; /* Ancho del input (ajusta según tus necesidades) */
-    height: 30px; /* Altura del input (ajusta según tus necesidades) */
+    height: 40px; /* Altura del input (ajusta según tus necesidades) */
     border-radius: 40px;
   }
 
   ::placeholder/*:: se utiliza para seleccionar pseudo-elementos*/{
     font: inherit;
-    color:rgb(255, 255, 255);
+    color:rgb(5, 4, 4);
   }
   

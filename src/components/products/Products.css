@@ -100,3 +100,15 @@
 .product-info p {
   margin: 5px 0;
 }
+@media (max-width: 1140px) {
+  .boton-agregar-producto{
+    width: 150px;
+  }
+  .products .custom-filter {
+    display: flex;
+    justify-content: start;
+    margin-left: 80px;
+    margin-top: 50px;
+    gap: 30px;
+  }
+}
