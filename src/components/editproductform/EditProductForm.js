@@ -1,14 +1,13 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import "./EditProductForm.css";
 import Headers from "../header/Headers";
-//import productImage from "./productform/productAdd.png";
+import EditProduct from "./EditProduct.png";
 
 const EditProductForm = ({ productData }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [brand, setBrand] = useState("");
-  const [stock, setStock] = useState("");
+  const [category, setCategory] = useState("");
   const [desc, setDesc] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState(null);
@@ -16,9 +15,9 @@ const EditProductForm = ({ productData }) => {
   const nameRef = useRef(null);
   const priceRef = useRef(null);
   const brandRef = useRef(null);
-  const stockRef = useRef(null);
+  const categoryRef = useRef(null);
   const descRef = useRef(null);
-  const imageUrlRef = useRef(null);
+  // const imageUrlRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -34,8 +33,8 @@ const EditProductForm = ({ productData }) => {
     setBrand(event.target.value);
   };
 
-  const handleStockChange = (event) => {
-    setStock(event.target.value);
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
   };
 
   const handleDescChange = (event) => {
@@ -46,13 +45,39 @@ const EditProductForm = ({ productData }) => {
     setImageUrl(event.target.value);
   };
 
-  const handleEditClick = () => {
-    if (name.trim() === "") {
-      setError({ ...error, nameError: "Introduzca un nombre" });
+  const handleEditClick= () => {
+    let isError = false;
+    if (name.length === 0) {
       nameRef.current.focus();
-      return;
+      setError({nameError: "Por favor complete el nombre" })
+      isError = true;
     }
-    navigate(`/product/${productData.id}`);
+    if (price.length === 0) {
+      priceRef.current.focus();
+      setError({priceError: "Por favor complete el precio" })
+      isError = true;
+    }
+    if (brand.length === 0) {
+      brandRef.current.focus();
+      setError({brandError: "Por favor complete la marca" })
+      isError = true;
+    }
+    if (desc.length === 0) {
+      descRef.current.focus();
+      setError({descError: "Por favor complete la descripcion" })
+      isError = true;
+    }
+    if (category.length === 0) {
+      categoryRef.current.focus();
+      setError({categoryError: "Por favor complete la categoria" })
+      isError = true;
+    }
+
+    if (isError)
+      return;
+
+    alert("Todo bien!");
+    setError(null)
   };
 
   return (
@@ -60,6 +85,13 @@ const EditProductForm = ({ productData }) => {
       <Headers />
       <div className="name">
         <div className="name-box">
+          <div className="container-image">
+          <img
+            className="img"
+            src={EditProduct}
+            alt="Descripción de la imagen"
+          />
+          </div>
           <div className="container">
             <h2 className="add">Editar producto</h2>
             <label className="label-input">Nombre</label>
@@ -69,9 +101,7 @@ const EditProductForm = ({ productData }) => {
               type="text"
               ref={nameRef}
             />
-            {error?.nameError && (
-              <p className="input-vacio">{error.nameError}</p>
-            )}
+            {error?.nameError && <p className="input-vacio">{error.nameError}</p>}
             <label className="label-input">Precio</label>
             <input
               className="input"
@@ -79,13 +109,15 @@ const EditProductForm = ({ productData }) => {
               type="number"
               ref={priceRef}
             />
-            <label className="label-input">Stock</label>
+            {error?.priceError && <p className="input-vacio">{error.priceError}</p>}
+            <label className="label-input">Categoria</label>
             <input
               className="input"
-              onChange={handleStockChange}
-              type="number"
-              ref={stockRef}
+              onChange={handleCategoryChange}
+              type="text"
+              ref={categoryRef}
             />
+            {error?.categoryError && <p className="input-vacio">{error.categoryError}</p>}
             <label className="label-input">Marca</label>
             <input
               className="input"
@@ -93,6 +125,7 @@ const EditProductForm = ({ productData }) => {
               type="text"
               ref={brandRef}
             />
+            {error?.brandError && <p className="input-vacio">{error.brandError}</p>}
             <label className="label-input">Descripcion</label>
             <input
               className="input"
@@ -100,17 +133,18 @@ const EditProductForm = ({ productData }) => {
               type="text"
               ref={descRef}
             />
+            {error?.descError && <p className="input-vacio">{error.descError}</p>}
             <label className="label-input">Imagen</label>
             <input
               className="input"
               onChange={handleURLChange}
               type="url"
-              ref={imageUrlRef}
+              // ref={imageUrlRef}
             />
             <div className="add-button">
               <button
                 className="button-accept"
-                onClick={() => navigate(`/product/${productData.id}`)}
+                // onClick={() => navigate(`/product/${productData.id}`)}
                 type="button"
               >
                 Cancelar

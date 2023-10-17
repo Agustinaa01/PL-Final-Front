@@ -5,9 +5,4 @@
     height: 40px; /* Altura del input (ajusta según tus necesidades) */
     border-radius: 40px;
   }
-
-  ::placeholder/*:: se utiliza para seleccionar pseudo-elementos*/{
-    font: inherit;
-    color:rgb(5, 4, 4);
-  }
   

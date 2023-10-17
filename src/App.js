@@ -38,9 +38,10 @@ function App() {
       path: "/nosotros",
       element: <AboutUs />,
     }, {
-      path: "/editForm",
-      element: <EditProductForm />,
-    }, {
+      path: "/productForm/:id",
+      element: <ProductForm />,
+    }, 
+   {
     path: "/home",
     element: <Dashboard />,
     },{
