@@ -1,22 +1,80 @@
+.description {
+    margin-top: 20px;
+    margin-left: 60px;
+    color: white;
+}
+
+.description h2 {
+    font-size: 27px; 
+    margin-bottom: 13px; 
+}
+
+.description p {
+    font-size: 20px; 
+    max-width: 1000px; 
+}
+
+.button-details, .button-details-delete {
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-details:hover {
+    background-color: #333;
+    color: white;
+}
+
+.button-details-delete:hover {
+    background-color: white;
+    color: black;
+}
+
+.button-details {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-details-delete {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
 .product-details-container {
     display: flex;
     align-items: flex-start;
 }
 
 .imagen-details {
-    width: 22%;
+    width: 28%;
     border-radius: 25px;
     padding: 5px;
     background-color: rgb(219, 217, 217);
     margin-right: 20px;
-    margin-top:20px;
-    margin-left: 60px; /* Añade margen izquierdo para mover la imagen hacia la derecha */
+    margin-top: 20px;
+    margin-left: 60px;
 }
 
 .product-info {
-    flex: 1;
-    padding: 10px;
     color: white;
     margin-left: 50px;
     margin-top: 40px;
+}
+
+.product-info p{
+    margin-bottom: 20px;
 }
