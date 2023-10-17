@@ -10,66 +10,74 @@ const PRODUCTS = [
     id: 1,
     name: "Laptop",
     price: 899.99,
+    brand: "HP",
     category: "Laptops",
-    image:
-      "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
+    description: "Una potente laptop con excelentes capacidades de procesamiento, ideal para trabajos intensivos y entretenimiento multimedia.",
+    image: "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token="
   },
   {
     id: 2,
     name: "Smartphone",
     price: 599.99,
+    brand: "Apple",
     category: "Celulares",
-    image:
-      "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
+    description: "Un teléfono inteligente de última generación con una cámara avanzada y una interfaz de usuario fluida y elegante.",
+    image: "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token="
   },
   {
     id: 3,
     name: "Tableta",
     price: 299.99,
+    brand: "Samsung",
     category: "Tablet",
-    image:
-      "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
+    description: "Una tableta compacta y versátil con una pantalla de alta resolución y capacidades de procesamiento eficientes para la productividad en movimiento.",
+    image: "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token="
   },
   {
     id: 4,
     name: "Auriculares inalámbricos",
     price: 79.99,
+    brand: "Sony",
     category: "Auriculares",
-    image:
-      "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
+    description: "Auriculares inalámbricos de alta calidad con una reproducción de sonido nítida y una comodidad excepcional para largas sesiones de escucha.",
+    image: "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token="
   },
   {
     id: 5,
     name: "Cámara digital",
     price: 499.99,
+    brand: "Sony",
     category: "Camaras",
-    image:
-      "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
+    description: "Una cámara digital avanzada con capacidades de captura de alta resolución y una amplia gama de características para fotógrafos aficionados y profesionales.",
+    image: "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token="
   },
   {
     id: 6,
     name: "Parlantes",
     price: 99.99,
+    brand: "JBL",
     category: "Parlantes",
-    image:
-      "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
+    description: "", // La descripción está vacía en este caso
+    image: "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token="
   },
   {
     id: 7,
     name: "XBOX",
     price: 999.99,
+    brand: "XBOX",
     category: "Consolas",
-    image:
-      "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
+    description: "Una consola de juegos de última generación con gráficos de alta fidelidad y una amplia colección de juegos emocionantes para todos los jugadores.",
+    image: "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token="
   },
   {
     id: 8,
     name: "Auriculares",
     price: 4099.99,
+    brand: "Apple",
     category: "Auriculares",
-    image:
-      "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
-  },
+    description: "Auriculares premium con cancelación activa de ruido y una calidad de audio excepcional, perfectos para disfrutar de música y contenido multimedia de alta fidelidad.",
+    image: "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token="
+  }
 ];
 
 const Products = () => {
@@ -128,6 +136,11 @@ const Products = () => {
     }
   };
 
+  const handleViewProduct = (productId) => {
+    const productSelected = products.filter(product => product.id === productId)[0];
+    navigate(`/productForm/${productId}`,{state: {productSelected }})
+  }
+
   return (
     <div className="products">
       <Headers />
@@ -156,7 +169,7 @@ const Products = () => {
               <h3>{product.name}</h3>
               <p>Categoría: {product.category}</p>
               <p>Precio: ${product.price.toFixed(2)}</p>
-              <button className="boton-agregar-carrito">Ver producto</button>
+              <button className="boton-agregar-carrito" onClick={() => handleViewProduct(product.id)}>Ver producto</button>
             </div>
           </div>
         ))}

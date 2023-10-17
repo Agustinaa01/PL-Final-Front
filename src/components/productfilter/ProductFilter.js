@@ -12,7 +12,7 @@ const ProductFilter = ({filterCategory, onCategoryChange}) => {
         <div className="products-filter">
           <div className="products-filter__control">
             <select value={filterCategory} onChange={handleChange}>
-              <option value="">CATEGORIAS</option>
+              <option value="">CategoriA</option>
               <option value="Tablet">Tablet</option>
               <option value="Celulares">Celulares</option>
               <option value="Auriculares">Auriculares</option>
