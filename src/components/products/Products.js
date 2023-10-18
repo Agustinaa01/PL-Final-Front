@@ -138,6 +138,11 @@ const Products = () => {
       );
     }
   };
+  const handleViewProduct = (productId) => {
+    const productSelected = products.filter(product => product.id === productId)[0];
+    navigate(`/productDetails/${productId}`,{state: {productSelected }})
+  }
+
 
   return (
     <div className="products">
