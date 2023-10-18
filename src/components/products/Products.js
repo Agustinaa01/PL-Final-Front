@@ -168,10 +168,10 @@ const Products = () => {
               <img src={product.image} alt={product.name} />
             </div>
             <div className="product-info">
+              <p>{product.brand}</p>
               <h3>{product.name}</h3>
               {/* <p>Categoría: {product.category}</p> */}
-              <p>{product.brand}</p>
-              <p>${product.price.toFixed(2)}</p>
+              <h5><strong>${product.price.toFixed(2)}</strong></h5>
               <button className="boton-agregar-carrito" onClick={() => handleViewProduct(product.id)}>Ver producto</button>
             </div>
           </div>
