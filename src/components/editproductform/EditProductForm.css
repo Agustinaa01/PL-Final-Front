@@ -1,0 +1,141 @@
+.name-box {
+  background-color: #0f0f0f;
+  border-radius: 5px;
+  display: flex;
+  padding: 40px;
+  margin-left: 200px;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
+}
+
+.img {
+  width: 50%;
+  height: 50%;
+  margin-right: 20px;
+}
+
+.add {
+  color: #fff;
+  text-align: center;
+  margin-top: -0px;
+  margin-bottom: 10px;
+  font-size: 23px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0f0f0f;
+}
+
+.name {
+  width: 180vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+input[type="text"],
+input[type="description"],
+input[type="url"],
+input[type="number"] {
+  padding: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(100, 99, 99, 0.2);
+}
+
+.label-input {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 5px;
+}
+
+.button-accept,
+.button-cancel {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 75px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-accept:hover {
+  background-color: #0056b3;
+}
+
+button:nth-child(1):hover {
+  background-color: #999;
+}
+
+.add-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:nth-child(2) {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 15px;
+}
+
+button:nth-child(1) {
+  background-color: #ccc;
+  color: #333;
+  font-size: 15px;
+}
+
+/* Lo que pasa para cuando la pantalla no está completa */
+@media (max-width: 1140px) {
+  .name-box {
+    right: 20px;
+    left: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .file-input-container {
+    display: none;
+  }
+
+  .img {
+    display: none;
+  }
+
+  .add-button {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+  }
+
+  .button-accept,
+  .button-cancel {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 20px;
+  }
+
+  .name-box {
+    order: 2;
+  }
+}
