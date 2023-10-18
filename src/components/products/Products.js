@@ -138,7 +138,7 @@ const Products = () => {
 
   const handleViewProduct = (productId) => {
     const productSelected = products.filter(product => product.id === productId)[0];
-    navigate(`/productForm/${productId}`,{state: {productSelected }})
+    navigate(`/productDetails/${productId}`,{state: {productSelected }})
   }
 
   return (

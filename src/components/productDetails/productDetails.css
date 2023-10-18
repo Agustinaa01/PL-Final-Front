@@ -69,12 +69,17 @@
     margin-left: 60px;
 }
 
-.product-info {
+.producto-info {
     color: white;
-    margin-left: 50px;
+    margin-left: 30px;
     margin-top: 40px;
 }
+.producto-info h1{
+    color: white;
+    font-size: 50px;
+}
 
-.product-info p{
+.producto-info p{
     margin-bottom: 20px;
+    font-size: 17px;
 }

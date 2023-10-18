@@ -45,7 +45,7 @@ function App() {
     path: "/home",
     element: <Dashboard />,
     },{
-       path: "/productDetails",
+       path: "/productDetails/:id",
        element: <ProductDetailsForm />,
      }, {
       path: "*",
