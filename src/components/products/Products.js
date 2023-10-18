@@ -167,8 +167,9 @@ const Products = () => {
             </div>
             <div className="product-info">
               <h3>{product.name}</h3>
-              <p>Categoría: {product.category}</p>
-              <p>Precio: ${product.price.toFixed(2)}</p>
+              {/* <p>Categoría: {product.category}</p> */}
+              <p>{product.brand}</p>
+              <p>${product.price.toFixed(2)}</p>
               <button className="boton-agregar-carrito" onClick={() => handleViewProduct(product.id)}>Ver producto</button>
             </div>
           </div>

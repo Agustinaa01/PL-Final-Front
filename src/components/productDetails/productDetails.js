@@ -19,8 +19,7 @@ const ProductDetailsForm = () => {
     const handleEditClick = () => {
         const productId = location.state?.productSelected?.id;
         navigate(`/productForm/${productId}`, { state: { productSelected: location.state.productSelected } });
-      };
-      
+    };
 
     return (
         <div>
