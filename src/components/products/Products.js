@@ -4,6 +4,7 @@ import Headers from "../header/Headers";
 import ProductFilter from "../productfilter/ProductFilter";
 import { useState } from "react";
 import SearchBar from "../searchbar/SearchBar";
+import DeleteProduct from "../deleteproduct/DeleteProduct";
 
 const PRODUCTS = [
   {
@@ -127,6 +128,18 @@ const Products = () => {
       );
     }
   };
+  const handleDeleteClick = () => {
+    DeleteProduct.showWarning(
+      "Esta seguro que quiere eliminar el producto?",
+      (confirm) => {
+        if (confirm) {
+          console.log("Eliminado!");
+        } else {
+          console.log("Cancelado");
+        }
+      }
+    );
+  };
 
   return (
     <div className="products">
@@ -157,6 +170,12 @@ const Products = () => {
               <p>Categoría: {product.category}</p>
               <p>Precio: ${product.price.toFixed(2)}</p>
               <button className="boton-agregar-carrito">Ver producto</button>
+              <button
+                className="boton-eliminar-producto"
+                onClick={handleDeleteClick}
+              >
+                Eliminar producto
+              </button>
             </div>
           </div>
         ))}
