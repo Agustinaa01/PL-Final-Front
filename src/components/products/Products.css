@@ -16,17 +16,8 @@
 }
 
 .boton-agregar-producto:hover {
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  justify-content: center;
   color: white;
   background-color: #0056b3;
-  font-size: 16px;
-  border: none;
-  width: 10%;
-  height: 10%;
-  position: relative;
 }
 
 .boton-agregar-carrito{
@@ -89,14 +80,29 @@
   transition: transform 0.3s ease-in-out;
 }
 .product-info{
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .product-info h3 {
+  position: relative;
   font-size: 1.5rem;
   margin: 0;
   color: #1E1E1E;
 }
 
 .product-info p {
+  color: black;
   margin: 5px 0;
+}
+
+@media (max-width: 1140px) {
+  .boton-agregar-producto{
+    width: 150px;
+  }
+  .products .custom-filter {
+    display: flex;
+    justify-content: start;
+    margin-left: 80px;
+    margin-top: 50px;
+    gap: 30px;
+  }
 }

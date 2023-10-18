@@ -11,7 +11,10 @@ const PRODUCTS = [
     id: 1,
     name: "Laptop",
     price: 899.99,
+    brand: "HP",
     category: "Laptops",
+    description:
+      "Una potente laptop con excelentes capacidades de procesamiento, ideal para trabajos intensivos y entretenimiento multimedia.",
     image:
       "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
   },
@@ -19,7 +22,10 @@ const PRODUCTS = [
     id: 2,
     name: "Smartphone",
     price: 599.99,
+    brand: "Apple",
     category: "Celulares",
+    description:
+      "Un teléfono inteligente de última generación con una cámara avanzada y una interfaz de usuario fluida y elegante.",
     image:
       "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
   },
@@ -27,7 +33,10 @@ const PRODUCTS = [
     id: 3,
     name: "Tableta",
     price: 299.99,
+    brand: "Samsung",
     category: "Tablet",
+    description:
+      "Una tableta compacta y versátil con una pantalla de alta resolución y capacidades de procesamiento eficientes para la productividad en movimiento.",
     image:
       "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
   },
@@ -35,7 +44,10 @@ const PRODUCTS = [
     id: 4,
     name: "Auriculares inalámbricos",
     price: 79.99,
+    brand: "Sony",
     category: "Auriculares",
+    description:
+      "Auriculares inalámbricos de alta calidad con una reproducción de sonido nítida y una comodidad excepcional para largas sesiones de escucha.",
     image:
       "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
   },
@@ -43,7 +55,10 @@ const PRODUCTS = [
     id: 5,
     name: "Cámara digital",
     price: 499.99,
+    brand: "Sony",
     category: "Camaras",
+    description:
+      "Una cámara digital avanzada con capacidades de captura de alta resolución y una amplia gama de características para fotógrafos aficionados y profesionales.",
     image:
       "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
   },
@@ -51,7 +66,9 @@ const PRODUCTS = [
     id: 6,
     name: "Parlantes",
     price: 99.99,
+    brand: "JBL",
     category: "Parlantes",
+    description: "", // La descripción está vacía en este caso
     image:
       "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
   },
@@ -59,7 +76,10 @@ const PRODUCTS = [
     id: 7,
     name: "XBOX",
     price: 999.99,
+    brand: "XBOX",
     category: "Consolas",
+    description:
+      "Una consola de juegos de última generación con gráficos de alta fidelidad y una amplia colección de juegos emocionantes para todos los jugadores.",
     image:
       "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
   },
@@ -67,7 +87,10 @@ const PRODUCTS = [
     id: 8,
     name: "Auriculares",
     price: 4099.99,
+    brand: "Apple",
     category: "Auriculares",
+    description:
+      "Auriculares premium con cancelación activa de ruido y una calidad de audio excepcional, perfectos para disfrutar de música y contenido multimedia de alta fidelidad.",
     image:
       "https://cdn.create.vista.com/api/media/medium/200319374/stock-photo-close-view-laptop-blank-screen-wooden-tabletop-black-wall-backdrop?token=",
   },
@@ -128,18 +151,6 @@ const Products = () => {
       );
     }
   };
-  const handleDeleteClick = () => {
-    DeleteProduct.showWarning(
-      "Esta seguro que quiere eliminar el producto?",
-      (confirm) => {
-        if (confirm) {
-          console.log("Eliminado!");
-        } else {
-          console.log("Cancelado");
-        }
-      }
-    );
-  };
 
   return (
     <div className="products">
@@ -170,12 +181,6 @@ const Products = () => {
               <p>Categoría: {product.category}</p>
               <p>Precio: ${product.price.toFixed(2)}</p>
               <button className="boton-agregar-carrito">Ver producto</button>
-              <button
-                className="boton-eliminar-producto"
-                onClick={handleDeleteClick}
-              >
-                Eliminar producto
-              </button>
             </div>
           </div>
         ))}
