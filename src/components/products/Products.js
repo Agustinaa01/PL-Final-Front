@@ -6,6 +6,7 @@ import Headers from "../header/Headers";
 import ProductFilter from "../productfilter/ProductFilter";
 import { useState } from "react";
 import SearchBar from "../searchbar/SearchBar";
+import DeleteProduct from "../deleteproduct/DeleteProduct";
 
 const PRODUCTS = [
   {
@@ -137,11 +138,6 @@ const Products = () => {
       );
     }
   };
-
-  const handleViewProduct = (productId) => {
-    const productSelected = products.filter(product => product.id === productId)[0];
-    navigate(`/productDetails/${productId}`,{state: {productSelected }})
-  }
 
   return (
     <div className="products">
