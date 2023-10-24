@@ -1,6 +1,5 @@
 import "./productDetails.css";
 import Headers from "../header/Headers";
-import foroDetailsImage from "./fotoDetails.png"; // Import the image
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 
@@ -27,7 +26,7 @@ const ProductDetailsForm = () => {
                 <Headers />
             </div>
             <div className="product-details-container">
-                <img className="imagen-details" src={foroDetailsImage} alt="Product Details" />
+                <img className="imagen-details" src={image} alt="Product Details" />
             <div className="producto-info">
                 <h1>{name}</h1><br />
                 <h2>${price}</h2><br />
