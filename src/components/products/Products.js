@@ -4,7 +4,7 @@ import Headers from "../header/Headers";
 import ProductFilter from "../productfilter/ProductFilter";
 import { useState } from "react";
 import SearchBar from "../searchbar/SearchBar";
-import DeleteProduct from "../deleteproduct/DeleteProduct";
+import DeleteProduct from "../alerts/DeleteProduct";
 
 const PRODUCTS = [
   {
@@ -181,6 +181,9 @@ const Products = () => {
               <p>Categoría: {product.category}</p>
               <p>Precio: ${product.price.toFixed(2)}</p>
               <button className="boton-agregar-carrito">Ver producto</button>
+              <button className="boton-eliminar-producto">
+                Eliminar producto
+              </button>
             </div>
           </div>
         ))}
