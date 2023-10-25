@@ -8,6 +8,8 @@ import EditProductForm from "./components/editproductform/EditProductForm";
 import Register from "./components/register/Register";
 import AboutUs from "./components/about-us/aboutUs";
 import DeleteProduct from "./components/alerts/DeleteProduct";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Navigate,
   RouterProvider,
@@ -57,6 +59,10 @@ function App() {
     {
       path: "*",
       element: <PageNotFound />,
+    },
+    {
+      path: "/delete",
+      element: <DeleteProduct />,
     },
   ]);
   return (
