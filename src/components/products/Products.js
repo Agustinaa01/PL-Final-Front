@@ -1,3 +1,4 @@
+import React from "react";
 import "./Products.css";
 import { useNavigate } from "react-router";
 import fotoDetailsImage from "./fotoDetails.png";
@@ -7,6 +8,8 @@ import ProductFilter from "../productfilter/ProductFilter";
 import { useState } from "react";
 import SearchBar from "../searchbar/SearchBar";
 import DeleteProduct from "../alerts/DeleteProduct";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PRODUCTS = [
   {
@@ -152,6 +155,20 @@ const Products = () => {
     navigate(`/productDetails/${productId}`, { state: { productSelected } });
   };
 
+  const handleDeleteClick = () => {
+    toast("🦄 Wow so easy!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    navigate("/delete");
+  };
+
   return (
     <div className="products">
       <Headers />
@@ -192,9 +209,6 @@ const Products = () => {
               <p>Categoría: {product.category}</p>
               <p>Precio: ${product.price.toFixed(2)}</p>
               <button className="boton-agregar-carrito">Ver producto</button>
-              <button className="boton-eliminar-producto">
-                Eliminar producto
-              </button>
             </div>
           </div>
         ))}
