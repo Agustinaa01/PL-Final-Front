@@ -5,11 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 import "./DeleteProduct.css";
 
 const DeleteProduct = () => {
-<<<<<<< HEAD
-    const navigate = useNavigate();
-=======
+
   const navigate = useNavigate();
->>>>>>> 236b14f8b298d86bf3ecaf8b5f5905fc35014a22
+
 
   const handleConfirmClick = () => {
     toast.success("Producto eliminado", {
@@ -27,25 +25,10 @@ const DeleteProduct = () => {
     }, 2500);
   };
 
-<<<<<<< HEAD
+
     const handleCancelClick = () => {
       navigate("/products");
     };
-=======
-  const handleCancelClick = () => {
-    // toast.error("Eliminación cancelada", {
-    //   position: "top-right",
-    //   delay: 1000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "light",
-    // });
-    navigate("/products");
-  };
->>>>>>> 236b14f8b298d86bf3ecaf8b5f5905fc35014a22
 
   return (
     <div className="Warning">
@@ -62,8 +45,4 @@ const DeleteProduct = () => {
   );
 };
 
-<<<<<<< HEAD
 export default DeleteProduct;
-=======
-export default DeleteProduct;
->>>>>>> 236b14f8b298d86bf3ecaf8b5f5905fc35014a22
