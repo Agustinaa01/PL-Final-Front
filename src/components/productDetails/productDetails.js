@@ -34,16 +34,16 @@ const ProductDetailsForm = () => {
 
   const handleConfirm = () => {
     setShow(false);
-    toast.error("Producto eliminado", {
+    toast.success('¡Producto eliminado!', {
       position: "top-center",
-      autoClose: 3000,
+      autoClose: 5000,
       hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
       progress: undefined,
       theme: "colored",
-    });
+      });
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -79,8 +79,8 @@ const ProductDetailsForm = () => {
               Está seguro que quiere eliminar el producto?
             </Modal.Body>
             <Modal.Footer>
-              <button onClick={handleClose}>Cancelar</button>
-              <button onClick={handleConfirm}>Confirmar</button>
+              <button className="Cancel" onClick={handleClose}>Cancelar</button>
+              <button className="Cancel" onClick={handleConfirm}>Confirmar</button>
             </Modal.Footer>
           </Modal>
           <ToastContainer />

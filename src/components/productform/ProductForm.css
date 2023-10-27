@@ -87,7 +87,7 @@ button:nth-child(1):hover {
   transition: background-color 0.3s, color 0.3s;
 }
 
-button:nth-child(2) {
+.button-accept {
   background-color: #007bff;
   color: #fff;
   font-size: 15px;
