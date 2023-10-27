@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 
-const alert = () => {
-  const DeleteProduct = () => {
+const DeleteProduct = () => {
     const navigate = useNavigate();
 
     const handleConfirmClick = () => {
@@ -11,7 +10,6 @@ const alert = () => {
     const handleCancelClick = () => {
       navigate("/products");
     };
-  };
 
   return (
     <div>
@@ -27,3 +25,5 @@ const alert = () => {
     </div>
   );
 };
+
+export default DeleteProduct;
