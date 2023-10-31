@@ -5,37 +5,28 @@ import "react-toastify/dist/ReactToastify.css";
 import "./DeleteProduct.css";
 
 const DeleteProduct = () => {
+
   const navigate = useNavigate();
 
   const handleConfirmClick = () => {
-    toast.success("Producto eliminado", {
-      position: "top-right",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
+    toast.success('Producto eliminado correctamente!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      theme: "light",
-    });
+      theme: "colored",
+      });
     setTimeout(() => {
       navigate("/products");
     }, 2500);
   };
 
-  const handleCancelClick = () => {
-    // toast.error("Eliminación cancelada", {
-    //   position: "top-right",
-    //   delay: 1000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "light",
-    // });
-    navigate("/products");
-  };
+    const handleCancelClick = () => {
+      navigate("/products");
+    };
 
   return (
     <div className="Warning">
