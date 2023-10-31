@@ -1,4 +1,5 @@
 import "./productDetails.css";
+import "./Modal.css";
 import Headers from "../header/Headers";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
@@ -34,7 +35,7 @@ const ProductDetailsForm = () => {
 
   const handleConfirm = () => {
     setShow(false);
-    toast.success('¡Producto eliminado!', {
+    toast.success("¡Producto eliminado!", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -43,7 +44,7 @@ const ProductDetailsForm = () => {
       draggable: false,
       progress: undefined,
       theme: "colored",
-      });
+    });
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -79,8 +80,12 @@ const ProductDetailsForm = () => {
               Está seguro que quiere eliminar el producto?
             </Modal.Body>
             <Modal.Footer>
-              <button className="Cancel" onClick={handleClose}>Cancelar</button>
-              <button className="Cancel" onClick={handleConfirm}>Confirmar</button>
+              <button className="Cancel" onClick={handleClose}>
+                Cancelar
+              </button>
+              <button className="Cancel" onClick={handleConfirm}>
+                Confirmar
+              </button>
             </Modal.Footer>
           </Modal>
           <ToastContainer />

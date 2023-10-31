@@ -1,85 +1,93 @@
 .description {
-    margin-top: 20px;
-    margin-left: 60px;
-    color: white;
+  margin-top: 20px;
+  margin-left: 60px;
+  color: white;
 }
 
 .description h2 {
-    font-size: 27px; 
-    margin-bottom: 13px; 
+  font-size: 27px;
+  margin-bottom: 13px;
 }
 
 .description p {
-    font-size: 20px; 
-    max-width: 1000px; 
+  font-size: 20px;
+  max-width: 1000px;
 }
 
-.button-details, .button-details-delete {
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+.button-details,
+.button-details-delete {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .button-details:hover {
-    background-color: #333;
-    color: white;
+  background-color: #333;
+  color: white;
 }
 
 .button-details-delete:hover {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
 
 .button-details {
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .button-details-delete {
-    background-color: black;
-    color: white;
-    border-radius: 10px;
-    border: none;
-    padding: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.confirm-button {
+  background: red;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .product-details-container {
-    display: flex;
-    align-items: flex-start;
+  display: flex;
+  align-items: flex-start;
 }
 
 .imagen-details {
-    width: 28%;
-    border-radius: 25px;
-    padding: 5px;
-    background-color: rgb(219, 217, 217);
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-left: 60px;
+  width: 28%;
+  border-radius: 25px;
+  padding: 5px;
+  background-color: rgb(219, 217, 217);
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-left: 60px;
 }
 
 .producto-info {
-    color: white;
-    margin-left: 30px;
-    margin-top: 40px;
+  color: white;
+  margin-left: 30px;
+  margin-top: 40px;
 }
-.producto-info h1{
-    color: white;
-    font-size: 50px;
+.producto-info h1 {
+  color: white;
+  font-size: 50px;
 }
 
-.producto-info p{
-    margin-bottom: 20px;
-    font-size: 17px;
+.producto-info p {
+  margin-bottom: 20px;
+  font-size: 17px;
 }
