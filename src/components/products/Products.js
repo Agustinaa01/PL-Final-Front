@@ -185,16 +185,15 @@ const Products = () => {
               <h5>
                 <strong>${product.price.toFixed(2)}</strong>
               </h5>
+              <p>Categoría: {product.category}</p>
+              <p>Precio: ${product.price.toFixed(2)}</p>
               <button
                 className="boton-agregar-carrito"
                 onClick={() => handleViewProduct(product.id)}
               >
                 Ver producto
               </button>
-              <p>Categoría: {product.category}</p>
-              <p>Precio: ${product.price.toFixed(2)}</p>
-              <button className="boton-agregar-carrito">Ver producto</button>
-            </div>
+              </div>
           </div>
         ))}
       </div>
