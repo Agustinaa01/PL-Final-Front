@@ -15,8 +15,12 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import ProductDetailsForm from "./components/productDetails/productDetails";
+import { useContext } from "react";
+import { ThemeContext } from "./components/services/theme/ThemeContext";
 
 function App() {
+
+  const { theme } = useContext(ThemeContext)
   const router = createBrowserRouter([
     { path: "/", element: <Navigate to="/home" /> },
     {
@@ -61,7 +65,7 @@ function App() {
     },
   ]);
   return (
-    <div>
+    <div className={`${theme === "light" && "light-theme"}`}>
       <RouterProvider router={router} />
     </div>
   );

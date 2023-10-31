@@ -12,6 +12,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 const Dashboard = () => {
   return (
     <div className="content">
+
       <Headers />
       <div className="dashboard">
         <div id="myCarousel" className="carousel slide" data-ride="carousel" data-interval="3000">
