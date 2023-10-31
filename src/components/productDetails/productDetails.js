@@ -1,4 +1,5 @@
 import "./productDetails.css";
+import "./Modal.css";
 import Headers from "../header/Headers";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
@@ -80,7 +81,9 @@ const ProductDetailsForm = () => {
             </Modal.Body>
             <Modal.Footer>
               <button onClick={handleClose}>Cancelar</button>
-              <button onClick={handleConfirm}>Confirmar</button>
+              <button className="confirm-button" onClick={handleConfirm}>
+                Confirmar
+              </button>
             </Modal.Footer>
           </Modal>
           <ToastContainer />

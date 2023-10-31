@@ -7,7 +7,6 @@ import Headers from "../header/Headers";
 import ProductFilter from "../productfilter/ProductFilter";
 import { useState } from "react";
 import SearchBar from "../searchbar/SearchBar";
-import DeleteProduct from "../alerts/DeleteProduct";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -153,20 +152,6 @@ const Products = () => {
       (product) => product.id === productId
     )[0];
     navigate(`/productDetails/${productId}`, { state: { productSelected } });
-  };
-
-  const handleDeleteClick = () => {
-    toast("🦄 Wow so easy!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-    navigate("/delete");
   };
 
   return (
