@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ProductDetailsForm = () => {
   const location = useLocation();
-
+  const [cart, setCart] = useState();
   const [name, setName] = useState(location.state?.productSelected?.name);
   const [price, setPrice] = useState(location.state?.productSelected?.price);
   const [brand, setBrand] = useState(location.state?.productSelected?.brand);
@@ -23,7 +23,7 @@ const ProductDetailsForm = () => {
     location.state?.productSelected?.image ?? ""
   );
   const [show, setShow] = useState(false);
-
+  const [showCart, setShowCart] = useState(false);
   const navigate = useNavigate();
 
   const handleEditClick = () => {
@@ -48,7 +48,8 @@ const ProductDetailsForm = () => {
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const handleShowCart = () => setShowCart(true);
+  const handleCloseCart = () => setShowCart(false);
   return (
     <div>
       <div className="header-product-details">
@@ -63,7 +64,7 @@ const ProductDetailsForm = () => {
           <br />
           <p>Categoria: {category}</p>
           <p>Marca: {brand}</p>
-          <button className="button-details">Agregar al carrito</button>
+          <button className="button-details" onClick={handleShowCart}>Agregar al carrito</button>
           <br />
           <button className="button-details" onClick={handleEditClick}>
             Editar producto
@@ -80,15 +81,33 @@ const ProductDetailsForm = () => {
               Está seguro que quiere eliminar el producto?
             </Modal.Body>
             <Modal.Footer>
-              <button className="Cancel" onClick={handleClose}>
+              <button className="button-cancel" onClick={handleClose}>
                 Cancelar
               </button>
-              <button className="Cancel" onClick={handleConfirm}>
+              <button className="button-confirm" onClick={handleConfirm}>
                 Confirmar
               </button>
             </Modal.Footer>
           </Modal>
-          <ToastContainer />
+          <Modal show={showCart} onHide={handleCloseCart}>
+            <Modal.Header>
+              <Modal.Title>Carrito de compra</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="carrito-container">
+                <img className="imagen-details-carrito" src={image} alt="Producto en el carrito" />
+                <div className="carrito-item-details">
+                  <h3 className="name-carrito">{name}</h3>
+                  <p>Precio: ${price}</p>
+                </div>
+              </div>
+              <p className="total">Total: ${price}</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <button className="button-pagar">Pagar</button>
+              <button className="button-seguir-comprando">Seguir Comprando</button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
       <div className="description">
