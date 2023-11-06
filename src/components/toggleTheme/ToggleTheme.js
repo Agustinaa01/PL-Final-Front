@@ -10,7 +10,7 @@ const ToggleTheme = () => {
         className="mt-4"
         variant={theme === "dark"? "light": "dark"}
         >
-            Cambiar a tema {theme === "light"? "oscuro": "light"}
+            Cambiar a tema {theme === "light"? "oscuro": "claro"}
         </Button>
     )
 
