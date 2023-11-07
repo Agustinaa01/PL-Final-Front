@@ -14,6 +14,16 @@
   top: 20px; 
   margin-bottom: 0;
 }
+/* Estilos generales para el título en el tema claro */
+.light-title {
+  color: #000; /* Cambia el color del título para el tema claro */
+}
+
+/* Estilos generales para el título en el tema oscuro */
+.dark-title {
+  color: #fff; /* Cambia el color del título para el tema oscuro */
+}
+
 
 .boton-agregar-producto:hover {
   color: white;
@@ -39,7 +49,6 @@
 
 .titulo {
   font-size: 60px;
-  color: white;
   margin-top: 20px;
   margin-bottom: 0px;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

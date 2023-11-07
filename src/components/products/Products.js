@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Products.css";
 import { useNavigate } from "react-router";
 import fotoDetailsImage from "./fotoDetails.png";
@@ -10,6 +10,7 @@ import SearchBar from "../searchbar/SearchBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ToggleTheme from "../toggleTheme/ToggleTheme";
+import { ThemeContext } from "../services/theme/ThemeContext";
 
 const PRODUCTS = [
   {
@@ -155,11 +156,14 @@ const Products = () => {
     navigate(`/productDetails/${productId}`, { state: { productSelected } });
   };
 
+  const { theme } =useContext(ThemeContext);
+  const isLightTheme = theme === "light";
+  const titleClass = isLightTheme ? "light-title" : "dark-title";
+
   return (
     <div className="products">
       <Headers />
-      <h1 className="titulo">NUESTROS PRODUCTOS</h1>
-      <button className="boton-agregar-producto" onClick={handleProductForm}>
+      <h1 className={`titulo ${titleClass}`}>NUESTROS PRODUCTOS</h1>      <button className="boton-agregar-producto" onClick={handleProductForm}>
         Agregar producto
       </button>
       <div className="custom-filter">

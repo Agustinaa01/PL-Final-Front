@@ -3,6 +3,15 @@
   padding: 10px;
 }
 
+.light-text {
+  color: #000; /* Cambia el color del texto para el tema claro */
+}
+
+.dark-text {
+  color: #fff; /* Cambia el color del texto para el tema oscuro */
+}
+
+
 .header {
   display: flex;
   justify-content: space-between;
