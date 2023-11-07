@@ -15,6 +15,7 @@ import {
 import ProductDetailsForm from "./components/productDetails/productDetails";
 import { useContext } from "react";
 import { ThemeContext } from "./components/services/theme/ThemeContext";
+import Protected from "./components/services/authentication/Protected";
 
 function App() {
 
@@ -24,10 +25,6 @@ function App() {
     {
       path: "/login",
       element: <Login />,
-    },
-    {
-      path: "/home",
-      element: <Dashboard />,
     },
     {
       path: "/products",
@@ -51,7 +48,12 @@ function App() {
     },
     {
       path: "/home",
-      element: <Dashboard />,
+      element:(
+        <Protected>
+        <Dashboard />
+        </Protected>
+        ),
+      
     },
     {
       path: "/productDetails/:id",
