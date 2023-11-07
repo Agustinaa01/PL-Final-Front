@@ -1,37 +1,56 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Headers.css";
 import { useNavigate } from "react-router";
 import ToggleTheme from "../toggleTheme/ToggleTheme";
-import carritoImage from "./carrito.png"; // Reemplaza con la ruta correcta de tu imagen
+import carritoImage from "./carrito.png";
+import { ThemeContext } from "../services/theme/ThemeContext"; 
 
 const Headers = () => {
   const navigate = useNavigate();
   const goBackHandler = () => {
     navigate("/login");
   };
-  const handlerProducts= () => {
+  const handlerProducts = () => {
     navigate("/products");
   };
-  const handlerHome= () => {
+  const handlerHome = () => {
     navigate("/home");
   };
   const handlerAboutUs = () => {
     navigate("/nosotros");
   };
+
+  // Accede al contexto de tema
+  const { theme } = useContext(ThemeContext);
+
+  // Determina si el tema es "light"
+  const isLightTheme = theme === "light";
+
+  // Define la clase CSS para el texto en función del tema
+  const textClass = isLightTheme ? "light-text" : "dark-text";
+
   return (
     <div className="header">
       <div className="container">
         <div className="header">
           <div className="left">
-            <h2 className="home" onClick={handlerHome}>EvoTech</h2>
+            <h2 className={`home ${textClass}`} onClick={handlerHome}>
+              EvoTech
+            </h2>
           </div>
           <div className="right">
-          <ToggleTheme/>
+            <ToggleTheme />
 
-            <h2 className="title" onClick={handlerProducts}>PRODUCTOS</h2>
-            <h2 className="title" onClick={handlerAboutUs}>NOSOTROS</h2>
+            <h2 className={`title ${textClass}`} onClick={handlerProducts}>
+              PRODUCTOS
+            </h2>
+            <h2 className={`title ${textClass}`} onClick={handlerAboutUs}>
+              NOSOTROS
+            </h2>
             <img className="carrito" src={carritoImage} alt="Carrito de compras" />
-            <button className="boton"  onClick={goBackHandler}>CERRAR SESIÓN</button>
+            <button className={`boton ${textClass}`} onClick={goBackHandler}>
+              CERRAR SESIÓN
+            </button>
           </div>
         </div>
       </div>
