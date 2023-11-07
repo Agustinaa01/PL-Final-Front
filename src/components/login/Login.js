@@ -1,8 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 
 const LoginForm = () => {
+    const {handleLogin} = useContext(AuthenticationContext);
+
   // estados para el correo electrónico y la contraseña
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,9 +41,9 @@ const LoginForm = () => {
     if (isError)
       return;
 
-    alert("Todo bien!");
-    setError(null)
-    navigate("/home")
+    handleLogin(email);
+    setError(null);
+    navigate("/home");
   };
 
   const handleRegister = () => {

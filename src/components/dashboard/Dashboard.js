@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Headers from "../header/Headers";
 import homeImage from "./homeA.png";
 import homeImage2 from "./homeB.png";
@@ -8,11 +8,20 @@ import Footer from "../Footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { useNavigate } from "react-router-dom";
+import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const {user, handleLogOut}= useContext(AuthenticationContext);
+  // const username = user.email.split("@")[0];
+
+  const onLogOutHandler = () => {
+    handleLogOut();
+    navigate("/login");
+  }
   return (
     <div className="content">
-
       <Headers />
       <div className="dashboard">
         <div id="myCarousel" className="carousel slide" data-ride="carousel" data-interval="3000">
