@@ -7,14 +7,6 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  max-width: 400px;
-}
-
 .modal-header {
   background: #333;
   color: #fff;
@@ -35,3 +27,36 @@
 .modal-body {
   padding: 20px;
 }
+
+.button-confirm{
+  background-color: #007bff; 
+  color: #fff; 
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave */
+}
+
+.button-confirm:hover {
+  background-color: #0056b3; /* Cambio de color de fondo al pasar el mouse (azul más oscuro) */
+}
+
+.button-cancel {
+  background-color: #007bff; /* Color de fondo azul */
+  color: #fff; /* Color de texto blanco */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave */
+}
+
+.button-cancel:hover {
+  background-color: #0056b3; /* Cambio de color de fondo al pasar el mouse (azul más oscuro) */
+}
+

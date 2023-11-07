@@ -67,7 +67,7 @@
   align-items: flex-start;
 }
 
-.imagen-details {
+.product-details-container .imagen-details {
   width: 28%;
   border-radius: 25px;
   padding: 5px;
@@ -76,7 +76,13 @@
   margin-top: 20px;
   margin-left: 60px;
 }
-
+.imagen-details-carrito{
+  width: 40%;
+  border-radius: 25px;
+  padding: 5px;
+  background-color: #0f0f0f;
+  margin-right: 20px;
+}
 .producto-info {
   color: white;
   margin-left: 30px;
@@ -86,8 +92,65 @@
   color: white;
   font-size: 50px;
 }
-
 .producto-info p {
   margin-bottom: 20px;
   font-size: 17px;
 }
+.carrito-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px;
+}
+
+.carrito-item-details {
+  margin-top: 50px;
+  flex: 1;
+  text-align: right;
+}
+
+.total {
+  text-align: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+.name-carrito{
+  color:black;
+  font-size: 20px;
+}
+
+.button-pagar {
+  background-color: #007bff; /* Color de fondo azul */
+  color: #fff; 
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave */
+}
+
+.button-pagar:hover {
+  background-color: #0056b3; /* Cambio de color de fondo al pasar el mouse (azul más oscuro) */
+}
+
+.button-seguir-comprando {
+  background-color: #007bff; /* Color de fondo azul */
+  color: #fff; /* Color de texto blanco */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave */
+}
+
+.button-seguir-comprando:hover {
+  background-color: #0056b3; /* Cambio de color de fondo al pasar el mouse (azul más oscuro) */
+}
+
