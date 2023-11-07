@@ -5,13 +5,19 @@ import { Button } from "react-bootstrap";
 const ToggleTheme = () => {
     const {theme, toggleTheme} = useContext(ThemeContext);
     return (
-        <Button
+        <div>
+        {/* <Button
         onClick={toggleTheme}
         className="mt-4"
         variant={theme === "dark"? "light": "dark"}
         >
             Cambiar a tema {theme === "light"? "oscuro": "claro"}
-        </Button>
+        </Button> */}
+        <label id="switch" class="switch">
+            <input className="mt-4" variant={theme === "dark"? "light": "dark"} type="checkbox" onChange={toggleTheme} id="slider"></input>
+            <span className="slider round"></span>
+        </label>
+        </div>
     )
 
 }
