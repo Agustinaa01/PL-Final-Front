@@ -41,12 +41,12 @@
 }
 
 .button-confirm:hover {
-  background-color: #0056b3; /* Cambio de color de fondo al pasar el mouse (azul más oscuro) */
+  background-color: #0056b3; 
 }
 
 .button-cancel {
-  background-color: #007bff; /* Color de fondo azul */
-  color: #fff; /* Color de texto blanco */
+  background-color: #007bff;
+  color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
