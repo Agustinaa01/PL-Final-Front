@@ -73,8 +73,6 @@ const ProductForm = () => {
 
     if (isError)
       return;
-
-    alert("Todo bien!");
     setError(null)
   };
 

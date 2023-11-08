@@ -49,15 +49,13 @@ function App() {
     {
       path: "/home",
       element:(
-        <Protected>
         <Dashboard />
-        </Protected>
-        ),
-      
+        ), 
     },
     {
       path: "/productDetails/:id",
-      element: <ProductDetailsForm />,
+      element:         
+        <ProductDetailsForm />
     },
     {
       path: "*",
