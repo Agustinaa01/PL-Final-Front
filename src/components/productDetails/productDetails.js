@@ -110,14 +110,14 @@ const ProductDetailsForm = () => {
               <Modal.Title>Confirmación</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              ¿Desea agregar este producto al carrito? Debe iniciar sesión para
-              continuar.
+              ¿Desea agregar este producto al carrito? 
+              <p><strong>Debe iniciar sesión para continuar.</strong></p>
             </Modal.Body>
             <Modal.Footer>
-              <button variant="secondary" onClick={closeConfirmationModal}>
+              <button className="button-cancel" onClick={closeConfirmationModal}>
                 Cancelar
               </button>
-              <button variant="primary" onClick={() => navigate("/login")}>
+              <button className="button-confirm" onClick={() => navigate("/login")}>
                 Iniciar sesión
               </button>
             </Modal.Footer>
