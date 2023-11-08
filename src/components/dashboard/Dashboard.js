@@ -12,14 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-  const {user, handleLogOut}= useContext(AuthenticationContext);
-  // const username = user.email.split("@")[0];
-
-  const onLogOutHandler = () => {
-    handleLogOut();
-    navigate("/login");
-  }
   return (
     <div className="content">
       <Headers />

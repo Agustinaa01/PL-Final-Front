@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import ToggleTheme from "../toggleTheme/ToggleTheme";
 import carritoImage from "./carrito.png";
 import { ThemeContext } from "../services/theme/ThemeContext"; 
+import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 
 const Headers = () => {
   const navigate = useNavigate();
@@ -29,6 +30,13 @@ const Headers = () => {
   // Define la clase CSS para el texto en función del tema
   const textClass = isLightTheme ? "light-text" : "dark-text";
 
+  const {user, handleLogOut}= useContext(AuthenticationContext);
+  // const username = user.email.split("@")[0];
+
+  const onLogOutHandler = () => {
+    handleLogOut();
+    navigate("/login");
+  }
   return (
     <div className="header">
       <div className="container">
@@ -48,7 +56,7 @@ const Headers = () => {
               NOSOTROS
             </h2>
             <img className="carrito" src={carritoImage} alt="Carrito de compras" />
-            <button className={`boton ${textClass}`} onClick={goBackHandler}>
+            <button className={`boton ${textClass}`} onClick={onLogOutHandler}>
               CERRAR SESIÓN
             </button>
           </div>

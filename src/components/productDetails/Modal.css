@@ -1,3 +1,7 @@
+.img-pay{
+  width: 50px;
+  padding: 8px;
+}
 .modal-overlay {
   position: fixed;
   top: 0;
