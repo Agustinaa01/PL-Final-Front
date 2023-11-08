@@ -158,12 +158,12 @@ const Products = () => {
 
   const { theme } =useContext(ThemeContext);
   const isLightTheme = theme === "light";
-  const titleClass = isLightTheme ? "light-title" : "dark-title";
+  const textProduct = isLightTheme ? "light-text" : "dark-text";
 
   return (
     <div className="products">
       <Headers />
-      <h1 className={`titulo ${titleClass}`}>NUESTROS PRODUCTOS</h1>      <button className="boton-agregar-producto" onClick={handleProductForm}>
+      <h1 className={`titulo ${textProduct}`}>NUESTROS PRODUCTOS</h1>      <button className="boton-agregar-producto" onClick={handleProductForm}>
         Agregar producto
       </button>
       <div className="custom-filter">
@@ -184,14 +184,14 @@ const Products = () => {
               <img src={product.image} alt={product.name} />
             </div>
             <div className="product-info">
-              <p>{product.brand}</p>
-              <h3>{product.name}</h3>
+            <p className={`${textProduct}`}>{product.brand}</p>
+              <h3 className={`${textProduct}` }>{product.name}</h3>
               {/* <p>Categoría: {product.category}</p> */}
               <h5>
-                <strong>${product.price.toFixed(2)}</strong>
+                <strong className={`${textProduct}` }>${product.price.toFixed(2)}</strong>
               </h5>
-              <p>Categoría: {product.category}</p>
-              <p>Precio: ${product.price.toFixed(2)}</p>
+              <p className={`${textProduct}`}>Categoría: {product.category}</p>
+              <p className={`${textProduct}`}>Precio: ${product.price.toFixed(2)}</p>
               <button
                 className="boton-agregar-carrito"
                 onClick={() => handleViewProduct(product.id)}

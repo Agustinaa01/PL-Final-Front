@@ -15,12 +15,12 @@
   margin-bottom: 0;
 }
 /* Estilos generales para el título en el tema claro */
-.light-title {
+.light-text {
   color: #000; /* Cambia el color del título para el tema claro */
 }
 
 /* Estilos generales para el título en el tema oscuro */
-.dark-title {
+.dark-text {
   color: #fff; /* Cambia el color del título para el tema oscuro */
 }
 
@@ -94,11 +94,9 @@
 .product-info h3 {
   position: relative;
   font-size: 1.5rem;
-  color: #1E1E1E;
 }
 
 .product-info h5 {
-  color: black;
   margin-top: 10px;
 }
 
