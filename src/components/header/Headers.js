@@ -56,9 +56,15 @@ const Headers = () => {
               NOSOTROS
             </h2>
             <img className="carrito" src={carritoImage} alt="Carrito de compras" />
-            <button className={`boton ${textClass}`} onClick={onLogOutHandler}>
-              CERRAR SESIÓN
-            </button>
+            {user ? (
+              <button className={`boton ${textClass}`} onClick={onLogOutHandler}>
+                CERRAR SESIÓN
+              </button>
+            ) : (
+              <button className={`boton ${textClass}`} onClick={goBackHandler}>
+                INICIAR SESIÓN
+              </button>
+            )}
           </div>
         </div>
       </div>
