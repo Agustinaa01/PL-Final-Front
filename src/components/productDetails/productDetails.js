@@ -7,6 +7,7 @@ import { Modal, ModalHeader } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
+import { ThemeContext } from "../services/theme/ThemeContext"; 
 
 const ProductDetailsForm = () => {
   const location = useLocation();
@@ -77,23 +78,28 @@ const ProductDetailsForm = () => {
   const handleClosePaymentMethodsModal = () => {
     setShowPaymentModal(false);
   };
-  
-
   const handleCloseCart = () => setShowCart(false);
+
+  const { theme } = useContext(ThemeContext);
+
+  const isLightTheme = theme === "light";
+  const textClass = isLightTheme ? "light-details" : "dark-details";
+  const ClassDetails = isLightTheme ? "light-details-img" : "dark-details-img";
+
   return (
     <div>
       <div className="header-product-details">
         <Headers />
       </div>
       <div className="product-details-container">
-        <img className="imagen-details" src={image} alt="Product Details" />
+        <img className= {`${ClassDetails}`}src={image} alt="Product Details" />
         <div className="producto-info">
           <h1>{name}</h1>
           <br />
           <h2>${price}</h2>
           <br />
           <p>Categoria: {category}</p>
-          <p>Marca: {brand}</p>
+          <p> Marca: {brand}</p>
           <button className="button-details" onClick={handleShowCart}>
             Agregar al carrito
           </button>
@@ -222,7 +228,7 @@ const ProductDetailsForm = () => {
       </Modal>
         </div>
       </div>
-      <div className="description">
+      <div className={`${textClass}`}>
         <h2>Descripcion</h2>
         <p>{description}</p>
       </div>
