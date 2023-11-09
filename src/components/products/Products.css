@@ -14,17 +14,23 @@
   top: 20px; 
   margin-bottom: 0;
 }
-/* Estilos generales para el título en el tema claro */
+
+.productBackgroundProduct{
+  width: 10px;
+}
 .light-text {
   color: #000; /* Cambia el color del título para el tema claro */
 }
-
 /* Estilos generales para el título en el tema oscuro */
 .dark-text {
   color: #fff; /* Cambia el color del título para el tema oscuro */
 }
-
-
+.dark-product-text {
+  color: #000; /* Cambia el color del texto del producto para el tema oscuro */
+}
+.light-product-text{
+  color:#fff;
+}
 .boton-agregar-producto:hover {
   color: white;
   background-color: #0056b3;
@@ -68,7 +74,7 @@
   gap: 30px;
 }
 
-.producto {
+.dark-product-background {
   width: 300px;
   margin: 15px;
   border: 1px solid #ccc;
@@ -77,7 +83,15 @@
   border-radius: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+.light-product-background{
+    width: 300px;
+    margin: 15px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #0f0f0f;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .product-image img {
   max-width: 100%;
   height: auto;

@@ -1,8 +1,9 @@
-.light-theme{
-    background-color: #E5E5E5 ;
-    color: black;
-    height: 100vh;
+.light-theme {
+  background-color: #E5E5E5;
+  color: black;
+  height: 100%;
 }
+
 .switch {
     position: relative;
     display: inline-block;
@@ -51,11 +52,11 @@
   input:checked + .slider {
     background-color: #0056b3;
   }
-  
+
   input:focus + .slider {
     box-shadow: 0 0 1px #0056b3;
   }
-  
+
   input:checked + .slider:before {
     -webkit-transform: translateX(24px);
     -ms-transform: translateX(24px);
@@ -73,4 +74,3 @@
   .slider.round:before {
     border-radius: 50%;
   }
-  
