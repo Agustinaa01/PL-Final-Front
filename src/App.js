@@ -63,8 +63,7 @@ function App() {
     },
   ]);
   return (
-    <div style={{height: "100%"}} className={`${theme === "light" && "light-theme"}`}>
-      <RouterProvider router={router} />
+    <div className={theme === "light" ? "light-theme" : "dark-theme"}>      <RouterProvider router={router} />
     </div>
   );
 }
