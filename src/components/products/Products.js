@@ -161,9 +161,10 @@ const Products = () => {
   const textProduct = isLightTheme ? "light-text" : "dark-text";
   const productInfoText = isLightTheme ? "light-product-text" : "dark-product-text";
   const productBackgroundProduct = isLightTheme ? "light-product-background" : "dark-product-background";
- 
+  const productBackground = isLightTheme ? "light-background" : "dark-background";
+
   return (
-    <div className="products">
+    <div className={`${productBackground}`}>
       <Headers />
       <h1 className={`titulo ${textProduct}`}>NUESTROS PRODUCTOS</h1>      <button className="boton-agregar-producto" onClick={handleProductForm}>
         Agregar producto
@@ -181,7 +182,7 @@ const Products = () => {
       </div>
       <div className="producto-container">
         {productsFiltered.map((product) => (
-          <div className={`${productBackgroundProduct}`} key={product.id}>
+          <div className={`${productBackgroundProduct}`}key={product.id}>
             <div className="product-image">
               <img src={product.image} alt={product.name} />
             </div>
