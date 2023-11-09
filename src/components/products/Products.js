@@ -180,9 +180,9 @@ const Products = () => {
           onSearch={handleSearch}
         />
       </div>
-      <div className="producto-container">
+      <div className="producto-container" >
         {productsFiltered.map((product) => (
-          <div className={`${productBackgroundProduct}`}key={product.id}>
+          <div className={`${productBackgroundProduct}`}key={product.id} onClick={() => handleViewProduct(product.id)}>
             <div className="product-image">
               <img src={product.image} alt={product.name} />
             </div>
@@ -193,14 +193,14 @@ const Products = () => {
               <h5>
                 <strong className={`${productInfoText}` }>${product.price.toFixed(2)}</strong>
               </h5>
-              <p className={`${productInfoText}`}>Categoría: {product.category}</p>
-              <p className={`${productInfoText}`}>Precio: ${product.price.toFixed(2)}</p>
-              <button
+              {/* <p className={`${productInfoText}`}>Categoría: {product.category}</p>
+              <p className={`${productInfoText}`}>Precio: ${product.price.toFixed(2)}</p> */}
+              {/* <button
                 className="boton-agregar-carrito"
                 onClick={() => handleViewProduct(product.id)}
               >
                 Ver producto
-              </button>
+              </button> */}
               </div>
           </div>
         ))}
