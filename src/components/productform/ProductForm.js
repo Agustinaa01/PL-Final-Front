@@ -1,8 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./ProductForm.css";
 import Headers from "../header/Headers";
 import productImage from "./productAdd.png"; // Reemplaza con la ruta correcta de tu imagen
+import { ThemeContext } from "../services/theme/ThemeContext";
 
 const ProductForm = () => {
   // estados para nombre,precio,marca,stock y descripcion
@@ -76,11 +77,15 @@ const ProductForm = () => {
     setError(null)
   };
 
+  const { theme } =useContext(ThemeContext);
+  const isLightTheme = theme === "light";
+  const textProduct = isLightTheme ? "light-form" : "dark-form";
+  
   return (
     <div className="page">
       <Headers />
       <div className="name">
-        <div className="name-box">
+        <div className={`${textProduct}`}>
           <div className="container-imag">
           <img
             className="img"
