@@ -159,7 +159,9 @@ const Products = () => {
   const { theme } =useContext(ThemeContext);
   const isLightTheme = theme === "light";
   const textProduct = isLightTheme ? "light-text" : "dark-text";
-
+  const productInfoText = isLightTheme ? "light-product-text" : "dark-product-text";
+  const productBackgroundProduct = isLightTheme ? "light-product-background" : "dark-product-background";
+ 
   return (
     <div className="products">
       <Headers />
@@ -179,19 +181,19 @@ const Products = () => {
       </div>
       <div className="producto-container">
         {productsFiltered.map((product) => (
-          <div className="producto" key={product.id}>
+          <div className={`${productBackgroundProduct}`} key={product.id}>
             <div className="product-image">
               <img src={product.image} alt={product.name} />
             </div>
             <div className="product-info">
-            <p className={`${textProduct}`}>{product.brand}</p>
-              <h3 className={`${textProduct}` }>{product.name}</h3>
+            <p className={`${productInfoText}`}>{product.brand}</p>
+              <h3 className={`${productInfoText}` }>{product.name}</h3>
               {/* <p>Categoría: {product.category}</p> */}
               <h5>
-                <strong className={`${textProduct}` }>${product.price.toFixed(2)}</strong>
+                <strong className={`${productInfoText}` }>${product.price.toFixed(2)}</strong>
               </h5>
-              <p className={`${textProduct}`}>Categoría: {product.category}</p>
-              <p className={`${textProduct}`}>Precio: ${product.price.toFixed(2)}</p>
+              <p className={`${productInfoText}`}>Categoría: {product.category}</p>
+              <p className={`${productInfoText}`}>Precio: ${product.price.toFixed(2)}</p>
               <button
                 className="boton-agregar-carrito"
                 onClick={() => handleViewProduct(product.id)}

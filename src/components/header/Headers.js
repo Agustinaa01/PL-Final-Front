@@ -61,7 +61,7 @@ const Headers = () => {
                 CERRAR SESIÓN
               </button>
             ) : (
-              <button className={`boton ${textClass}`} onClick={goBackHandler}>
+              <button className="boton" onClick={goBackHandler}>
                 INICIAR SESIÓN
               </button>
             )}

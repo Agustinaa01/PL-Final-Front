@@ -1,4 +1,4 @@
-.social-icons {
+.dark-footer{
   align-items: center;
   background-color: #0f0f0f;
   padding: 7px;
@@ -6,20 +6,45 @@
   margin: 10px 0 0;
 }
 
-.social-icons a {
+.light-footer{
+  align-items: center;
+  background-color: #fff;
+  padding: 7px;
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+.dark-footer a {
   color: white;
   text-decoration: none;
   margin: 15px 5px 0; 
   font-size: 20px;
 }
 
-.social-icons a img {
+.dark-footer a img {
+  width: 28px;
+  height: 28px;
+}
+.dark-footer p {
+  color:white;
+}
+.light-footer a {
+  color: white;
+  text-decoration: none;
+  margin: 15px 5px 0; 
+  font-size: 20px;
+}
+
+.light-footer a img {
   width: 28px;
   height: 28px;
 }
 
-.copy-text {
-  color: white;
+.light-footer {
   font-size: 13px;
   margin: 4px;
+}
+
+.light-footer p {
+  color:#0f0f0f;
 }
