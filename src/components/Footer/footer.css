@@ -8,7 +8,7 @@
 
 .light-footer{
   align-items: center;
-  background-color: #fff;
+  background-color: #E5E5E5;
   padding: 7px;
   text-align: center;
   margin: 10px 0 0;
@@ -20,14 +20,6 @@
   margin: 15px 5px 0; 
   font-size: 20px;
 }
-
-.dark-footer a img {
-  width: 28px;
-  height: 28px;
-}
-.dark-footer p {
-  color:white;
-}
 .light-footer a {
   color: white;
   text-decoration: none;
@@ -35,14 +27,16 @@
   font-size: 20px;
 }
 
+.dark-footer a img {
+  width: 28px;
+  height: 28px;
+}
 .light-footer a img {
   width: 28px;
   height: 28px;
 }
-
-.light-footer {
-  font-size: 13px;
-  margin: 4px;
+.dark-footer p {
+  color:white;
 }
 
 .light-footer p {

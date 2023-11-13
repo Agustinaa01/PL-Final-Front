@@ -1,4 +1,12 @@
-.name-box {
+.light-form {
+  background-color: #E5E5E5;
+  border-radius: 5px;
+  display: flex;
+  padding: 30px;
+  margin-left: 200px;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
+}
+.dark-form {
   background-color: #0f0f0f;
   border-radius: 5px;
   display: flex;
@@ -20,7 +28,6 @@
 }
 
 .add {
-  color: #fff;
   text-align: center;
   margin-top: 0px;
   margin-bottom: 5px;
@@ -101,7 +108,7 @@ button:nth-child(1) {
 
 /* Lo que pasa para cuando la pantalla no está completa */
 @media (max-width: 1140px) {
-  .name-box {
+  .light-form {
     right: 20px;
     left: 20px;
     max-width: 600px;
@@ -112,6 +119,16 @@ button:nth-child(1) {
     gap: 20px;
   }
 
+  .dark-form {
+    right: 20px;
+    left: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
   .container {
     flex-direction: column;
     align-items: center;
@@ -141,7 +158,10 @@ button:nth-child(1) {
     margin: 20px;
   }
 
-  .name-box {
+  .light-form {
+    order: 2;
+  }
+  .dark-form {
     order: 2;
   }
 }

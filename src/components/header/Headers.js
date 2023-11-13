@@ -29,7 +29,6 @@ const Headers = () => {
 
   // Define la clase CSS para el texto en función del tema
   const textClass = isLightTheme ? "light-text" : "dark-text";
-
   const {user, handleLogOut}= useContext(AuthenticationContext);
   // const username = user.email.split("@")[0];
 
@@ -57,7 +56,7 @@ const Headers = () => {
             </h2>
             <img className="carrito" src={carritoImage} alt="Carrito de compras" />
             {user ? (
-              <button className={`boton ${textClass}`} onClick={onLogOutHandler}>
+              <button className="boton" onClick={onLogOutHandler}>
                 CERRAR SESIÓN
               </button>
             ) : (

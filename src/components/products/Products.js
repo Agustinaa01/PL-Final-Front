@@ -161,9 +161,10 @@ const Products = () => {
   const textProduct = isLightTheme ? "light-text" : "dark-text";
   const productInfoText = isLightTheme ? "light-product-text" : "dark-product-text";
   const productBackgroundProduct = isLightTheme ? "light-product-background" : "dark-product-background";
- 
+  const productBackground = isLightTheme ? "light-background" : "dark-background";
+
   return (
-    <div className="products">
+    <div className={`${productBackground}`}>
       <Headers />
       <h1 className={`titulo ${textProduct}`}>NUESTROS PRODUCTOS</h1>      <button className="boton-agregar-producto" onClick={handleProductForm}>
         Agregar producto
@@ -179,9 +180,9 @@ const Products = () => {
           onSearch={handleSearch}
         />
       </div>
-      <div className="producto-container">
+      <div className="producto-container" >
         {productsFiltered.map((product) => (
-          <div className={`${productBackgroundProduct}`} key={product.id}>
+          <div className={`${productBackgroundProduct}`}key={product.id} onClick={() => handleViewProduct(product.id)}>
             <div className="product-image">
               <img src={product.image} alt={product.name} />
             </div>
@@ -192,14 +193,14 @@ const Products = () => {
               <h5>
                 <strong className={`${productInfoText}` }>${product.price.toFixed(2)}</strong>
               </h5>
-              <p className={`${productInfoText}`}>Categoría: {product.category}</p>
-              <p className={`${productInfoText}`}>Precio: ${product.price.toFixed(2)}</p>
-              <button
+              {/* <p className={`${productInfoText}`}>Categoría: {product.category}</p>
+              <p className={`${productInfoText}`}>Precio: ${product.price.toFixed(2)}</p> */}
+              {/* <button
                 className="boton-agregar-carrito"
                 onClick={() => handleViewProduct(product.id)}
               >
                 Ver producto
-              </button>
+              </button> */}
               </div>
           </div>
         ))}
