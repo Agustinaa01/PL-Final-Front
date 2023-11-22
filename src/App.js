@@ -16,6 +16,7 @@ import ProductDetailsForm from "./components/productDetails/productDetails";
 import { useContext } from "react";
 import { ThemeContext } from "./components/services/theme/ThemeContext";
 import Protected from "./components/services/authentication/Protected";
+import RolesAuthentication from "./components/services/authentication/RolesAuthentication";
 
 function App() {
 
@@ -36,7 +37,10 @@ function App() {
     },
     {
       path: "/productForm",
-      element: <ProductForm />,
+      element:
+      <RolesAuthentication>
+        <ProductForm />
+      </RolesAuthentication> ,
     },
     {
       path: "/nosotros",
@@ -44,7 +48,10 @@ function App() {
     },
     {
       path: "/productForm/:id",
-      element: <ProductForm />,
+      element: 
+      <RolesAuthentication>
+        <ProductForm />
+      </RolesAuthentication>,
     },
     {
       path: "/home",

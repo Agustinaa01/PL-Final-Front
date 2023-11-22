@@ -39,53 +39,38 @@ const LoginForm = () => {
 
     if (isError) return;
 
-    // Send a fetch request to your backend for login
-    fetch("http://localhost:8080/login", {
+    fetch("https://localhost:7108/api/authentication/authenticate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email: email, password: password }),
     })
-      .then((response) => {
-        if (response.ok) return response.json();
-        else {
-          throw new Error("La respuesta tuvo algunos errores");
-        }
-      })
-      .then((data) => {
-        // Assuming your backend returns a token or user info on successful login
-        // You need to handle the login logic on the frontend based on the response
-        handleLogin(data);
+     .then((response) => {
+    if (!response.ok) {
+      throw new Error(`La respuesta tuvo algunos errores: ${response.statusText}`);
+    }
+    return response.text();
+  })
+    .then((data) => {
+        console.log(data); 
+        const token = data;
+        handleToken(token);
         setError(null);
-        navigate("/home");
-      })
-      .catch((error) => console.log(error));
+        navigate("/home");      
+  })
+  .catch((error) => console.log(error.message));
   };
+
+const handleToken = (token) => {
+  localStorage.setItem("authToken", token);
+  handleLogin(token);
+};
 
   const handleRegister = () => {
     navigate("/register");
   };
-
-  useEffect(() => {
-    fetch("http://localhost:8080/usr", {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) return response.json();
-        else {
-          throw new Error("La respuesta tuvo algunos errores");
-        }
-      })
-      .then((data) => {
-        // Assuming you want to do something with the fetched data
-        // Set the fetched data to state or perform any necessary actions
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  
 
   return (
     <div className="login">

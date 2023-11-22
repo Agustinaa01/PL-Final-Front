@@ -8,6 +8,7 @@ import { AuthenticationContext } from "../services/authentication/Authentication
 import { ThemeContext } from "../services/theme/ThemeContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { jwtDecode as jwt_decode } from 'jwt-decode';
 
 const ProductDetailsForm = () => {
   const location = useLocation();
@@ -23,12 +24,13 @@ const ProductDetailsForm = () => {
   const [description, setDescription] = useState(
     location.state?.productSelected?.description
   );
-  const [image, setImage] = useState(
-    location.state?.productSelected?.image ?? ""
+  const [imageUrl, setImage] = useState(
+    location.state?.productSelected?.imageUrl ?? ""
   );
   const [show, setShow] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const navigate = useNavigate();
+  const productId = location.state?.productSelected?.id;
 
   const handleEditClick = () => {
     const productId = location.state?.productSelected?.id;
@@ -38,17 +40,33 @@ const ProductDetailsForm = () => {
   };
 
   const handleConfirm = () => {
-    setShow(false);
-    toast.success("¡Producto eliminado!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "colored",
-    });
+    //const token = localStorage.getItem("authToken");
+    fetch(`https://localhost:7108/api/Producto/${productId}`, {
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(() => {
+        setShow(false);
+        toast.success("¡Producto eliminado!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          navigate("/products");
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -84,6 +102,12 @@ const ProductDetailsForm = () => {
   const isLightTheme = theme === "light";
   const textClass = isLightTheme ? "light-details" : "dark-details";
   const ClassDetails = isLightTheme ? "light-details-img" : "dark-details-img";
+  let decodedToken;
+  const token = localStorage.getItem('authToken');
+  if (typeof token === 'string') {
+    decodedToken = jwt_decode(token);
+  }
+  console.log(decodedToken);
 
   return (
     <div>
@@ -91,7 +115,7 @@ const ProductDetailsForm = () => {
         <Headers />
       </div>
       <div className="product-details-container">
-        <img className={`${ClassDetails}`} src={image} alt="Product Details" />
+        <img className={`${ClassDetails}`} src={imageUrl} alt="Product Details" />
         <div className="producto-info">
           <h1>{name}</h1>
           <br />
@@ -103,13 +127,18 @@ const ProductDetailsForm = () => {
             Agregar al carrito
           </button>
           <br />
-          <button className="button-details" onClick={handleEditClick}>
-            Editar producto
-          </button>
+
+          {(decodedToken.role === 'Admin' || decodedToken.role === 'SuperAdmin') && (
+                 <button className="button-details" onClick={handleEditClick}>
+                 Editar producto
+               </button>
+          )}
           <br />
-          <button className="button-details-delete" onClick={handleShow}>
-            Eliminar producto
-          </button>
+          {(decodedToken.role === 'Admin' || decodedToken.role === 'SuperAdmin') && (
+                    <button className="button-details" onClick={handleShow}>
+                          Eliminar producto
+                    </button>
+                    )}
           <Modal show={showConfirmationModal} onHide={closeConfirmationModal}>
             <Modal.Header closeButton>
               <Modal.Title>Confirmación</Modal.Title>
@@ -122,7 +151,7 @@ const ProductDetailsForm = () => {
             </Modal.Body>
             <Modal.Footer>
               <button
-                className="button-cancel"
+                className="button-cancelar"
                 onClick={closeConfirmationModal}
               >
                 Cancelar
@@ -144,7 +173,7 @@ const ProductDetailsForm = () => {
               ¿Está seguro que quiere eliminar el producto?
             </Modal.Body>
             <Modal.Footer>
-              <button className="button-cancel" onClick={handleClose}>
+              <button className="button-cancelar" onClick={handleClose}>
                 Cancelar
               </button>
               <button className="button-confirm" onClick={handleConfirm}>
@@ -160,7 +189,7 @@ const ProductDetailsForm = () => {
               <div className="carrito-container">
                 <img
                   className="imagen-details-carrito"
-                  src={image}
+                  src={imageUrl}
                   alt="Producto en el carrito"
                 />
                 <div className="carrito-item-details">
@@ -172,7 +201,7 @@ const ProductDetailsForm = () => {
             </Modal.Body>
             <Modal.Footer>
               <button
-                className="button-cancel"
+                className="button-cancelar"
                 onClick={handleShowPaymentModal}
               >
                 Pagar
@@ -247,7 +276,7 @@ const ProductDetailsForm = () => {
             </Modal.Body>
             <Modal.Footer>
               <button
-                className="button-cancel"
+                className="button-cancelar"
                 onClick={handleClosePaymentMethodsModal}
               >
                 Cancelar
