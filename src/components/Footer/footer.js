@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./footer.css";
 import facebookImage from "./facebook.png"; 
-import twitterImage from "./twitter.png"; 
+import twitterImage from "./x.png"; 
 import whatsappImage from "./whatsapp.png"; 
 import instagramImage from "./instagram.png"; 
 import telegramImage from "./telegram.png"; 
