@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState, useEffect } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
+import { ToastContainer, toast } from 'react-toastify';
 
 const LoginForm = () => {
   const { handleLogin } = useContext(AuthenticationContext);
@@ -48,12 +49,31 @@ const LoginForm = () => {
     })
      .then((response) => {
     if (!response.ok) {
+      toast.error('Error al iniciar sesión. Verifica tu correo electrónico y contraseña.', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
       throw new Error(`La respuesta tuvo algunos errores: ${response.statusText}`);
     }
     return response.text();
   })
     .then((data) => {
-        console.log(data); 
+      // toast.success('¡Bienvenido!', {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: true,
+      //   closeOnClick: false,
+      //   pauseOnHover: false,
+      //   draggable: false,
+      //   progress: undefined,
+      //   theme: "light",
+      //   });
         const token = data;
         handleToken(token);
         setError(null);

@@ -69,7 +69,7 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
           <p className="email-profile">Email: {isuser.email}</p>
         </div>
       )}
-      <div>
+      <div className="botones-perfil">
         {user && (
           <>
             <button className="button-editar">Editar</button>

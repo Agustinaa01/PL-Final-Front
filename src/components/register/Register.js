@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 const RegisterForm = () => {
   // Estados para el correo electrónico, contraseña, celular y nombre
@@ -72,7 +73,16 @@ const RegisterForm = () => {
     return response.json();
   })
     .then((data) => {
-        console.log(data); 
+      toast.success('🦄 Wow so easy!', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        });
         navigate("/login");      
   })
   .catch((error) => console.log(error.message));
