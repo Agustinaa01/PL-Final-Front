@@ -75,9 +75,30 @@ const EditProductForm = ({ productData }) => {
 
     if (isError) return;
 
-    alert("Todo bien!");
     setError(null);
-  };
+
+      fetch(`http://localhost:8080/productos/${productId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(),
+      })
+        .then(() => {
+          setShow(false);
+          toast.success("¡Producto eliminado!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+          });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    };
 
   return (
     <div className="page">

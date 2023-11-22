@@ -1,0 +1,83 @@
+.sidebar {
+    background-color: #0f0f0f; /* Color de fondo */
+    position: fixed;
+    width: 280px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.product-image {
+  height: 180px;
+  width: 180px;
+  text-align: center;
+}
+
+  .button-cancel-sideBar {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: white; /* Color de texto blanco */
+    border: none; /* Sin bordes */
+    cursor: pointer; /* Cursor de mano al pasar por encima */
+    border-radius: 30%; 
+    background-color: #0f0f0f;
+    padding: 10px 12px; /* Espaciado interno */
+}
+.slidebar-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-right: 50px;
+  text-align: center;
+}
+.name-profile{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.email-profile{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.button-editar{
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.button-editar:hover{
+  background-color: #0056b3;
+  color: #ffffff;
+}
+
+.button-eliminar{
+  background-color: #c63c3c;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.button-eliminar:hover{
+  background-color: #992a2a;
+  color: #ffffff;
+}
+

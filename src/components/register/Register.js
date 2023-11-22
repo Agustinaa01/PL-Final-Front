@@ -58,9 +58,24 @@ const RegisterForm = () => {
       return;
     }
 
-    alert("Todo bien!");
-    setError(null);
-    navigate("/login")
+    fetch("https://localhost:7108/api/Users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: name, email: email, password: password }),
+    })
+     .then((response) => {  
+    if (!response.ok) {
+      throw new Error(`La respuesta tuvo algunos errores: ${response.statusText}`);
+    }
+    return response.json();
+  })
+    .then((data) => {
+        console.log(data); 
+        navigate("/login");      
+  })
+  .catch((error) => console.log(error.message));
   };
 
   const handleLogin = () => {

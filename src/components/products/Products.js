@@ -11,115 +11,107 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ToggleTheme from "../toggleTheme/ToggleTheme";
 import { ThemeContext } from "../services/theme/ThemeContext";
+import { jwtDecode as jwt_decode } from 'jwt-decode';
 
-// const PRODUCTS = [
-//   {
-//     id: 1,
-//     name: "Laptop",
-//     price: 899.99,
-//     brand: "HP",
-//     category: "Laptops",
-//     description:
-//       "Una potente laptop con excelentes capacidades de procesamiento, ideal para trabajos intensivos y entretenimiento multimedia.",
-//     image: fotoDetailsImage,
-//   },
-//   {
-//     id: 2,
-//     name: "Smartphone",
-//     price: 599.99,
-//     brand: "Apple",
-//     category: "Celulares",
-//     description:
-//       "Un teléfono inteligente de última generación con una cámara avanzada y una interfaz de usuario fluida y elegante.",
-//     image: fotoDetailsImage2,
-//   },
-//   {
-//     id: 3,
-//     name: "Tableta",
-//     price: 299.99,
-//     brand: "Samsung",
-//     category: "Tablet",
-//     description:
-//       "Una tableta compacta y versátil con una pantalla de alta resolución y capacidades de procesamiento eficientes para la productividad en movimiento.",
-//     image: fotoDetailsImage,
-//   },
-//   {
-//     id: 4,
-//     name: "Auriculares inalámbricos",
-//     price: 79.99,
-//     brand: "Sony",
-//     category: "Auriculares",
-//     description:
-//       "Auriculares inalámbricos de alta calidad con una reproducción de sonido nítida y una comodidad excepcional para largas sesiones de escucha.",
-//     image: fotoDetailsImage2,
-//   },
-//   {
-//     id: 5,
-//     name: "Cámara digital",
-//     price: 499.99,
-//     brand: "Sony",
-//     category: "Camaras",
-//     description:
-//       "Una cámara digital avanzada con capacidades de captura de alta resolución y una amplia gama de características para fotógrafos aficionados y profesionales.",
-//     image: fotoDetailsImage,
-//   },
-//   {
-//     id: 6,
-//     name: "Parlantes",
-//     price: 99.99,
-//     brand: "JBL",
-//     category: "Parlantes",
-//     description: "",
-//     image: fotoDetailsImage2,
-//   },
-//   {
-//     id: 7,
-//     name: "XBOX",
-//     price: 999.99,
-//     brand: "XBOX",
-//     category: "Consolas",
-//     description:
-//       "Una consola de juegos de última generación con gráficos de alta fidelidad y una amplia colección de juegos emocionantes para todos los jugadores.",
-//     image: fotoDetailsImage,
-//   },
-//   {
-//     id: 8,
-//     name: "Auriculares",
-//     price: 4099.99,
-//     brand: "Apple",
-//     category: "Auriculares",
-//     description:
-//       "Auriculares premium con cancelación activa de ruido y una calidad de audio excepcional, perfectos para disfrutar de música y contenido multimedia de alta fidelidad.",
-//     image: fotoDetailsImage2,
-//   },
-// ];
+const PRODUCTS = [
+  // {
+  //   id: 1,
+  //   name: "Laptop",
+  //   price: 899.99,
+  //   brand: "HP",
+  //   category: "Laptops",
+  //   description:
+  //     "Una potente laptop con excelentes capacidades de procesamiento, ideal para trabajos intensivos y entretenimiento multimedia.",
+  //   image: fotoDetailsImage,
+  // },
+  // {
+  //   id: 2,
+  //   name: "Smartphone",
+  //   price: 599.99,
+  //   brand: "Apple",
+  //   category: "Celulares",
+  //   description:
+  //     "Un teléfono inteligente de última generación con una cámara avanzada y una interfaz de usuario fluida y elegante.",
+  //   image: fotoDetailsImage2,
+  // },
+  // {
+  //   id: 3,
+  //   name: "Tableta",
+  //   price: 299.99,
+  //   brand: "Samsung",
+  //   category: "Tablet",
+  //   description:
+  //     "Una tableta compacta y versátil con una pantalla de alta resolución y capacidades de procesamiento eficientes para la productividad en movimiento.",
+  //   image: fotoDetailsImage,
+  // },
+  // {
+  //   id: 4,
+  //   name: "Auriculares inalámbricos",
+  //   price: 79.99,
+  //   brand: "Sony",
+  //   category: "Auriculares",
+  //   description:
+  //     "Auriculares inalámbricos de alta calidad con una reproducción de sonido nítida y una comodidad excepcional para largas sesiones de escucha.",
+  //   image: fotoDetailsImage2,
+  // },
+  // {
+  //   id: 5,
+  //   name: "Cámara digital",
+  //   price: 499.99,
+  //   brand: "Sony",
+  //   category: "Camaras",
+  //   description:
+  //     "Una cámara digital avanzada con capacidades de captura de alta resolución y una amplia gama de características para fotógrafos aficionados y profesionales.",
+  //   image: fotoDetailsImage,
+  // },
+  // {
+  //   id: 6,
+  //   name: "Parlantes",
+  //   price: 99.99,
+  //   brand: "JBL",
+  //   category: "Parlantes",
+  //   description: "",
+  //   image: fotoDetailsImage2,
+  // },
+  // {
+  //   id: 7,
+  //   name: "XBOX",
+  //   price: 999.99,
+  //   brand: "XBOX",
+  //   category: "Consolas",
+  //   description:
+  //     "Una consola de juegos de última generación con gráficos de alta fidelidad y una amplia colección de juegos emocionantes para todos los jugadores.",
+  //   image: fotoDetailsImage,
+  // },
+  // {
+  //   id: 8,
+  //   name: "Auriculares",
+  //   price: 4099.99,
+  //   brand: "Apple",
+  //   category: "Auriculares",
+  //   description:
+  //     "Auriculares premium con cancelación activa de ruido y una calidad de audio excepcional, perfectos para disfrutar de música y contenido multimedia de alta fidelidad.",
+  //   image: fotoDetailsImage2,
+  // },
+];
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [productsFiltered, setProductsFiltered] = useState([]);
+  const [products, setProducts] = useState(PRODUCTS);
+  const [productsFiltered, setProductsFiltered] = useState(PRODUCTS);
   const [filterCategory, setFilterCategory] = useState(""); //estado almacena la categoria de productos seleccinada actualmente
   const [searchTerm, setSearchTerm] = useState(""); //estado que se utiluza para lamacenar el termino de busqueda actual
-
   useEffect(() => {
-    fetch("http://localhost:8080/productos", {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) return response.json();
-        else {
-          throw new Error("La respuesta tuvo algunos errores");
-        }
-      })
+    fetch("https://localhost:7108/api/Producto")
+      .then((response) => response.json())
       .then((data) => {
         setProducts(data);
         setProductsFiltered(data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
   }, []);
-
+  
   const navigate = useNavigate();
 
   const handleProductForm = () => {
@@ -133,7 +125,7 @@ const Products = () => {
       setFilterCategory("");
 
       // Restaura la lista completa de productos (PRODUCTS)
-      setProductsFiltered([]);
+      setProductsFiltered(PRODUCTS);
     } else {
       // Si se selecciona una categoría distinta a "CATEGORIAS",
       // actualiza filterCategory con la categoría seleccionada.
@@ -146,11 +138,16 @@ const Products = () => {
       );
     }
   };
+  let decodedToken;
+const token = localStorage.getItem('authToken');
+if (typeof token === 'string') {
+  decodedToken = jwt_decode(token);
+}
 
   const handleSearch = (term) => {
     if (term === "") {
       setSearchTerm(term);
-      setProductsFiltered([]);
+      setProductsFiltered(PRODUCTS);
     } else {
       setSearchTerm(term);
       // Filtra los productos por término de búsqueda.
@@ -186,9 +183,12 @@ const Products = () => {
   return (
     <div className={`${productBackground}`}>
       <Headers />
-      <h1 className={`titulo ${textProduct}`}>NUESTROS PRODUCTOS</h1>      <button className="boton-agregar-producto" onClick={handleProductForm}>
-        Agregar producto
-      </button>
+      <h1 className={`titulo ${textProduct}`}>NUESTROS PRODUCTOS</h1>      
+      {(decodedToken.role === 'Admin' || decodedToken.role === 'SuperAdmin') && (
+      <button className="boton-agregar-producto" onClick={handleProductForm}>
+      Agregar producto
+    </button>
+            )}
       <div className="custom-filter">
         <ProductFilter
           filterCategory={filterCategory}
@@ -204,7 +204,7 @@ const Products = () => {
         {productsFiltered.map((product) => (
           <div className={`${productBackgroundProduct}`}key={product.id} onClick={() => handleViewProduct(product.id)}>
             <div className="product-image">
-              <img src={product.image} alt={product.name} />
+              <img src={product.imageUrl} alt={product.name} />
             </div>
             <div className="product-info">
             <p className={`${productInfoText}`}>{product.brand}</p>

@@ -7,7 +7,7 @@ const PageNotFound = () => {
   const navigate = useNavigate();
 
   const goBackHandler = () => {
-    navigate("/login");
+    navigate("/home");
   };
   return (
     <div className="body">
@@ -15,7 +15,7 @@ const PageNotFound = () => {
       <h1 className="titulo-page-not-found">404</h1>
       <h3>No podemos encontrar la pagina que estas buscando</h3>
       <button className="inicio-button" onClick={goBackHandler} variant="primary">
-        Volver a iniciar sesión
+        Volver al inicio
       </button>
     </div>
     </div>

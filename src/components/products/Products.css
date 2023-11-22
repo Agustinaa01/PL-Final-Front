@@ -88,6 +88,7 @@
 
 .dark-product-background {
   width: 300px;
+  height: auto;
   margin: 15px;
   border: 1px solid #ccc;
   padding: 15px;
@@ -98,6 +99,7 @@
 }
 .light-product-background{
     width: 300px;
+    height: auto;
     margin: 15px;
     border: 1px solid #ccc;
     padding: 15px;
