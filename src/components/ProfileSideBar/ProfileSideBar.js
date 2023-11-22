@@ -4,6 +4,7 @@ import { jwtDecode as jwt_decode } from "jwt-decode";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 import { useNavigate } from "react-router";
 import imageProfile from "./profileInfo.png";
+import { ThemeContext } from "../services/theme/ThemeContext";
 
 const ProfileSidebar = ({ setIsModalOpen }) => {
   const [isuser, setUser] = useState(null);
@@ -43,11 +44,15 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
   };
 
   const { user, handleLogOut } = useContext(AuthenticationContext);
+  const { theme } =useContext(ThemeContext);
+  const isLightTheme = theme === "light";
+  const profileBackground = isLightTheme ? "light-profile" : "dark-profile";
+  const profileButton = isLightTheme ? "light-profile-button" : "dark-profile-button";
 
   return (
-    <div className="sidebar">
+    <div className={`${profileBackground}`}>
       <button
-        className="button-cancel-sideBar"
+        className={`${profileButton}`}
         onClick={() => setIsModalOpen(false)}
       >
         X
@@ -56,12 +61,12 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
         <div className="slidebar-info">
           <h1 className="profile">Perfil</h1>
           <img
-            className="product-image"
+            className="product-images"
             src={imageProfile}
             alt="imagen perfil"
           />
-          <h2 className="name-profile">{isuser.name}</h2>
-          <p className="email-profile">{isuser.email}</p>
+          <h2 className="name-profile">Nombre: {isuser.name}</h2>
+          <p className="email-profile">Email: {isuser.email}</p>
         </div>
       )}
       <div>
