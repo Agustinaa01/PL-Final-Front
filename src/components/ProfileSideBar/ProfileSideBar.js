@@ -5,6 +5,8 @@ import { AuthenticationContext } from "../services/authentication/Authentication
 import { useNavigate } from "react-router";
 import imageProfile from "./profileInfo.png";
 import { ThemeContext } from "../services/theme/ThemeContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProfileSidebar = ({ setIsModalOpen }) => {
   const [isuser, setUser] = useState(null);
@@ -37,6 +39,33 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
   const onLogOutHandler = () => {
     handleLogOut();
     navigate("/login");
+  };
+
+  const handleEliminateProfile = (userId) => {
+    fetch(`https://localhost:7108/api/Users/${userId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(() => {
+        handleLogOut();
+        toast.success("¡User eliminado!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   const goBackHandler = () => {
@@ -73,7 +102,7 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
         {user && (
           <>
             <button className="button-editar">Editar</button>
-            <button className="button-eliminar">Eliminar</button>
+            <button className="button-eliminar" onClick={() => handleEliminateProfile(isuser.id)}>Eliminar</button>
           </>
         )}
       </div>

@@ -18,6 +18,7 @@ const ProductDetailsForm = () => {
   const [price, setPrice] = useState(location.state?.productSelected?.price);
   const [brand, setBrand] = useState(location.state?.productSelected?.brand);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  
   const [category, setCategory] = useState(
     location.state?.productSelected?.category
   );
@@ -127,25 +128,31 @@ const ProductDetailsForm = () => {
           <p>Categoria: {category}</p>
           <p> Marca: {brand}</p>
           <p> Marca: {brand}</p>
-{(decodedToken.role === "User" || decodedToken.role === "SuperAdmin" || !user) && (
-  <button className="button-details" onClick={handleShowCart}>
-    Agregar al carrito
-  </button>
-)}
+          {(decodedToken.role === "User" ||
+            decodedToken.role === "SuperAdmin" ||
+            !user) && (
+            <button className="button-details" onClick={handleShowCart}>
+              Agregar al carrito
+            </button>
+          )}
           <br />
 
-          {user && (decodedToken.role === "Admin" || decodedToken.role === "SuperAdmin") && (
+          {user &&
+            (decodedToken.role === "Admin" ||
+              decodedToken.role === "SuperAdmin") && (
               <button className="button-details" onClick={handleEditClick}>
                 Editar producto
               </button>
             )}
 
           <br />
-          {user && (decodedToken.role === "Admin" || decodedToken.role === "SuperAdmin") && (
-            <button className="button-details" onClick={handleShow}>
-              Eliminar producto
-            </button>
-          )}
+          {user &&
+            (decodedToken.role === "Admin" ||
+              decodedToken.role === "SuperAdmin") && (
+              <button className="button-details" onClick={handleShow}>
+                Eliminar producto
+              </button>
+            )}
           <Modal show={showConfirmationModal} onHide={closeConfirmationModal}>
             <Modal.Header closeButton>
               <Modal.Title>Confirmación</Modal.Title>

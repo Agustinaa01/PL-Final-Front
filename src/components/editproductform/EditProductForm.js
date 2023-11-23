@@ -5,9 +5,12 @@ import Headers from "../header/Headers";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Pedido = ({}) => {
   const [pedido, setPedido] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); 
+
   let decodedToken;
   const token = localStorage.getItem("authToken");
   if (typeof token === "string") {
@@ -64,11 +67,12 @@ const Pedido = ({}) => {
           }
         })
         .then((data) => {
-          console.log(data);
           setPedido(data);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error("Error:", error);
+          setIsLoading(false);
         });
     }
   }, []);
@@ -78,32 +82,37 @@ const Pedido = ({}) => {
       <Headers />
       <h1 className="titulo-pedido">PEDIDOS</h1>
       <div className="page">
-        {pedido &&
-          pedido.map((item, index) => (
-            <div key={index}>
-              <div className="order">
-                <h4 className="order-date">
-                  Date:{" "}
-                  {new Date(item.date).toLocaleDateString("es-AR", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </h4>
-                <p class="order-state">State: {item.state}</p>
-
-                {(decodedToken.role === "Admin" ||
-                  decodedToken.role === "SuperAdmin") && (
-                  <div className="buttons">
-                    <button className="button-editar">Editar</button>
-                    <button className="button-eliminar" onClick={() => handleEliminate(item.id)}>Eliminar</button>
-                  </div>
-                )}
-              </div>
+      {isLoading ? (
+      <BeatLoader color={"#ffff"} loading={isLoading} size={13} />
+    ) : !pedido || pedido.length === 0 ? (
+      <p>No hay pedidos disponibles.</p>
+    ) : (
+        pedido &&
+        pedido.map((item, index) => (
+          <div key={index}>
+            <div className="order">
+              <h4 className="order-date">
+                Date:{" "}
+                {new Date(item.date).toLocaleDateString("es-AR", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </h4>
+              <p className="order-state">State: {item.state}</p>
+              {(decodedToken.role === "Admin" ||
+                decodedToken.role === "SuperAdmin") && (
+                <div className="buttons">
+                  <button className="button-editar">Editar</button>
+                  <button className="button-eliminar" onClick={() => handleEliminate(item.id)}>Eliminar</button>
+                </div>
+              )}
             </div>
-          ))}
+          </div>
+        ))
+      )}
       </div>
     </div>
   );
-};
+};  
 export default Pedido;
