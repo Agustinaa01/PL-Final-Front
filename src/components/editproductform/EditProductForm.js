@@ -1,197 +1,75 @@
-import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { jwtDecode as jwt_decode } from "jwt-decode";
+import "./EditProductForm.css";
 import Headers from "../header/Headers";
-import EditProduct from "./EditProduct.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router";
 
-const EditProductForm = ({ productData }) => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [brand, setBrand] = useState("");
-  const [category, setCategory] = useState("");
-  const [desc, setDesc] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [error, setError] = useState(null);
+const Pedido = ({}) => {
+  const [pedido, setPedido] = useState(null);
+  let decodedToken;
+  const token = localStorage.getItem("authToken");
+  if (typeof token === "string") {
+    decodedToken = jwt_decode(token);
+  }
 
-  const nameRef = useRef(null);
-  const priceRef = useRef(null);
-  const brandRef = useRef(null);
-  const categoryRef = useRef(null);
-  const descRef = useRef(null);
-  // const imageUrlRef = useRef(null);
-
-  const navigate = useNavigate();
-
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handlePriceChange = (event) => {
-    setPrice(event.target.value);
-  };
-
-  const handleBrandChange = (event) => {
-    setBrand(event.target.value);
-  };
-
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const handleDescChange = (event) => {
-    setDesc(event.target.value);
-  };
-
-  const handleURLChange = (event) => {
-    setImageUrl(event.target.value);
-  };
-
-  const handleEditClick = () => {
-    let isError = false;
-    if (name.length === 0) {
-      nameRef.current.focus();
-      setError({ nameError: "Por favor complete el nombre" });
-      isError = true;
-    }
-    if (price.length === 0) {
-      priceRef.current.focus();
-      setError({ priceError: "Por favor complete el precio" });
-      isError = true;
-    }
-    if (brand.length === 0) {
-      brandRef.current.focus();
-      setError({ brandError: "Por favor complete la marca" });
-      isError = true;
-    }
-    if (desc.length === 0) {
-      descRef.current.focus();
-      setError({ descError: "Por favor complete la descripcion" });
-      isError = true;
-    }
-    if (category.length === 0) {
-      categoryRef.current.focus();
-      setError({ categoryError: "Por favor complete la categoria" });
-      isError = true;
-    }
-
-    if (isError) return;
-
-    setError(null);
-
-      fetch(`http://localhost:8080/productos/${productId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(),
+  useEffect(() => {
+    if (decodedToken) {
+      fetch(`https://localhost:7108/api/Pedido/${decodedToken.sub}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
+        },
       })
-        .then(() => {
-          setShow(false);
-          toast.success("¡Producto eliminado!", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: "colored",
-          });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          } else if (
+            response.headers.get("content-type").includes("application/json")
+          ) {
+            return response.json();
+          } else {
+            throw new Error(
+              `Unexpected content-type! Expected "application/json", got ${response.headers.get(
+                "content-type"
+              )}`
+            );
+          }
+        })
+        .then((data) => {
+          console.log(data);
+          setPedido(data);
         })
         .catch((error) => {
           console.error("Error:", error);
         });
-    };
+    }
+  }, []);
 
   return (
-    <div className="page">
+    <div>
       <Headers />
-      <div className="name">
-        <div className="name-box">
-          <div className="container-image">
-            <img
-              className="img"
-              src={EditProduct}
-              alt="Descripción de la imagen"
-            />
-          </div>
-          <div className="container">
-            <h2 className="add">Editar producto</h2>
-            <label className="label-input">Nombre</label>
-            <input
-              className="input"
-              onChange={handleNameChange}
-              type="text"
-              ref={nameRef}
-            />
-            {error?.nameError && (
-              <p className="input-vacio">{error.nameError}</p>
-            )}
-            <label className="label-input">Precio</label>
-            <input
-              className="input"
-              onChange={handlePriceChange}
-              type="number"
-              ref={priceRef}
-            />
-            {error?.priceError && (
-              <p className="input-vacio">{error.priceError}</p>
-            )}
-            <label className="label-input">Categoria</label>
-            <input
-              className="input"
-              onChange={handleCategoryChange}
-              type="text"
-              ref={categoryRef}
-            />
-            {error?.categoryError && (
-              <p className="input-vacio">{error.categoryError}</p>
-            )}
-            <label className="label-input">Marca</label>
-            <input
-              className="input"
-              onChange={handleBrandChange}
-              type="text"
-              ref={brandRef}
-            />
-            {error?.brandError && (
-              <p className="input-vacio">{error.brandError}</p>
-            )}
-            <label className="label-input">Descripcion</label>
-            <input
-              className="input"
-              onChange={handleDescChange}
-              type="text"
-              ref={descRef}
-            />
-            {error?.descError && (
-              <p className="input-vacio">{error.descError}</p>
-            )}
-            <label className="label-input">Imagen</label>
-            <input
-              className="input"
-              onChange={handleURLChange}
-              type="url"
-              // ref={imageUrlRef}
-            />
-            <div className="add-button">
-              <button
-                className="button-accept"
-                // onClick={() => navigate(`/product/${productData.id}`)}
-                type="button"
-              >
-                Cancelar
-              </button>
-              <button
-                className="button-accept"
-                onClick={handleEditClick}
-                type="button"
-              >
-                Editar producto
-              </button>
+      <h1 className="titulo-pedido">PEDIDOS</h1>
+      <div className="page">
+        {pedido &&
+          pedido.map((item, index) => (
+            <div key={index}>
+              <div className="order">
+                <h4 className="order-date">
+                  Date:{" "}
+                  {new Date(item.date).toLocaleDateString("es-AR", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </h4>
+                <p class="order-state">State: {item.state}</p>
+              </div>
             </div>
-          </div>
-        </div>
+          ))}
       </div>
     </div>
   );
 };
-
-export default EditProductForm;
+export default Pedido;

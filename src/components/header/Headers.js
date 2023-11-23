@@ -24,7 +24,9 @@ const Headers = () => {
   const handlerAboutUs = () => {
     navigate("/nosotros");
   };
-
+  const handlerPedidos = () => {
+    navigate("/pedidos");
+  };
   // Accede al contexto de tema
   const { theme } = useContext(ThemeContext);
 
@@ -54,6 +56,9 @@ const Headers = () => {
             <ToggleTheme />
               <h2 className={`title ${textClass}`} onClick={handlerProducts}>
               PRODUCTOS
+            </h2>
+            <h2 className={`title ${textClass}`} onClick={handlerPedidos}>
+              PEDIDOS
             </h2>
             <h2 className={`title ${textClass}`} onClick={handlerAboutUs}>
               NOSOTROS

@@ -2,14 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
-  justify-content: center;
-  margin-top: 20px; 
+  margin-top: 20px; /* Adjust this value as needed */
 }
 .order {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
+  width: 300px; /* Increase the width as needed */
   margin: 10px;
   padding: 20px;
   border: 1px solid #ddd;
@@ -23,13 +22,18 @@
   box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.292), 0 6px 20px 0 rgba(0, 0, 0, 0.23); /* Add more shadow on hover */
 }
 
-.order-date,
+.order-name{
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+}
+
 .order-state {
   font-size: 18px;
   color: #333;
   text-align: center;
 }
-
 .order-date span,
 .order-state span {
   font-weight: bold;

@@ -107,7 +107,7 @@ const ProductDetailsForm = () => {
   if (typeof token === 'string') {
     decodedToken = jwt_decode(token);
   }
-  console.log(decodedToken);
+
 
   return (
     <div>

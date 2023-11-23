@@ -17,6 +17,9 @@ import { useContext } from "react";
 import { ThemeContext } from "./components/services/theme/ThemeContext";
 import Protected from "./components/services/authentication/Protected";
 import RolesAuthentication from "./components/services/authentication/RolesAuthentication";
+import EditProductForm from "./components/editproductform/EditProductForm";
+import Pedido from "./components/editproductform/EditProductForm";
+import Users from "./components/users/users";
 
 function App() {
 
@@ -45,6 +48,14 @@ function App() {
     {
       path: "/nosotros",
       element: <AboutUs />,
+    },{
+      path: "/pedidos",
+      element: <EditProductForm />,
+    },{
+    path: "/users",
+    element: 
+    <RolesAuthentication><Users /></RolesAuthentication>
+,
     },
     {
       path: "/productForm/:id",
