@@ -11,7 +11,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ToggleTheme from "../toggleTheme/ToggleTheme";
 import { ThemeContext } from "../services/theme/ThemeContext";
-import { jwtDecode as jwt_decode } from 'jwt-decode';
+import { jwtDecode as jwt_decode } from "jwt-decode";
+import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 
 const PRODUCTS = [
   // {
@@ -111,7 +112,7 @@ const Products = () => {
         console.error("Error fetching products:", error);
       });
   }, []);
-  
+
   const navigate = useNavigate();
 
   const handleProductForm = () => {
@@ -139,10 +140,10 @@ const Products = () => {
     }
   };
   let decodedToken;
-const token = localStorage.getItem('authToken');
-if (typeof token === 'string') {
-  decodedToken = jwt_decode(token);
-}
+  const token = localStorage.getItem("authToken");
+  if (typeof token === "string") {
+    decodedToken = jwt_decode(token);
+  }
 
   const handleSearch = (term) => {
     if (term === "") {
@@ -173,22 +174,35 @@ if (typeof token === 'string') {
     navigate(`/productDetails/${productId}`, { state: { productSelected } });
   };
 
-  const { theme } =useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const isLightTheme = theme === "light";
   const textProduct = isLightTheme ? "light-text" : "dark-text";
-  const productInfoText = isLightTheme ? "light-product-text" : "dark-product-text";
-  const productBackgroundProduct = isLightTheme ? "light-product-background" : "dark-product-background";
-  const productBackground = isLightTheme ? "light-background" : "dark-background";
+  const productInfoText = isLightTheme
+    ? "light-product-text"
+    : "dark-product-text";
+  const productBackgroundProduct = isLightTheme
+    ? "light-product-background"
+    : "dark-product-background";
+  const productBackground = isLightTheme
+    ? "light-background"
+    : "dark-background";
+  const { user } = useContext(AuthenticationContext);
 
   return (
     <div className={`${productBackground}`}>
       <Headers />
-      <h1 className={`titulo ${textProduct}`}>NUESTROS PRODUCTOS</h1>      
-      {(decodedToken.role === 'Admin' || decodedToken.role === 'SuperAdmin') && (
-      <button className="boton-agregar-producto" onClick={handleProductForm}>
-      Agregar producto
-    </button>
-            )}
+      <h1 className={`titulo ${textProduct}`}>NUESTROS PRODUCTOS</h1>
+      {user &&
+        (decodedToken.role === "Admin" ||
+          decodedToken.role === "SuperAdmin") && (
+          <button
+            className="boton-agregar-producto"
+            onClick={handleProductForm}
+          >
+            Agregar producto
+          </button>
+        )}
+
       <div className="custom-filter">
         <ProductFilter
           filterCategory={filterCategory}
@@ -200,18 +214,24 @@ if (typeof token === 'string') {
           onSearch={handleSearch}
         />
       </div>
-      <div className="producto-container" >
+      <div className="producto-container">
         {productsFiltered.map((product) => (
-          <div className={`${productBackgroundProduct}`}key={product.id} onClick={() => handleViewProduct(product.id)}>
+          <div
+            className={`${productBackgroundProduct}`}
+            key={product.id}
+            onClick={() => handleViewProduct(product.id)}
+          >
             <div className="product-image">
               <img src={product.imageUrl} alt={product.name} />
             </div>
             <div className="product-info">
-            <p className={`${productInfoText}`}>{product.brand}</p>
-              <h3 className={`${productInfoText}` }>{product.name}</h3>
+              <p className={`${productInfoText}`}>{product.brand}</p>
+              <h3 className={`${productInfoText}`}>{product.name}</h3>
               {/* <p>Categoría: {product.category}</p> */}
               <h5>
-                <strong className={`${productInfoText}` }>${product.price.toFixed(2)}</strong>
+                <strong className={`${productInfoText}`}>
+                  ${product.price.toFixed(2)}
+                </strong>
               </h5>
               {/* <p className={`${productInfoText}`}>Categoría: {product.category}</p>
               <p className={`${productInfoText}`}>Precio: ${product.price.toFixed(2)}</p> */}
@@ -221,7 +241,7 @@ if (typeof token === 'string') {
               >
                 Ver producto
               </button> */}
-              </div>
+            </div>
           </div>
         ))}
       </div>

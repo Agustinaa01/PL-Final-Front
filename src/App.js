@@ -50,11 +50,16 @@ function App() {
       element: <AboutUs />,
     },{
       path: "/pedidos",
-      element: <EditProductForm />,
+      element: 
+      <Protected>
+          <EditProductForm />
+      </Protected>,
     },{
     path: "/users",
     element: 
-    <RolesAuthentication><Users /></RolesAuthentication>
+    <RolesAuthentication>
+      <Users />
+    </RolesAuthentication>
 ,
     },
     {

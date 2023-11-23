@@ -38,8 +38,7 @@ const Users = ({}) => {
   }, []);
   
   const handleEliminate = (userId) => {
-    //setUser(user.filter(item => item.id !== userId));
-    //const token = localStorage.getItem("authToken");
+
     fetch(`https://localhost:7108/api/Users/${userId}`, {
       method: "DELETE",
       headers: {
@@ -85,6 +84,7 @@ const Users = ({}) => {
                 <div className="buttons">
                 <button className="button-editar">Editar</button>
                 <button className="button-eliminar" onClick={() => handleEliminate(item.id)}>Eliminar</button>
+                
                 </div>
               </div>
             </div>
