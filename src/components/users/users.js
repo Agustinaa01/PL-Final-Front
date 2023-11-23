@@ -38,7 +38,7 @@ const Users = ({}) => {
   }, []);
   
   const handleEliminate = (userId) => {
-    setUser(user.filter(item => item.id !== userId));
+    //setUser(user.filter(item => item.id !== userId));
     //const token = localStorage.getItem("authToken");
     fetch(`https://localhost:7108/api/Users/${userId}`, {
       method: "DELETE",
@@ -48,9 +48,10 @@ const Users = ({}) => {
       }
     })
       .then(() => {
-          toast.success("¡Producto eliminado!", {
+        setUser(user.filter(item => item.id !== userId));
+          toast.success("¡Usuario eliminado!", {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: false,
@@ -78,9 +79,9 @@ const Users = ({}) => {
                 <p className="order-state">
                   {item.email} 
                 </p>
-                <p className="order-state">
+                {/* <p className="order-state">
                   {item.rol === 1 ? 'User' : item.rol === 2 ? 'SuperAdmin' : 'Admin'}
-                </p>
+                </p> */}
                 <div className="buttons">
                 <button className="button-editar">Editar</button>
                 <button className="button-eliminar" onClick={() => handleEliminate(item.id)}>Eliminar</button>

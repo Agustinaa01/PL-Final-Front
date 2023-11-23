@@ -13,6 +13,32 @@ const Pedido = ({}) => {
   if (typeof token === "string") {
     decodedToken = jwt_decode(token);
   }
+  const handleEliminate = (itemId) => {
+    fetch(`https://localhost:7108/api/Pedido/${itemId}`, {
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(() => {
+        setPedido(pedido.filter(item => item.id !== itemId));
+        toast.success("¡Producto eliminado!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  
 
   useEffect(() => {
     if (decodedToken) {
@@ -65,6 +91,14 @@ const Pedido = ({}) => {
                   })}
                 </h4>
                 <p class="order-state">State: {item.state}</p>
+
+                {(decodedToken.role === "Admin" ||
+                  decodedToken.role === "SuperAdmin") && (
+                  <div className="buttons">
+                    <button className="button-editar">Editar</button>
+                    <button className="button-eliminar" onClick={() => handleEliminate(item.id)}>Eliminar</button>
+                  </div>
+                )}
               </div>
             </div>
           ))}

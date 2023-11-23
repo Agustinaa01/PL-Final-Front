@@ -73,7 +73,7 @@ const RegisterForm = () => {
     return response.json();
   })
     .then((data) => {
-      toast.success('🦄 Wow so easy!', {
+      toast.success('¡Registro exitoso! Ahora puede iniciar sesión', {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: true,
