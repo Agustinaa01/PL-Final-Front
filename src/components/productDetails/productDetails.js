@@ -6,9 +6,9 @@ import { useLocation, useNavigate } from "react-router";
 import { Modal, ModalHeader } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 import { ThemeContext } from "../services/theme/ThemeContext";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { jwtDecode as jwt_decode } from 'jwt-decode';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { jwtDecode as jwt_decode } from "jwt-decode";
 
 const ProductDetailsForm = () => {
   const location = useLocation();
@@ -18,6 +18,7 @@ const ProductDetailsForm = () => {
   const [price, setPrice] = useState(location.state?.productSelected?.price);
   const [brand, setBrand] = useState(location.state?.productSelected?.brand);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  
   const [category, setCategory] = useState(
     location.state?.productSelected?.category
   );
@@ -44,9 +45,9 @@ const ProductDetailsForm = () => {
     fetch(`https://localhost:7108/api/Producto/${productId}`, {
       method: "DELETE",
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-        'Content-Type': 'application/json'
-      }
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
     })
       .then(() => {
         setShow(false);
@@ -103,11 +104,10 @@ const ProductDetailsForm = () => {
   const textClass = isLightTheme ? "light-details" : "dark-details";
   const ClassDetails = isLightTheme ? "light-details-img" : "dark-details-img";
   let decodedToken;
-  const token = localStorage.getItem('authToken');
-  if (typeof token === 'string') {
+  const token = localStorage.getItem("authToken");
+  if (typeof token === "string") {
     decodedToken = jwt_decode(token);
   }
-  console.log(decodedToken);
 
   return (
     <div>
@@ -115,7 +115,11 @@ const ProductDetailsForm = () => {
         <Headers />
       </div>
       <div className="product-details-container">
-        <img className={`${ClassDetails}`} src={imageUrl} alt="Product Details" />
+        <img
+          className={`${ClassDetails}`}
+          src={imageUrl}
+          alt="Product Details"
+        />
         <div className="producto-info">
           <h1>{name}</h1>
           <br />
@@ -123,22 +127,32 @@ const ProductDetailsForm = () => {
           <br />
           <p>Categoria: {category}</p>
           <p> Marca: {brand}</p>
-          <button className="button-details" onClick={handleShowCart}>
-            Agregar al carrito
-          </button>
-          <br />
-
-          {(decodedToken.role === 'Admin' || decodedToken.role === 'SuperAdmin') && (
-                 <button className="button-details" onClick={handleEditClick}>
-                 Editar producto
-               </button>
+          <p> Marca: {brand}</p>
+          {(decodedToken.role === "User" ||
+            decodedToken.role === "SuperAdmin" ||
+            !user) && (
+            <button className="button-details" onClick={handleShowCart}>
+              Agregar al carrito
+            </button>
           )}
           <br />
-          {(decodedToken.role === 'Admin' || decodedToken.role === 'SuperAdmin') && (
-                    <button className="button-details" onClick={handleShow}>
-                          Eliminar producto
-                    </button>
-                    )}
+
+          {user &&
+            (decodedToken.role === "Admin" ||
+              decodedToken.role === "SuperAdmin") && (
+              <button className="button-details" onClick={handleEditClick}>
+                Editar producto
+              </button>
+            )}
+
+          <br />
+          {user &&
+            (decodedToken.role === "Admin" ||
+              decodedToken.role === "SuperAdmin") && (
+              <button className="button-details" onClick={handleShow}>
+                Eliminar producto
+              </button>
+            )}
           <Modal show={showConfirmationModal} onHide={closeConfirmationModal}>
             <Modal.Header closeButton>
               <Modal.Title>Confirmación</Modal.Title>
