@@ -67,6 +67,7 @@ const Pedido = ({}) => {
           }
         })
         .then((data) => {
+          console.log(data);
           setPedido(data);
           setIsLoading(false);
         })
@@ -83,36 +84,47 @@ const Pedido = ({}) => {
       <h1 className="titulo-pedido">PEDIDOS</h1>
       <div className="page">
       {isLoading ? (
-      <BeatLoader color={"#ffff"} loading={isLoading} size={13} />
-    ) : !pedido || pedido.length === 0 ? (
-      <p>No hay pedidos disponibles.</p>
-    ) : (
-        pedido &&
-        pedido.map((item, index) => (
-          <div key={index}>
-            <div className="order">
-              <h4 className="order-date">
-                Date:{" "}
-                {new Date(item.date).toLocaleDateString("es-AR", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </h4>
-              <p className="order-state">State: {item.state}</p>
-              {(decodedToken.role === "Admin" ||
-                decodedToken.role === "SuperAdmin") && (
-                <div className="buttons">
-                  <button className="button-editar">Editar</button>
-                  <button className="button-eliminar" onClick={() => handleEliminate(item.id)}>Eliminar</button>
+        <BeatLoader color={"#ffff"} loading={isLoading} size={13} />
+      ) : !pedido || pedido.length === 0 ? (
+        <p>No hay pedidos disponibles.</p>
+      ) : (
+          pedido &&
+          pedido.map((item, index) => (
+            <div key={index}>
+              <div className="orders">
+                <h4 className="order-date">
+                  Fecha:{" "}
+                  {new Date(item.date).toLocaleDateString("es-AR", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </h4>
+                <p className="order-state">{item.state}</p>
+                {/* <h4 className="order-state">Productos:</h4> */}
+                {item.producto.map((product, productIndex) => (
+                <div key={productIndex} className="product-container">
+                  <img className="order-image" src={product.imageUrl} alt={product.name} />
+                  <div>
+                    <p className="order-state">{product.name}</p>
+                    <p className="order-state">${product.price}</p>
+                  </div>
                 </div>
-              )}
+              ))}
+                {(decodedToken.role === "Admin" ||
+                  decodedToken.role === "SuperAdmin") && (
+                  <div className="buttons-order">
+                    {/* <button className="button-editar">Editar</button> */}
+                    <button className="button-eliminar-order" onClick={() => handleEliminate(item.id)}>Eliminar</button>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ))
-      )}
+          ))
+        )}
+        </div>
       </div>
-    </div>
-  );
-};  
-export default Pedido;
+    );
+  };
+  
+  export default Pedido;  
