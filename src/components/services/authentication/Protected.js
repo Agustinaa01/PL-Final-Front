@@ -10,7 +10,7 @@ const Protected = ({children}) => {
     if (typeof token === "string") {
         decodedToken = jwt_decode(token);
     }
-    if (decodedToken && (decodedToken.role === 'User' || decodedToken.role === "Admin") || (!user)) {
+    if (decodedToken && (decodedToken.role === 'Admin') || (!user)) {
         return <Navigate to="*" replace/>    
     } else {
         return children;
