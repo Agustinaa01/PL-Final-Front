@@ -127,7 +127,6 @@ const ProductDetailsForm = () => {
           <br />
           <p>Categoria: {category}</p>
           <p> Marca: {brand}</p>
-          <p> Marca: {brand}</p>
           {(decodedToken.role === "User" ||
             decodedToken.role === "SuperAdmin" ||
             !user) && (

@@ -84,6 +84,10 @@ const ProductForm = () => {
       descRef.current.focus();
       setError({ descError: "Por favor complete la descripcion" });
       isError = true;
+    }else if (description.length >= 150) {
+      descRef.current.focus();
+      setError({ descError: "La descripcion debe tener como maximo 150 caracteres" });
+      isError = true;
     }
     const id = location.state?.productSelected?.id;
     if (isError) return;
@@ -136,7 +140,7 @@ const method = id ? "PUT" : "POST";
   const { theme } = useContext(ThemeContext);
   const isLightTheme = theme === "light";
   const textProduct = isLightTheme ? "light-form" : "dark-form";
-  const preSetCategories = ["Tablet", "Celulares", "Auriculres", "Computadoras", "Camaras", "Parlantes", "Consolas"];
+  //sconst preSetCategories = ["Tablet", "Celulares", "Auriculres", "Computadoras", "Camaras", "Parlantes", "Consolas"];
 
   return (
     <div className="page">
