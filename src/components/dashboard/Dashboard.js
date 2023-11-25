@@ -11,7 +11,13 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 
+
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const handleViewJoystick  = () => {
+    navigate("/products");
+  }
   return (
     <div className="content">
       <Headers />
@@ -29,7 +35,7 @@ const Dashboard = () => {
               <div className="carousel-caption">
                 <h3>Parlante</h3>
                 <p>Un excelente parlante para disfrutar de tu música favorita.</p>
-                <button className="product">Ver producto</button>
+                <button className="product" onClick={handleViewJoystick}>Ver todos los productos</button>
               </div>
             </div>
 
@@ -38,7 +44,7 @@ const Dashboard = () => {
               <div className="carousel-caption">
                 <h3>Auriculares</h3>
                 <p>Disfruta de un sonido excepcional con nuestros auriculares de alta calidad.</p>
-                <button className="product">Ver producto</button>
+                <button className="product" onClick={handleViewJoystick}>Ver todos los productos</button>
               </div>
             </div>
 
@@ -47,7 +53,7 @@ const Dashboard = () => {
               <div className="carousel-caption">
                 <h3>Joystick para Xbox</h3>
                 <p>Experimenta una experiencia de juego excepcional con nuestro joystick de alta calidad para Xbox.</p>
-                <button className="product">Ver producto</button>
+                <button className="product" onClick={handleViewJoystick}>Ver todos los productos</button>
               </div>
             </div>
           </div>

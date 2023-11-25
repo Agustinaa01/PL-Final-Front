@@ -46,6 +46,13 @@ function App() {
       </RolesAuthentication> ,
     },
     {
+      path: "/users",
+      element:
+      <RolesAuthentication>
+        <Users />
+      </RolesAuthentication> ,
+    },
+    {
       path: "/nosotros",
       element: <AboutUs />,
     },{
