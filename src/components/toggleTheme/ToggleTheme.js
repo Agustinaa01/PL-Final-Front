@@ -13,7 +13,7 @@ const ToggleTheme = () => {
         >
             Cambiar a tema {theme === "light"? "oscuro": "claro"}
         </Button> */}
-        <label id="switch" class="switch">
+        <label id="switch" className="switch">
             <input className="mt-4" variant={theme === "dark"? "light": "dark"} type="checkbox" onChange={toggleTheme} id="slider"></input>
             <span className="slider round"></span>
         </label>

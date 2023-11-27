@@ -1,0 +1,104 @@
+/* background-color: #c1b5b5;
+position: fixed;
+width: 280px;
+height: 100%;
+right: 0;
+top: 0;
+padding: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+z-index: 999;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+
+/* ProfileSidebar.css */
+
+.light-profile,
+.dark-profile {
+  right: 0;
+  bottom: 0; /* Cambiado de 'top' a 'bottom' */
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 91vh;
+  background-color: #f5f5f5; /* Puedes ajustar el color de fondo según tu diseño */
+  color: #333; /* Puedes ajustar el color del texto según tu diseño */
+  position: fixed;
+  margin-right: 10px; 
+  z-index: 999;
+}
+
+.dark-profile {
+  background-color: #333; /* Puedes ajustar el color de fondo según tu diseño */
+  color: #fff; /* Puedes ajustar el color del texto según tu diseño */
+}
+
+.light-profile-button,
+.dark-profile-button {
+  background-color: transparent; /* Hacer el fondo transparente */
+  color: #333; /* Puedes ajustar el color del texto del botón según tu diseño */
+  border: none;
+  font-size: 1.5em; /* Puedes ajustar el tamaño de la fuente según tu diseño */
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.dark-profile-button {
+  color: #fff; /* Puedes ajustar el color del texto del botón según tu diseño */
+}
+
+.slidebar-info {
+    display: flex;
+    flex-direction: column; /* Ajusta según sea necesario */
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+.product-images {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%; /* Puedes ajustar según tu diseño */
+  width: 100px; /* Ajusta el tamaño de la imagen según tu diseño */
+  height: 100px; /* Ajusta el tamaño de la imagen según tu diseño */
+  object-fit: cover; /* Puedes ajustar según tu diseño */
+}
+
+.name-profile,
+.email-profile {
+  margin: 10px 0;
+}
+
+
+.button-editar,
+.boton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button-eliminar {
+  background-color: #dc3545; 
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button-editar:hover,
+.boton:hover {
+  background-color: #0056b3;
+}
+
+.button-eliminar:hover {
+  background-color: #c82333; 
+}
+

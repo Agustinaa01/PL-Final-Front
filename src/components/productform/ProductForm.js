@@ -1,21 +1,32 @@
 import React, { useRef, useState, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./ProductForm.css";
 import Headers from "../header/Headers";
 import productImage from "./productAdd.png"; // Reemplaza con la ruta correcta de tu imagen
 import { ThemeContext } from "../services/theme/ThemeContext";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const ProductForm = () => {
-  // estados para nombre,precio,marca,stock y descripcion
-
-  const location = useLocation();   
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const [name, setName] = useState(location.state?.productSelected?.name ?? "");
-  const [price, setPrice] = useState(location.state?.productSelected?.price ?? "");
-  const [brand, setBrand] = useState(location.state?.productSelected?.brand ?? "");
-  const [category, setCategory] = useState(location.state?.productSelected?.category ?? "");
-  const [description, setDescription] = useState(location.state?.productSelected?.description ?? "");
-  const [image, setImage] = useState(location.state?.productSelected?.image ?? "");
+  const [price, setPrice] = useState(
+    location.state?.productSelected?.price ?? ""
+  );
+  const id = location.state?.productSelected?.id;
+  const [brand, setBrand] = useState(
+    location.state?.productSelected?.brand ?? ""
+  );
+  const [category, setCategory] = useState(
+    location.state?.productSelected?.category ?? ""
+  );
+  const [description, setDescription] = useState(
+    location.state?.productSelected?.description ?? ""
+  );
+  const [imageUrl, setImage] = useState(
+    location.state?.productSelected?.imageUrl ?? ""
+  );
   const [error, setError] = useState(null);
 
   const nameRef = useRef(null);
@@ -43,58 +54,110 @@ const ProductForm = () => {
   const handleURLChange = (event) => {
     setImage(event.target.value);
   };
+  const handleCancelClick = () =>{
+    navigate("/products");
+  }
   // Alerta de campos vacios
   const handleAddClick = () => {
     let isError = false;
     if (name.length === 0) {
       nameRef.current.focus();
-      setError({nameError: "Por favor complete el nombre" })
+      setError({ nameError: "Por favor complete el nombre" });
       isError = true;
     }
     if (price.length === 0) {
       priceRef.current.focus();
-      setError({priceError: "Por favor complete el precio" })
+      setError({ priceError: "Por favor complete el precio" });
       isError = true;
     }
     if (brand.length === 0) {
       brandRef.current.focus();
-      setError({brandError: "Por favor complete la marca" })
+      setError({ brandError: "Por favor complete la marca" });
       isError = true;
     }
     if (category.length === 0) {
       categoryRef.current.focus();
-      setError({categoryError: "Por favor complete la categoria" })
+      setError({ categoryError: "Por favor complete la categoria" });
       isError = true;
     }
     if (description.length === 0) {
       descRef.current.focus();
-      setError({descError: "Por favor complete la descripcion" })
+      setError({ descError: "Por favor complete la descripcion" });
+      isError = true;
+    }else if (description.length >= 150) {
+      descRef.current.focus();
+      setError({ descError: "La descripcion debe tener como maximo 150 caracteres" });
       isError = true;
     }
+    const id = location.state?.productSelected?.id;
+    if (isError) return;
+    setError(null);
+    const producto = { id, name, price, brand, category, description, imageUrl };
+const url = id
+  ? `https://localhost:7108/api/Producto/${id}`
+  : "https://localhost:7108/api/Producto";
+const method = id ? "PUT" : "POST";
 
-    if (isError)
-      return;
-    setError(null)
-  };
+    fetch(url, {
+      method,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(producto),
+    })
+    .then(() => {
+      const successMessage = location.state?.productSelected
+        ? "¡Producto editado!"
+        : "¡Producto agregado!";
 
-  const { theme } =useContext(ThemeContext);
+      toast.success(successMessage, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      if (!location.state?.productSelected) {
+        setName("");
+        setPrice("");
+        setBrand("");
+        setCategory("");
+        setDescription("");
+        setImage("");
+      } else {
+        navigate(`/products`);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+  const { theme } = useContext(ThemeContext);
   const isLightTheme = theme === "light";
   const textProduct = isLightTheme ? "light-form" : "dark-form";
-  
+  //sconst preSetCategories = ["Tablet", "Celulares", "Auriculres", "Computadoras", "Camaras", "Parlantes", "Consolas"];
+
   return (
     <div className="page">
       <Headers />
       <div className="name">
         <div className={`${textProduct}`}>
           <div className="container-imag">
-          <img
-            className="img"
-            src={productImage}
-            alt="Descripción de la imagen"
-          />
+            <img
+              className="img"
+              src={productImage}
+              alt="Descripción de la imagen"
+            />
           </div>
           <div className="container">
-          <h2 className="add">{location.state ? "Editar" : "Agregar"} producto</h2>
+            <h2 className="add">
+              {location.state ? "Editar" : "Agregar"} producto
+            </h2>
             <label className="label-input">Nombre</label>
             <input
               className="input"
@@ -103,7 +166,9 @@ const ProductForm = () => {
               type="text"
               ref={nameRef}
             />
-            {error?.nameError && <p className="input-vacio">{error.nameError}</p>}
+            {error?.nameError && (
+              <p className="input-vacio">{error.nameError}</p>
+            )}
             <label className="label-input">Precio</label>
             <input
               className="input"
@@ -112,7 +177,9 @@ const ProductForm = () => {
               value={price}
               ref={priceRef}
             />
-            {error?.priceError && <p className="input-vacio">{error.priceError}</p>}
+            {error?.priceError && (
+              <p className="input-vacio">{error.priceError}</p>
+            )}
             <label className="label-input">Marca</label>
             <input
               className="input"
@@ -121,7 +188,9 @@ const ProductForm = () => {
               value={brand}
               ref={brandRef}
             />
-            {error?.brandError && <p className="input-vacio">{error.brandError}</p>}
+            {error?.brandError && (
+              <p className="input-vacio">{error.brandError}</p>
+            )}
             <label className="label-input">Categoria</label>
             <input
               className="input"
@@ -130,7 +199,9 @@ const ProductForm = () => {
               value={category}
               ref={categoryRef}
             />
-            {error?.categoryError && <p className="input-vacio">{error.categoryError}</p>}
+            {error?.categoryError && (
+              <p className="input-vacio">{error.categoryError}</p>
+            )}
             <label className="label-input">Descripcion</label>
             <input
               className="input"
@@ -138,18 +209,21 @@ const ProductForm = () => {
               type="description"
               value={description}
               ref={descRef}
-            />{error?.descError && <p className="input-vacio">{error.descError}</p>}
+            />
+            {error?.descError && (
+              <p className="input-vacio">{error.descError}</p>
+            )}
             <label className="label-input">URL de la imagen</label>
             <input
-            className="input"
+              className="input"
               onChange={handleURLChange}
               type="url"
-              value={image}
+              value={imageUrl}
             />
             <div className="add-button">
               <button
-                className="button-accept"
-                onClick={handleAddClick}
+                className="button-cancelar"
+                onClick={handleCancelClick}
                 type="button"
               >
                 Cancelar

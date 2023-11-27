@@ -69,7 +69,7 @@ input[type="number"] {
 }
 
 .button-accept,
-.button-cancel {
+.button-cancelar {
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
@@ -82,7 +82,7 @@ input[type="number"] {
   background-color: #0056b3;
 }
 
-button:nth-child(1):hover {
+.button-cancelar:hover {
   background-color: #999;
 }
 
@@ -100,8 +100,8 @@ button:nth-child(1):hover {
   font-size: 15px;
 }
 
-button:nth-child(1) {
-  background-color: #ccc;
+.button-cancelar {
+  background-color: white;
   color: #333;
   font-size: 15px;
 }
@@ -149,7 +149,7 @@ button:nth-child(1) {
   }
 
   .button-accept,
-  .button-cancel {
+  .button-cancelar {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;

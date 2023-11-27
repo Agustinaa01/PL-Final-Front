@@ -18,31 +18,19 @@ const ProductDetailsForm = () => {
   const [price, setPrice] = useState(location.state?.productSelected?.price);
   const [brand, setBrand] = useState(location.state?.productSelected?.brand);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+
   const [category, setCategory] = useState(
     location.state?.productSelected?.category
   );
   const [description, setDescription] = useState(
     location.state?.productSelected?.description
   );
-  const [image, setImage] = useState(
-    location.state?.productSelected?.image ?? ""
+  const [imageUrl, setImage] = useState(
+    location.state?.productSelected?.imageUrl ?? ""
   );
   const [show, setShow] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const navigate = useNavigate();
-
-  //const apiUrl =  (URL de la api aca) ;
-  //const { data, loading, error } = useApi(apiUrl);
-
-  //if (loading) {
-  //  return <p>Loading...</p>; // Show loading indicator while fetching data
-  //}
-
-  //if (error) {
-  //  return <p>Error: {error.message}</p>; // Show error message if there's an error
-  //}
-
-  // could just use the double equals
 
   const handleEditClick = () => {
     const productId = location.state?.productSelected?.id;
@@ -52,17 +40,33 @@ const ProductDetailsForm = () => {
   };
 
   const handleConfirm = () => {
-    setShow(false);
-    toast.success("¡Producto eliminado!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "colored",
-    });
+    //const token = localStorage.getItem("authToken");
+    fetch(`https://localhost:7108/api/Producto/${productId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(() => {
+        setShow(false);
+        toast.success("¡Producto eliminado!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          navigate("/products");
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -98,13 +102,18 @@ const ProductDetailsForm = () => {
   const isLightTheme = theme === "light";
   const textClass = isLightTheme ? "light-details" : "dark-details";
   const ClassDetails = isLightTheme ? "light-details-img" : "dark-details-img";
+
   return (
     <div>
       <div className="header-product-details">
         <Headers />
       </div>
       <div className="product-details-container">
-        <img className={`${ClassDetails}`} src={image} alt="Product Details" />
+        <img
+          className={`${ClassDetails}`}
+          src={imageUrl}
+          alt="Product Details"
+        />
         <div className="producto-info">
           <h1>{name}</h1>
           <br />
@@ -112,17 +121,31 @@ const ProductDetailsForm = () => {
           <br />
           <p>Categoria: {category}</p>
           <p> Marca: {brand}</p>
-          <button className="button-details" onClick={handleShowCart}>
-            Agregar al carrito
-          </button>
+          {(decodedToken.role === "User" ||
+            decodedToken.role === "SuperAdmin" ||
+            !user) && (
+            <button className="button-details" onClick={handleShowCart}>
+              Agregar al carrito
+            </button>
+          )}
           <br />
-          <button className="button-details" onClick={handleEditClick}>
-            Editar producto
-          </button>
+
+          {user &&
+            (decodedToken.role === "Admin" ||
+              decodedToken.role === "SuperAdmin") && (
+              <button className="button-details" onClick={handleEditClick}>
+                Editar producto
+              </button>
+            )}
+
           <br />
-          <button className="button-details-delete" onClick={handleShow}>
-            Eliminar producto
-          </button>
+          {user &&
+            (decodedToken.role === "Admin" ||
+              decodedToken.role === "SuperAdmin") && (
+              <button className="button-details" onClick={handleShow}>
+                Eliminar producto
+              </button>
+            )}
           <Modal show={showConfirmationModal} onHide={closeConfirmationModal}>
             <Modal.Header closeButton>
               <Modal.Title>Confirmación</Modal.Title>
@@ -135,7 +158,7 @@ const ProductDetailsForm = () => {
             </Modal.Body>
             <Modal.Footer>
               <button
-                className="button-cancel"
+                className="button-cancelar"
                 onClick={closeConfirmationModal}
               >
                 Cancelar
@@ -157,7 +180,7 @@ const ProductDetailsForm = () => {
               ¿Está seguro que quiere eliminar el producto?
             </Modal.Body>
             <Modal.Footer>
-              <button className="button-cancel" onClick={handleClose}>
+              <button className="button-cancelar" onClick={handleClose}>
                 Cancelar
               </button>
               <button className="button-confirm" onClick={handleConfirm}>
@@ -173,7 +196,7 @@ const ProductDetailsForm = () => {
               <div className="carrito-container">
                 <img
                   className="imagen-details-carrito"
-                  src={image}
+                  src={imageUrl}
                   alt="Producto en el carrito"
                 />
                 <div className="carrito-item-details">
@@ -185,7 +208,7 @@ const ProductDetailsForm = () => {
             </Modal.Body>
             <Modal.Footer>
               <button
-                className="button-cancel"
+                className="button-cancelar"
                 onClick={handleShowPaymentModal}
               >
                 Pagar
@@ -260,7 +283,7 @@ const ProductDetailsForm = () => {
             </Modal.Body>
             <Modal.Footer>
               <button
-                className="button-cancel"
+                className="button-cancelar"
                 onClick={handleClosePaymentMethodsModal}
               >
                 Cancelar
