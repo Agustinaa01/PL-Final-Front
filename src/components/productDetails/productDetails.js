@@ -6,8 +6,9 @@ import { useLocation, useNavigate } from "react-router";
 import { Modal, ModalHeader } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 import { ThemeContext } from "../services/theme/ThemeContext";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import useApi from "../../hooks/Useapi";
 
 const ProductDetailsForm = () => {
   const location = useLocation();
@@ -29,6 +30,19 @@ const ProductDetailsForm = () => {
   const [show, setShow] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const navigate = useNavigate();
+
+  //const apiUrl =  (URL de la api aca) ;
+  //const { data, loading, error } = useApi(apiUrl);
+
+  //if (loading) {
+  //  return <p>Loading...</p>; // Show loading indicator while fetching data
+  //}
+
+  //if (error) {
+  //  return <p>Error: {error.message}</p>; // Show error message if there's an error
+  //}
+
+  // could just use the double equals
 
   const handleEditClick = () => {
     const productId = location.state?.productSelected?.id;
@@ -84,7 +98,6 @@ const ProductDetailsForm = () => {
   const isLightTheme = theme === "light";
   const textClass = isLightTheme ? "light-details" : "dark-details";
   const ClassDetails = isLightTheme ? "light-details-img" : "dark-details-img";
-
   return (
     <div>
       <div className="header-product-details">
@@ -252,7 +265,7 @@ const ProductDetailsForm = () => {
               >
                 Cancelar
               </button>
-              <button className="button-confirm">Continuar</button>
+              <button className="button-confirm">Confirmar</button>
             </Modal.Footer>
           </Modal>
         </div>
