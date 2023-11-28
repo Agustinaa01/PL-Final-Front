@@ -8,16 +8,21 @@ import { AuthenticationContext } from "../services/authentication/Authentication
 import { ThemeContext } from "../services/theme/ThemeContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useApi from "../../hooks/Useapi";
+import { jwtDecode as jwt_decode } from "jwt-decode";
+import { CartContext } from "../carrito/CartContext";
 
 const ProductDetailsForm = () => {
   const location = useLocation();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [cart, setCart] = useState();
+  const [productId, setProductId] = useState(location.state?.productSelected?.id);
+  console.log(productId);
   const [name, setName] = useState(location.state?.productSelected?.name);
   const [price, setPrice] = useState(location.state?.productSelected?.price);
   const [brand, setBrand] = useState(location.state?.productSelected?.brand);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [pay, setPay] = useState();
+  const [carrito, setCarrito] = useContext(CartContext);
 
   const [category, setCategory] = useState(
     location.state?.productSelected?.category
@@ -31,6 +36,13 @@ const ProductDetailsForm = () => {
   const [show, setShow] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const navigate = useNavigate();
+
+  const agregarAlCarrito = (producto) => {
+    console.log(producto); // Esto imprimirá el producto en la consola
+    setCarrito(prevCarrito => [...prevCarrito, { id: producto.productId, imageUrl: producto.imageUrl, name: producto.name, price: producto.price }]);
+    setShowCart(true);
+  };
+
 
   const handleEditClick = () => {
     const productId = location.state?.productSelected?.id;
@@ -50,7 +62,7 @@ const ProductDetailsForm = () => {
     })
       .then(() => {
         setShow(false);
-        toast.success("¡Producto eliminado!", {
+        toast.success("¡Pedido eliminado!", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -98,6 +110,53 @@ const ProductDetailsForm = () => {
   const handleCloseCart = () => setShowCart(false);
 
   const { theme } = useContext(ThemeContext);
+  let decodedToken;
+  const token = localStorage.getItem("authToken");
+  if (typeof token === "string") {
+    decodedToken = jwt_decode(token);
+  }
+  const handlePay = () => {
+    const productIds = carrito.map(producto => producto.id);
+
+
+    fetch(`https://localhost:7108/api/Pedido`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "date": new Date().toISOString(),
+        "state": "Created",
+        "userId": decodedToken.sub
+      })
+    })
+      .then(response => {
+        console.log(response);
+        return response.json();
+      })
+      .then(data => {
+        fetch(`https://localhost:7108/api/Pedido/AddProducto`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            "PedidoId": data.id, // This should be the order ID
+            "ProductoId": productIds // This should be a list of product IDs
+          })
+        })
+          .then(response => response.json())
+          .then(() => {
+            console.log({
+              "PedidoId": data.id, // This should be the order ID
+              "ProductoId": productIds // This should be a list of product IDs
+            });
+          })
+          .catch(error => console.error('Error:', error));
+      });
+  };
 
   const isLightTheme = theme === "light";
   const textClass = isLightTheme ? "light-details" : "dark-details";
@@ -124,10 +183,10 @@ const ProductDetailsForm = () => {
           {(decodedToken.role === "User" ||
             decodedToken.role === "SuperAdmin" ||
             !user) && (
-            <button className="button-details" onClick={handleShowCart}>
-              Agregar al carrito
-            </button>
-          )}
+              <button className="button-details" onClick={() => agregarAlCarrito({ productId, imageUrl, name, price })}>
+                Agregar al carrito
+              </button>
+            )}
           <br />
 
           {user &&
@@ -193,18 +252,21 @@ const ProductDetailsForm = () => {
               <Modal.Title>Carrito de compra</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <div className="carrito-container">
-                <img
-                  className="imagen-details-carrito"
-                  src={imageUrl}
-                  alt="Producto en el carrito"
-                />
-                <div className="carrito-item-details">
-                  <h3 className="name-carrito">{name}</h3>
-                  <p>Precio: ${price}</p>
+              {carrito.map((producto, index) => (
+                <div className="carrito-container" key={index}>
+                  <img
+                    className="imagen-details-carrito"
+                    src={producto.imageUrl}
+                    alt="Producto en el carrito"
+                  />
+                  <div className="carrito-item-details">
+                    <h3 className="name-carrito">{producto.name}</h3>
+                    <p>Precio: ${producto.price}</p>
+                  </div>
                 </div>
-              </div>
-              <p className="total">Total: ${price}</p>
+              ))}
+
+              <p className="total">Total: ${carrito.reduce((total, producto) => total + producto.price, 0)}</p>
             </Modal.Body>
             <Modal.Footer>
               <button
@@ -221,6 +283,7 @@ const ProductDetailsForm = () => {
               </button>
             </Modal.Footer>
           </Modal>
+
           <Modal show={showPaymentModal}>
             <Modal.Header closeButton>
               <Modal.Title>Seleccionar Método de Pago</Modal.Title>
@@ -288,7 +351,7 @@ const ProductDetailsForm = () => {
               >
                 Cancelar
               </button>
-              <button className="button-confirm">Confirmar</button>
+              <button className="button-confirm" onClick={handlePay}>Continuar</button>
             </Modal.Footer>
           </Modal>
         </div>

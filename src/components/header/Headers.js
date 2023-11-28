@@ -60,11 +60,12 @@ const Headers = () => {
             <h2 className={`title ${textClass}`} onClick={handlerProducts}>
               PRODUCTOS
             </h2>
-            {decodedToken.role === "SuperAdmin" || decodedToken.role === "User" && user && (
-              <h2 className={`title ${textClass}`} onClick={handlerPedidos}>
-                PEDIDOS
-              </h2>
-            )}
+            {decodedToken && (decodedToken.role === "SuperAdmin" || decodedToken.role === "User") && user && (
+  <h2 className={`title ${textClass}`} onClick={handlerPedidos}>
+    PEDIDOS
+  </h2>
+)}
+
             <h2 className={`title ${textClass}`} onClick={handlerAboutUs}>
               NOSOTROS
             </h2>
