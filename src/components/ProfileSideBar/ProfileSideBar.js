@@ -2,14 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import "./ProfileSidebar.css";
 import { jwtDecode as jwt_decode } from "jwt-decode";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import imageProfile from "./profileInfo.png";
 import { ThemeContext } from "../services/theme/ThemeContext";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProfileSidebar = ({ setIsModalOpen }) => {
+  const location = useLocation();
   const [isuser, setUser] = useState(null);
+
   let decodedToken;
   const token = localStorage.getItem("authToken");
   if (typeof token === "string") {
@@ -72,9 +74,19 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
     navigate("/login");
   };
 
-  const handleEditClick = () =>{
-    navigate(`/editarPerfil`); // Corregir el error de sintaxis aquí
-  }
+  const handleEditClick = () => {
+    if (isuser && isuser.id) {
+      navigate(`/editarPerfil/${isuser.id}`, {
+        state: { UserSelected: isuser },
+      });
+    } else {
+      // Manejar el caso en que isuser.id no exista
+      console.error("ID del usuario no encontrado en isuser.");
+    }
+  };
+  
+  
+  
 
   const { user, handleLogOut } = useContext(AuthenticationContext);
   const { theme } =useContext(ThemeContext);
@@ -105,7 +117,7 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
       <div className="botones-perfil">
         {user && (
           <>
-            <button className="button-editar" onClick={handleEditClick}>Editar</button>
+            <button className="button-editar" onClick={ () => handleEditClick(isuser.id)}>Editar</button>
             <button className="button-eliminar" onClick={() => handleEliminateProfile(isuser.id)}>Eliminar</button>
           </>
         )}

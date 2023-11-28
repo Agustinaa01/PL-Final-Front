@@ -143,8 +143,9 @@ const method = id ? "PUT" : "POST";
   //sconst preSetCategories = ["Tablet", "Celulares", "Auriculres", "Computadoras", "Camaras", "Parlantes", "Consolas"];
 
   return (
+    <>    <Headers />
     <div className="page">
-      <Headers />
+  
       <div className="name">
         <div className={`${textProduct}`}>
           <div className="container-imag">
@@ -240,6 +241,7 @@ const method = id ? "PUT" : "POST";
         </div>
       </div>
     </div>
+    </>
   );
 };
 

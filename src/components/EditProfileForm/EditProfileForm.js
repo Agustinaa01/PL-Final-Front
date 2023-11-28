@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Headers from '../header/Headers';
 import { ThemeContext } from '../services/theme/ThemeContext';
+import { useLocation } from 'react-router';
 
 // Hook personalizado para manejar la lógica del contexto y temas
 const useThemeContext = () => {
@@ -12,15 +13,21 @@ const useThemeContext = () => {
 };
 
 const EditProfileForm = () => {
-  // Estado para el nombre del usuario
-  const [name, setName] = useState('');
-  // Estado para el correo electrónico del usuario
-  const [email, setEmail] = useState('');
-  // Estado para la contraseña del usuario
-  const [password, setPassword] = useState('');
-  // Agregar más estados para otros campos del perfil
+  const location = useLocation();
 
-  // Estado para manejar mensajes de error
+  // Estado para el nombre del usuario
+  const [name, setName] = useState(
+    location.state?.UserSelected?.name ?? ""
+  );
+  // Estado para el correo electrónico del usuario
+  const [email, setEmail] = useState(
+    location.state?.UserSelected.email ?? ""
+  );
+  // Estado para la contraseña del usuario
+  const [password, setPassword] = useState(
+    location.state?.UserSelected.email ?? ""
+  );
+
   const [error, setError] = useState({
     nameError: '',
     emailError: '',
