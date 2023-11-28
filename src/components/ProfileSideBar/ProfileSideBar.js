@@ -72,6 +72,10 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
     navigate("/login");
   };
 
+  const handleEditClick = () =>{
+    navigate(`/editarPerfil`); // Corregir el error de sintaxis aquí
+  }
+
   const { user, handleLogOut } = useContext(AuthenticationContext);
   const { theme } =useContext(ThemeContext);
   const isLightTheme = theme === "light";
@@ -101,7 +105,7 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
       <div className="botones-perfil">
         {user && (
           <>
-            <button className="button-editar">Editar</button>
+            <button className="button-editar" onClick={handleEditClick}>Editar</button>
             <button className="button-eliminar" onClick={() => handleEliminateProfile(isuser.id)}>Eliminar</button>
           </>
         )}
