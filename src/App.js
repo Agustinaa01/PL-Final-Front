@@ -85,7 +85,7 @@ function App() {
         ), 
     },
     {
-      path:"/editarPerfil",
+      path:"/editarPerfil/:id",
       element:<EditProfileForm/>
     },
     {
