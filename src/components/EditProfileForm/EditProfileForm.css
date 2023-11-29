@@ -1,11 +1,25 @@
 
-
-.names {
+.light-form-profile {
+  background-color: #E5E5E5;
+  border-radius: 5px;
+  display: flex;
+  padding: 30px;
+  width: 900px;
+ 
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
+}
+.dark-form-profile {
   background-color: #0f0f0f;
   border-radius: 5px;
   display: flex;
   padding: 30px;
-  margin-left: 200px;
+  width: 900px;
   box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
 }
-
+.add-button-profile {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}

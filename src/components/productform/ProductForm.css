@@ -3,7 +3,8 @@
   border-radius: 5px;
   display: flex;
   padding: 30px;
-  margin-left: 200px;
+  width: 1300px;
+  margin-left: 190px;
   box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
 }
 .dark-form {
@@ -11,7 +12,8 @@
   border-radius: 5px;
   display: flex;
   padding: 30px;
-  margin-left: 200px;
+  width: 1300px;
+  margin-left: 190px;
   box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
 }
 
@@ -90,7 +92,7 @@ input[type="number"] {
 }
 
 .add-button {
-  margin-left: 100px;
+  margin-left: 50px;
   margin-top: 10px;
   padding: 10px 20px;
   border: none;

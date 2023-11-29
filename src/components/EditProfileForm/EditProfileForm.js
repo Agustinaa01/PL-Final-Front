@@ -1,18 +1,11 @@
-import React, { useContext, useState } from 'react';
+
 import Headers from '../header/Headers';
 import { ThemeContext } from '../services/theme/ThemeContext';
 import { useLocation, useNavigate } from 'react-router';
 import { toast } from "react-toastify";
 import fotoEditar from "./fotoEditar.jpg";
 import "./EditProfileForm.css"
-// Hook personalizado para manejar la lógica del contexto y temas
-const useThemeContext = () => {
-  const { theme } = useContext(ThemeContext);
-  const isLightTheme = theme === "light";
-  const textProduct = isLightTheme ? "light-form" : "dark-form";
-
-  return { isLightTheme, textProduct };
-};
+import React, { useContext, useState } from 'react';
 
 const EditProfileForm = () => {
   const navigate = useNavigate();
@@ -127,13 +120,16 @@ const EditProfileForm = () => {
     theme: "colored",
   });
 });
+};
+const { theme } = useContext(ThemeContext);
+const isLightTheme = theme === "light";
+const textProfile = isLightTheme ? "light-form-profile" : "dark-form-profile";
 
-     };
      return (
       <>
         <Headers />
         <div className="page">
-          <div className="names">
+          <div className={`${textProfile}`}>
             <div className="container-imag">
               <img
                 className="img"
@@ -173,11 +169,10 @@ const EditProfileForm = () => {
               {error.passwordError && (
                 <p className="input-vacio">{error.passwordError}</p>
               )}
-    
-              {/* Otros campos del formulario */}
+  
 
-    
-          <div className="add-button">
+
+          <div className="add-button-profile">
             <button
               className="button-cancelar"
               onClick={handleCancelClick}

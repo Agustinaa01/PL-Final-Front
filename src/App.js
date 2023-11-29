@@ -17,8 +17,8 @@ import { useContext } from "react";
 import { ThemeContext } from "./components/services/theme/ThemeContext";
 import Protected from "./components/services/authentication/Protected";
 import RolesAuthentication from "./components/services/authentication/RolesAuthentication";
-import EditProductForm from "./components/editproductform/EditProductForm";
-import Pedido from "./components/editproductform/EditProductForm";
+//import EditProductForm from "./components/pedidos/EditProductForm";
+import Pedido from "./components/pedidos/Pedidos";
 import Users from "./components/users/users";
 import EditProfileForm from "./components/EditProfileForm/EditProfileForm";
 
@@ -61,7 +61,7 @@ function App() {
       path: "/pedidos",
       element: 
       <Protected>
-          <EditProductForm />
+          <Pedido />
       </Protected>,
     },{
     path: "/users",

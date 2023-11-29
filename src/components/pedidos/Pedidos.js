@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { jwtDecode as jwt_decode } from "jwt-decode";
-import "./EditProductForm.css";
+import "./Pedidos.css";
 import Headers from "../header/Headers";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router";
 import BeatLoader from "react-spinners/BeatLoader";
+import { ThemeContext } from "../services/theme/ThemeContext";
 
-const Pedido = ({}) => {
+const Pedido = ({ }) => {
   const [pedido, setPedido] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
 
   let decodedToken;
   const token = localStorage.getItem("authToken");
@@ -66,7 +67,7 @@ const Pedido = ({}) => {
         console.error("Error:", error);
       });
   };
-  
+
   useEffect(() => {
     if (decodedToken) {
       fetch(`https://localhost:7108/api/Pedido/${decodedToken.sub}`, {
@@ -102,55 +103,63 @@ const Pedido = ({}) => {
     }
   }, []);
 
+  const { theme } = useContext(ThemeContext);
+  const isLightTheme = theme === "light";
+  const backgroundPedido = isLightTheme ? "light-pedido" : "dark-pedido";
+  const title = isLightTheme ? "light-letra" : "dark-letra";
+  const product = isLightTheme ? "light-producto" : "dark-producto";
+
+
+
   return (
     <div>
       <Headers />
       <h1 className="titulo-pedido">PEDIDOS</h1>
       <div className="page">
-      {isLoading ? (
-  <BeatLoader color={"#ffff"} loading={isLoading} size={13} />
-) : !pedido || pedido.length === 0 ? (
-  <p>No hay pedidos disponibles.</p>
-) : (
-  pedido &&
-  pedido.map((item, index) => (
-    <div key={index}>
-      <div className="orders">
-        <h4 className="order-date">
-          Fecha:{" "}
-          {new Date(item.date).toLocaleDateString("es-AR", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </h4>
-        <p className="order-state">{item.state}</p>
-        {/* <h4 className="order-state">Productos:</h4> */}
-        {item.pedidoProductos && item.pedidoProductos.map((pedidoProducto, productIndex) => (
-          <div key={productIndex} className="product-container">
-            <img className="order-image" src={pedidoProducto.producto.imageUrl} alt={pedidoProducto.producto.name} />
-            <div>
-              <p className="order-state">{pedidoProducto.producto.name}</p>
-              <p className="order-state">${pedidoProducto.producto.price}</p>
+        {isLoading ? (
+          <BeatLoader color={"#ffff"} loading={isLoading} size={13} />
+        ) : !pedido || pedido.length === 0 ? (
+          <p>No hay pedidos disponibles.</p>
+        ) : (
+          pedido &&
+          pedido.map((item, index) => (
+            <div key={index}>
+              <div className={`${backgroundPedido}`}>
+                <h4 className={`${title}`}>
+                  Fecha:{" "}
+                  {new Date(item.date).toLocaleDateString("es-AR", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </h4>
+                <p className={`${title}`}>{item.state}</p>
+                {/* <h4 className="order-state">Productos:</h4> */}
+                {item.pedidoProductos && item.pedidoProductos.map((pedidoProducto, productIndex) => (
+                  <div key={productIndex} className={`${product}`}>
+                    <img className="order-image" src={pedidoProducto.producto.imageUrl} alt={pedidoProducto.producto.name} />
+                    <div>
+                      <p className={`${title}`}>{pedidoProducto.producto.name}</p>
+                      <p className={`${title}`}>${pedidoProducto.producto.price}</p>
+                    </div>
+                  </div>
+                ))}
+                {(decodedToken.role === "Admin" ||
+                  decodedToken.role === "SuperAdmin") && (
+                    <div className="buttons-order">
+                      {/* <button className="button-editar">Editar</button> */}
+                      <button className="button-eliminar-order" onClick={() => handleEliminate(item.id)}>Eliminar</button>
+                    </div>
+                  )}
+              </div>
             </div>
-          </div>
-        ))}
-        {(decodedToken.role === "Admin" ||
-          decodedToken.role === "SuperAdmin") && (
-          <div className="buttons-order">
-            {/* <button className="button-editar">Editar</button> */}
-            <button className="button-eliminar-order" onClick={() => handleEliminate(item.id)}>Eliminar</button>
-          </div>
+          ))
+
         )}
+
       </div>
     </div>
-  ))
-  
-)}
+  );
+};
 
-        </div>
-      </div>
-    );
-  };
-  
-  export default Pedido;  
+export default Pedido;  
