@@ -28,6 +28,9 @@ const Headers = () => {
   const handlerPedidos = () => {
     navigate("/pedidos");
   };
+  const handlerUsers = () => {
+    navigate("/users");
+  };
   // Accede al contexto de tema
   const { theme } = useContext(ThemeContext);
 
@@ -61,11 +64,15 @@ const Headers = () => {
               PRODUCTOS
             </h2>
             {decodedToken && (decodedToken.role === "SuperAdmin" || decodedToken.role === "User") && user && (
-  <h2 className={`title ${textClass}`} onClick={handlerPedidos}>
-    PEDIDOS
-  </h2>
-)}
-
+              <h2 className={`title ${textClass}`} onClick={handlerPedidos}>
+                PEDIDOS
+              </h2>
+            )}
+              {decodedToken && (decodedToken.role === "SuperAdmin") && user && (
+              <h2 className={`title ${textClass}`} onClick={handlerUsers}>
+                USUARIOS
+              </h2>
+            )}
             <h2 className={`title ${textClass}`} onClick={handlerAboutUs}>
               NOSOTROS
             </h2>
@@ -81,16 +88,6 @@ const Headers = () => {
               alt="perfil"
               onClick={() => setIsModalOpen(true)}
             />
-
-            {/* {user ? (
-              <button className="boton" onClick={onLogOutHandler}>
-                CERRAR SESIÓN
-              </button>
-            ) : (
-              <button className="boton" onClick={goBackHandler}>
-                INICIAR SESIÓN
-              </button>
-            )} */}
           </div>
         </div>
       </div>

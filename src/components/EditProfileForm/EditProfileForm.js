@@ -88,8 +88,7 @@ const EditProfileForm = () => {
   })
 }).then(response => {
   if (response.ok) {
-    // Display success toast
-    toast.success("¡User actualizado!", {
+    toast.success("¡Usuario actualizado!", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -103,8 +102,7 @@ const EditProfileForm = () => {
       navigate("/products");
     }, 2000);
   } else {
-    // Handle error
-    toast.error('An error occurred. Please try again.', {
+    toast.error('Ocurrió un error. Por favor, inténtelo de nuevo.', {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -116,8 +114,7 @@ const EditProfileForm = () => {
     });
   }
 }).catch(error => {
-  // Handle network error
-  toast.error('A network error occurred. Please try again.', {
+  toast.error('Ocurrió un error de red. Por favor, inténtelo de nuevo.', {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,

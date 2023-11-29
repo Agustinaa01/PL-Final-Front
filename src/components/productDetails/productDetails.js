@@ -62,7 +62,7 @@ const ProductDetailsForm = () => {
     })
       .then(() => {
         setShow(false);
-        toast.success("¡Pedido eliminado!", {
+        toast.success("¡Producto eliminado!", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -116,9 +116,8 @@ const ProductDetailsForm = () => {
     decodedToken = jwt_decode(token);
   }
   const handlePay = () => {
+    setShowPaymentModal(false);
     const productIds = carrito.map(producto => producto.id);
-
-
     fetch(`https://localhost:7108/api/Pedido`, {
       method: "POST",
       headers: {
@@ -132,7 +131,6 @@ const ProductDetailsForm = () => {
       })
     })
       .then(response => {
-        console.log(response);
         return response.json();
       })
       .then(data => {
@@ -143,8 +141,8 @@ const ProductDetailsForm = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            "PedidoId": data.id, // This should be the order ID
-            "ProductoId": productIds // This should be a list of product IDs
+            "PedidoId": data.id, 
+            "ProductoId": productIds
           })
         })
           .then(response => response.json())
@@ -153,8 +151,43 @@ const ProductDetailsForm = () => {
               "PedidoId": data.id, // This should be the order ID
               "ProductoId": productIds // This should be a list of product IDs
             });
+            toast.success("¡Pedido realizado con éxito!", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+              theme: "colored",
+            });
           })
-          .catch(error => console.error('Error:', error));
+          .catch(error => {
+            console.error('Error:', error);
+            toast.error('Ocurrió un error al realizar el pedido. Por favor, inténtelo de nuevo.', {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+              theme: "colored",
+            });
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          toast.error('Ocurrió un error de red. Por favor, inténtelo de nuevo.', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+          });
       });
   };
 

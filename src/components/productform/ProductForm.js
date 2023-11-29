@@ -98,44 +98,70 @@ const url = id
   : "https://localhost:7108/api/Producto";
 const method = id ? "PUT" : "POST";
 
-    fetch(url, {
-      method,
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(producto),
-    })
-    .then(() => {
-      const successMessage = location.state?.productSelected
-        ? "¡Producto editado!"
-        : "¡Producto agregado!";
+fetch(url, {
+  method,
+  headers: {
+    'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(producto),
+})
+.then((response) => {
+  if (response.ok) {
+    const successMessage = location.state?.productSelected
+      ? "¡Producto editado!"
+      : "¡Producto agregado!";
 
-      toast.success(successMessage, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "colored",
-      });
-
-      if (!location.state?.productSelected) {
-        setName("");
-        setPrice("");
-        setBrand("");
-        setCategory("");
-        setDescription("");
-        setImage("");
-      } else {
-        navigate(`/products`);
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
+    toast.success(successMessage, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
     });
+
+    if (!location.state?.productSelected) {
+      setName("");
+      setPrice("");
+      setBrand("");
+      setCategory("");
+      setDescription("");
+      setImage("");
+    } else {
+      navigate(`/products`);
+    }
+  } else {
+    // Handle error
+    toast.error('Ocurrió un error. Por favor, inténtelo de nuevo.', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
+    });
+    throw new Error(`La respuesta tuvo algunos errores: ${response.statusText}`);
+  }
+})
+.catch((error) => {
+  // Handle network error
+  toast.error('Ocurrió un error de red. Por favor, inténtelo de nuevo.', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    theme: "colored",
+  });
+  console.error("Error:", error.message);
+});
 };
   const { theme } = useContext(ThemeContext);
   const isLightTheme = theme === "light";

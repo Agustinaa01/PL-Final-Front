@@ -3,9 +3,11 @@ import { jwtDecode as jwt_decode } from "jwt-decode";
 import "./users.css";
 import Headers from "../header/Headers";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const Users = ({}) => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`https://localhost:7108/api/Users`, {
       headers: {
@@ -62,7 +64,16 @@ const Users = ({}) => {
         console.error("Error:", error);
       });
   };
-
+  const handleEditar = (item) => {
+    if (item && item.id) {
+      navigate(`/editarPerfil/${item.id}`, {
+        state: { UserSelected: item },
+      });
+    } else {
+      console.error("ID del usuario no encontrado en item.");
+    }
+  };  
+  
   return (
     <div>
       <Headers />
@@ -71,38 +82,38 @@ const Users = ({}) => {
         rel="stylesheet"
       />
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-uppercase mb-0">Usuarios</h5>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title text-uppercase mb-0">Usuarios</h5>
               </div>
-              <div class="table-responsive">
-                <table class="table no-wrap user-table mb-0">
+              <div className="table-responsive">
+                <table className="table no-wrap user-table mb-0">
                   <thead>
                     <tr>
                       <th
                         scope="col"
-                        class="border-0 text-uppercase font-medium pl-4"
+                        className="border-0 text-uppercase font-medium pl-4"
                       >
                         #
                       </th>
                       <th
                         scope="col"
-                        class="border-0 text-uppercase font-medium"
+                        className="border-0 text-uppercase font-medium"
                       >
                         Name
                       </th>
                       <th
                         scope="col"
-                        class="border-0 text-uppercase font-medium"
+                        className="border-0 text-uppercase font-medium"
                       >
                         Email
                       </th>
                       <th
                         scope="col"
-                        class="border-0 text-uppercase font-medium"
+                        className="border-0 text-uppercase font-medium"
                       >
                         Role
                       </th>
@@ -112,15 +123,15 @@ const Users = ({}) => {
                     {user &&
                       user.map((item, index) => (
                         <tr key={index}>
-                          <td class="pl-4">{index + 1}</td>
+                          <td className="pl-4">{index + 1}</td>
                           <td>
-                            <h5 class="font-medium mb-0">{item.name}</h5>
+                            <h5 className="font-medium mb-0">{item.name}</h5>
                           </td>
                           <td>
-                            <span class="text-muted">{item.email}</span>
+                            <span className="text-muted">{item.email}</span>
                           </td>
                           <td>
-                            <span class="text-muted">
+                            <span className="text-muted">
                               {item.rol === 0
                                 ? "Admin"
                                 : item.rol === 1
@@ -132,16 +143,17 @@ const Users = ({}) => {
                           <td>
                             <button
                               type="button"
-                              class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"
+                              className="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"
                               onClick={() => handleEliminate(item.id)}
                             >
-                              <i class="fa fa-trash"></i>{" "}
+                              <i className="fa fa-trash"></i>{" "}
                             </button>
                             <button
                               type="button"
-                              class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"
+                              className="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"
+                              onClick={() => handleEditar(item)}
                             >
-                              <i class="fa fa-edit"></i>{" "}
+                              <i className="fa fa-edit"></i>{" "}
                             </button>
                           </td>
                         </tr>

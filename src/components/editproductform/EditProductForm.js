@@ -24,9 +24,36 @@ const Pedido = ({}) => {
         'Content-Type': 'application/json'
       }
     })
-      .then(() => {
-        setPedido(pedido.filter(item => item.id !== itemId));
-        toast.success("¡Producto eliminado!", {
+      .then((response) => {
+        if (response.ok) {
+          setPedido(pedido.filter(item => item.id !== itemId));
+          toast.success("¡Pedido eliminado!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          // Handle error
+          toast.error('Ocurrió un error. Por favor, inténtelo de nuevo.', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      })
+      .catch((error) => {
+        // Handle network error
+        toast.error('Ocurrió un error de red. Por favor, inténtelo de nuevo.', {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -36,13 +63,10 @@ const Pedido = ({}) => {
           progress: undefined,
           theme: "colored",
         });
-      })
-      .catch((error) => {
         console.error("Error:", error);
       });
   };
   
-
   useEffect(() => {
     if (decodedToken) {
       fetch(`https://localhost:7108/api/Pedido/${decodedToken.sub}`, {
@@ -84,44 +108,46 @@ const Pedido = ({}) => {
       <h1 className="titulo-pedido">PEDIDOS</h1>
       <div className="page">
       {isLoading ? (
-        <BeatLoader color={"#ffff"} loading={isLoading} size={13} />
-      ) : !pedido || pedido.length === 0 ? (
-        <p>No hay pedidos disponibles.</p>
-      ) : (
-          pedido &&
-          pedido.map((item, index) => (
-            <div key={index}>
-              <div className="orders">
-                <h4 className="order-date">
-                  Fecha:{" "}
-                  {new Date(item.date).toLocaleDateString("es-AR", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </h4>
-                <p className="order-state">{item.state}</p>
-                {/* <h4 className="order-state">Productos:</h4> */}
-                {item.producto.map((product, productIndex) => (
-                <div key={productIndex} className="product-container">
-                  <img className="order-image" src={product.imageUrl} alt={product.name} />
-                  <div>
-                    <p className="order-state">{product.name}</p>
-                    <p className="order-state">${product.price}</p>
-                  </div>
-                </div>
-              ))}
-                {(decodedToken.role === "Admin" ||
-                  decodedToken.role === "SuperAdmin") && (
-                  <div className="buttons-order">
-                    {/* <button className="button-editar">Editar</button> */}
-                    <button className="button-eliminar-order" onClick={() => handleEliminate(item.id)}>Eliminar</button>
-                  </div>
-                )}
-              </div>
+  <BeatLoader color={"#ffff"} loading={isLoading} size={13} />
+) : !pedido || pedido.length === 0 ? (
+  <p>No hay pedidos disponibles.</p>
+) : (
+  pedido &&
+  pedido.map((item, index) => (
+    <div key={index}>
+      <div className="orders">
+        <h4 className="order-date">
+          Fecha:{" "}
+          {new Date(item.date).toLocaleDateString("es-AR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </h4>
+        <p className="order-state">{item.state}</p>
+        {/* <h4 className="order-state">Productos:</h4> */}
+        {item.pedidoProductos && item.pedidoProductos.map((pedidoProducto, productIndex) => (
+          <div key={productIndex} className="product-container">
+            <img className="order-image" src={pedidoProducto.producto.imageUrl} alt={pedidoProducto.producto.name} />
+            <div>
+              <p className="order-state">{pedidoProducto.producto.name}</p>
+              <p className="order-state">${pedidoProducto.producto.price}</p>
             </div>
-          ))
+          </div>
+        ))}
+        {(decodedToken.role === "Admin" ||
+          decodedToken.role === "SuperAdmin") && (
+          <div className="buttons-order">
+            {/* <button className="button-editar">Editar</button> */}
+            <button className="button-eliminar-order" onClick={() => handleEliminate(item.id)}>Eliminar</button>
+          </div>
         )}
+      </div>
+    </div>
+  ))
+  
+)}
+
         </div>
       </div>
     );

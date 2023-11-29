@@ -64,16 +64,6 @@ const LoginForm = () => {
     return response.text();
   })
     .then((data) => {
-      // toast.success('¡Bienvenido!', {
-      //   position: "bottom-right",
-      //   autoClose: 2000,
-      //   hideProgressBar: true,
-      //   closeOnClick: false,
-      //   pauseOnHover: false,
-      //   draggable: false,
-      //   progress: undefined,
-      //   theme: "light",
-      //   });
         const token = data;
         handleToken(token);
         setError(null);
