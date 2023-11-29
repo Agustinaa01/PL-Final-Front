@@ -194,6 +194,8 @@ const ProductDetailsForm = () => {
   const handleRemoveFromCart = (productId) => {
     const updatedCart = carrito.filter(producto => producto.id !== productId);
     setCarrito(updatedCart);
+    setShowCart(false); 
+    setShow(false); 
   };
 
   const isLightTheme = theme === "light";
