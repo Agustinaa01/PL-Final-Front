@@ -4,7 +4,13 @@
   margin-left: 60px;
   color: #0f0f0f;
 }
-
+.button-remove-from-cart{
+  background-color: rgb(240, 38, 38);
+  border: none;
+  color: white;
+  border-radius: 3px;
+  margin-right: 10px;
+}
 .light-details h2 {
   font-size: 27px;
   margin-bottom: 13px;
@@ -106,7 +112,7 @@
   border-radius: 25px;
   padding: 5px;
   background-color: #0f0f0f;
-  margin-right: 20px;
+  margin-right: 50px;
 }
 .producto-info {
   margin-left: 30px;

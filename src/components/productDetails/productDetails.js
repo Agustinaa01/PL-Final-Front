@@ -189,6 +189,11 @@ const ProductDetailsForm = () => {
             theme: "colored",
           });
       });
+      setCarrito([]);
+  };
+  const handleRemoveFromCart = (productId) => {
+    const updatedCart = carrito.filter(producto => producto.id !== productId);
+    setCarrito(updatedCart);
   };
 
   const isLightTheme = theme === "light";
@@ -287,18 +292,25 @@ const ProductDetailsForm = () => {
             <Modal.Body>
               {carrito.map((producto, index) => (
                 <div className="carrito-container" key={index}>
+                    <button
+                  className="button-remove-from-cart"
+                  onClick={() => handleRemoveFromCart(producto.id)}
+                >
+                    X
+                </button>
                   <img
                     className="imagen-details-carrito"
                     src={producto.imageUrl}
                     alt="Producto en el carrito"
                   />
+                  
                   <div className="carrito-item-details">
                     <h3 className="name-carrito">{producto.name}</h3>
                     <p>Precio: ${producto.price}</p>
-                  </div>
-                </div>
-              ))}
 
+              </div>
+            </div>
+          ))}
               <p className="total">Total: ${carrito.reduce((total, producto) => total + producto.price, 0)}</p>
             </Modal.Body>
             <Modal.Footer>
