@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import "./Products.css";
 import { useNavigate } from "react-router";
-import fotoDetailsImage from "./fotoDetails.png";
-import fotoDetailsImage2 from "./productAdd.png";
 import Headers from "../header/Headers";
 import ProductFilter from "../productfilter/ProductFilter";
 import { useState } from "react";
