@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import Headers from '../header/Headers';
 import { ThemeContext } from '../services/theme/ThemeContext';
-import { useLocation } from 'react-router';
-
+import { useLocation, useNavigate } from 'react-router';
+import { toast } from "react-toastify";
 // Hook personalizado para manejar la lógica del contexto y temas
 const useThemeContext = () => {
   const { theme } = useContext(ThemeContext);
@@ -13,8 +13,11 @@ const useThemeContext = () => {
 };
 
 const EditProfileForm = () => {
+  const navigate = useNavigate();
   const location = useLocation();
-
+  const [id, setid] = useState(
+    location.state?.UserSelected.id ?? ""
+  );
   // Estado para el nombre del usuario
   const [name, setName] = useState(
     location.state?.UserSelected?.name ?? ""
@@ -25,7 +28,7 @@ const EditProfileForm = () => {
   );
   // Estado para la contraseña del usuario
   const [password, setPassword] = useState(
-    location.state?.UserSelected.email ?? ""
+    location.state?.UserSelected.password ?? ""
   );
 
   const [error, setError] = useState({
@@ -60,9 +63,7 @@ const EditProfileForm = () => {
     // Manejar la acción de cancelar
   };
 
-  // Manejador para el botón de editar perfil
-  const handleEditClick = () => {
-    // Validar los campos de entrada antes de actualizar el perfil
+  const handleEditClick = (id) => {
     if (!name.trim()) {
       setError({ ...error, nameError: 'El nombre es obligatorio' });
       return;
@@ -73,11 +74,62 @@ const EditProfileForm = () => {
       return;
     }
 
-    // Agregar más validaciones para otros campos del perfil
+    fetch(`https://localhost:7108/api/Users/${id}`, {
+  method: 'PUT',
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    id,
+    name,
+    email,
+    password
+  })
+}).then(response => {
+  if (response.ok) {
+    // Display success toast
+    toast.success("¡User actualizado!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
+    });
+    setTimeout(() => {
+      navigate("/products");
+    }, 2000);
+  } else {
+    // Handle error
+    toast.error('An error occurred. Please try again.', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
+    });
+  }
+}).catch(error => {
+  // Handle network error
+  toast.error('A network error occurred. Please try again.', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    theme: "colored",
+  });
+});
 
-    // Realizar la acción de actualización
-    // Llamar a una función para actualizar el perfil con los datos actualizados
-  };
+     };
 
   return (
     <> 
@@ -125,7 +177,7 @@ const EditProfileForm = () => {
           </button>
           <button
             className="button-accept"
-            onClick={handleEditClick}
+            onClick={() => handleEditClick(id)}
             type="button"
           >
             Editar Perfil
