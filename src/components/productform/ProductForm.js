@@ -225,7 +225,7 @@ const ProductForm = () => {
               {error?.brandError && (
                 <p className="input-vacio">{error.brandError}</p>
               )}
-              <label className="label-input-category">Categoría</label>
+              <label className="label-input">Categoría</label>
               <select
                 className="input"
                 onChange={handleCategoryChange}

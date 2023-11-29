@@ -3,6 +3,8 @@ import Headers from '../header/Headers';
 import { ThemeContext } from '../services/theme/ThemeContext';
 import { useLocation, useNavigate } from 'react-router';
 import { toast } from "react-toastify";
+import fotoEditar from "./fotoEditar.jpg";
+import "./EditProfileForm.css"
 // Hook personalizado para manejar la lógica del contexto y temas
 const useThemeContext = () => {
   const { theme } = useContext(ThemeContext);
@@ -127,62 +129,76 @@ const EditProfileForm = () => {
 });
 
      };
+     return (
+      <>
+        <Headers />
+        <div className="page">
+          <div className="names">
+            <div className="container-imag">
+              <img
+                className="img"
+                src={fotoEditar}
+                alt="Descripción de la imagen"
+              />
+            </div>
+            <div className="container">
+              <h2 className="add">Editar Perfil</h2>
+              <label className="label-input">Nombre</label>
+              <input
+                className="input"
+                onChange={handleNameChange}
+                value={name}
+                type="text"
+              />
+              {error.nameError && <p className="input-vacio">{error.nameError}</p>}
+    
+              <label className="label-input">Email</label>
+              <input
+                className="input"
+                onChange={handleEmailChange}
+                value={email}
+                type="email"
+              />
+              {error.emailError && (
+                <p className="input-vacio">{error.emailError}</p>
+              )}
+    
+              <label className="label-input">Contraseña</label>
+              <input
+                className="input"
+                onChange={handlePasswordChange}
+                value={password}
+                type="password"
+              />
+              {error.passwordError && (
+                <p className="input-vacio">{error.passwordError}</p>
+              )}
+    
+              {/* Otros campos del formulario */}
 
-  return (
-    <> 
-     <Headers />
-     <div className="container">
-        <h2 className="add">Editar Perfil</h2>
-        <label className="label-input">Nombre</label>
-        <input
-          className="input"
-          onChange={handleNameChange}
-          value={name}
-          type="text"
-        />
-        {error.nameError && <p className="input-vacio">{error.nameError}</p>}
-
-        <label className="label-input">Email</label>
-        <input
-          className="input"
-          onChange={handleEmailChange}
-          value={email}
-          type="email"
-        />
-        {error.emailError && <p className="input-vacio">{error.emailError}</p>}
-
-        <label className="label-input">Contraseña</label>
-        <input
-          className="input"
-          onChange={handlePasswordChange}
-          value={password}
-          type="password"
-        />
-        {error.passwordError && (
-          <p className="input-vacio">{error.passwordError}</p>
-        )}
-
-        {/* Agregar campos de entrada similares para otros campos del perfil */}
-
-        <div className="add-button">
-          <button
-            className="button-cancelar"
-            onClick={handleCancelClick}
-            type="button"
-          >
-            Cancelar
-          </button>
-          <button
-            className="button-accept"
-            onClick={() => handleEditClick(id)}
-            type="button"
-          >
-            Editar Perfil
-          </button>
+    
+          <div className="add-button">
+            <button
+              className="button-cancelar"
+              onClick={handleCancelClick}
+              type="button"
+            >
+              Cancelar
+            </button>
+            <button
+              className="button-accept"
+              onClick={() => handleEditClick(id)}
+              type="button"
+            >
+              Editar Perfil
+            </button>
+            </div>
+          </div>
+          </div>
         </div>
-      </div>
       </>
-  );
+    );
+    
 };
 
 export default EditProfileForm;
