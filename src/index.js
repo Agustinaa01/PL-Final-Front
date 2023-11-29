@@ -12,13 +12,13 @@ import { CartProvider } from "./components/carrito/CartContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-     <CartProvider>
-<AuthenticationContextProvider>
-    <ThemeContextProvider>
-    <App />
-    <ToastContainer />
-    </ThemeContextProvider>
-    </AuthenticationContextProvider>
+    <CartProvider>
+      <AuthenticationContextProvider>
+        <ThemeContextProvider>
+          <App />
+          <ToastContainer />
+        </ThemeContextProvider>
+      </AuthenticationContextProvider>
     </CartProvider>
   </React.StrictMode>
 );
