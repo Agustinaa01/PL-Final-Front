@@ -85,6 +85,7 @@ const ProductDetailsForm = () => {
   const { user } = useContext(AuthenticationContext);
   const handleSeguirComprando = () => {
     setShowCart(false);
+    navigate("/products")
   };
 
   const handleShowCart = () => {

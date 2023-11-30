@@ -137,18 +137,19 @@ const EditPedidoForm = () => {
           <h4 className="order-states">Productos</h4>
           {pedidoProductos && pedidoProductos.map((pedidoProducto, productIndex) => (
             <div className='product-editar' key={productIndex}>
-              <img className="order-image" src={pedidoProducto.producto.imageUrl} alt={pedidoProducto.producto.name} />
-              <div className='info'>
-                <p>{pedidoProducto.producto.name}</p>
-                <p>${pedidoProducto.producto.price}</p>
-              </div>
               <button
               className="button-eliminar-producto"
               onClick={() => handleDeleteProduct(productIndex)}
               type="button"
             >
-              Eliminar Producto
+              X
             </button>
+              <img className="order-image" src={pedidoProducto.producto.imageUrl} alt={pedidoProducto.producto.name} />
+              <div className='info'>
+                <p>{pedidoProducto.producto.name}</p>
+                <p>${pedidoProducto.producto.price}</p>
+              </div>
+              
             </div>
           ))}
           <div className="add-button-editar">
