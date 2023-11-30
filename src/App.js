@@ -21,6 +21,7 @@ import RolesAuthentication from "./components/services/authentication/RolesAuthe
 import Pedido from "./components/pedidos/Pedidos";
 import Users from "./components/users/users";
 import EditProfileForm from "./components/EditProfileForm/EditProfileForm";
+import EditPedidoForm from "./components/EditPedidoForm/EditPedidoForm";
 
 function App() {
 
@@ -87,6 +88,10 @@ function App() {
     {
       path:"/editarPerfil/:id",
       element:<EditProfileForm/>
+    },
+    {
+      path:"/editarPedido/:id",
+      element:<EditPedidoForm/>
     },
     {
       path: "/productDetails/:id",

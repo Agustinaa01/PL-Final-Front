@@ -11,12 +11,14 @@ import { ThemeContext } from "../services/theme/ThemeContext";
 const Pedido = ({ }) => {
   const [pedido, setPedido] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  
+  const navigate = useNavigate();
   let decodedToken;
   const token = localStorage.getItem("authToken");
   if (typeof token === "string") {
     decodedToken = jwt_decode(token);
   }
+
   const handleEliminate = (itemId) => {
     fetch(`https://localhost:7108/api/Pedido/${itemId}`, {
       method: "DELETE",
@@ -68,6 +70,16 @@ const Pedido = ({ }) => {
       });
   };
 
+  const handleEditar = (pedido) => {
+    if (pedido && pedido.id) {
+      navigate(`/editarPedido/${pedido.id}`, {
+        state: { UserSelected: pedido },
+      });
+    } else {
+      console.error("Pedido no encontrado.");
+    }
+  };
+  
   useEffect(() => {
     if (decodedToken) {
       fetch(`https://localhost:7108/api/Pedido/${decodedToken.sub}`, {
@@ -109,8 +121,6 @@ const Pedido = ({ }) => {
   const title = isLightTheme ? "light-letra" : "dark-letra";
   const product = isLightTheme ? "light-producto" : "dark-producto";
 
-
-
   return (
     <div>
       <Headers />
@@ -147,7 +157,7 @@ const Pedido = ({ }) => {
                 {(decodedToken.role === "Admin" ||
                   decodedToken.role === "SuperAdmin") && (
                     <div className="buttons-order">
-                      {/* <button className="button-editar">Editar</button> */}
+                      <button className="button-editar" onClick={() => handleEditar(item)}>Editar</button>
                       <button className="button-eliminar-order" onClick={() => handleEliminate(item.id)}>Eliminar</button>
                     </div>
                   )}

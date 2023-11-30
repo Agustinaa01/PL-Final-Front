@@ -57,6 +57,7 @@ input[type="description"],
 input[type="url"],
 input[type="password"],
 input[type="email"],
+input[type="date"],
 select,
 input[type="number"] {
   padding: 10px;
@@ -88,7 +89,7 @@ input[type="number"] {
 }
 
 .button-cancelar:hover {
-  background-color: #caaaaa;
+  background-color: #dddddd;
 }
 
 .add-button {
