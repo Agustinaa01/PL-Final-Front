@@ -36,14 +36,14 @@ const EditPedidoForm = () => {
   const handleDeleteProduct = (productIndex) => {
     // Crea una copia del estado actual de pedidoProductos
     const newPedidoProductos = [...pedidoProductos];
-  
+
     // Elimina el producto en el índice especificado
     newPedidoProductos.splice(productIndex, 1);
-  
+
     // Actualiza el estado de pedidoProductos
     setPedidoProductos(newPedidoProductos);
   };
-  
+
   // Manejador para cambios en el nombre
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -69,7 +69,7 @@ const EditPedidoForm = () => {
       body: JSON.stringify({
         id,
         state,
-        date, 
+        date,
         productoId: pedidoProductos.map(pedidoProducto => pedidoProducto.producto.id)
       })
     }).then(response => {
@@ -114,42 +114,49 @@ const EditPedidoForm = () => {
   };
   const { theme } = useContext(ThemeContext);
   const isLightTheme = theme === "light";
-  const textProfile = isLightTheme ? "light-form-profile" : "dark-form-profile";
-
+  const backgroundPedido = isLightTheme ? "light-editar-pedido" : "dark-editar-pedido";
+  const textPedido = isLightTheme ? "light-pedido-text" : "dark-pedido-text";
+  const backgroundPedidoText = isLightTheme ? "light-text-pedido" : "dark-text-pedido";
+ 
   return (
     <>
       <Headers />
       <div className="editar-pedido">
-        <div className="editar">
-          <label className="label-inputs">Date</label>
-          <h5 className="label-inputs">{new Date(date).toLocaleDateString()}</h5>
+        <div className={`${backgroundPedido}`}>
+          <label className={`${textPedido}`}>Date</label>
+          <h5 className={`${textPedido}`}>{new Date(date).toLocaleDateString()}</h5>
           {error.dateError && <p className="input-vacio">{error.dateError}</p>}
-          <label className="label-inputs">State</label>
-          <input
+          <label className={`${textPedido}`}>State</label>
+          <select
             className="input-states"
             onChange={handleStateChange}
             value={state}
-            type="text"
-          />
+          >
+            <option value="Created">Created</option>
+            <option value="Processing">Processing</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
           {error.stateError && (
             <p className="input-vacio">{error.stateError}</p>
           )}
-          <h4 className="order-states">Productos</h4>
+          <h4 className={`${textPedido}`}>Productos</h4>
           {pedidoProductos && pedidoProductos.map((pedidoProducto, productIndex) => (
-            <div className='product-editar' key={productIndex}>
+            <div className={`${backgroundPedidoText}`} key={productIndex}>
               <button
-              className="button-eliminar-producto"
-              onClick={() => handleDeleteProduct(productIndex)}
-              type="button"
-            >
-              X
-            </button>
+                className="button-eliminar-producto"
+                onClick={() => handleDeleteProduct(productIndex)}
+                type="button"
+              >
+                X
+              </button>
               <img className="order-image" src={pedidoProducto.producto.imageUrl} alt={pedidoProducto.producto.name} />
               <div className='info'>
                 <p>{pedidoProducto.producto.name}</p>
                 <p>${pedidoProducto.producto.price}</p>
               </div>
-              
+
             </div>
           ))}
           <div className="add-button-editar">
@@ -172,7 +179,7 @@ const EditPedidoForm = () => {
       </div>
     </>
   );
-  
+
 };
 
 export default EditPedidoForm;

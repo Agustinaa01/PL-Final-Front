@@ -44,6 +44,7 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  box-shadow: 0 0 10px rgba(136, 136, 136, 0.3);
 }
 
 .button-details:hover {

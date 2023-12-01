@@ -5,24 +5,32 @@
   flex-direction: column;
   padding: 20px;
 }
-.editar {
+.light-editar-pedido {
+  padding: 20px;
+  background-color: #E5E5E5;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
+}
+.dark-editar-pedido {
   padding: 20px;
   background-color: #0f0f0f;
   box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
 }
-.label-inputs,
-.order-states {
+.light-pedido-text {
+  font-size: 1.2em;
+  color: #050505;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.dark-pedido-text {
   font-size: 1.2em;
   color: #ffffff;
   margin-top: 10px;
   margin-left: 20px;
 }
-
 .input-states {
   width: 90%;
   border-radius: 5px;
   border: 1px solid #ccc;
-
 }
 
 .order-image {
@@ -38,14 +46,25 @@
 .add-button-editar {
   margin-right: 60px;
 }
-.product-editar {
+.light-text-pedido {
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 3px;
-  width: 130px;
+  width: 160px;
   margin-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  background-color: #d1d0d0;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
+}
+.dark-text-pedido {
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  width: 160px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   background-color: #222222;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
 }
 
 .button-eliminar-producto{
