@@ -55,7 +55,7 @@ const EditProfileForm = () => {
 
   // Manejador para el botón de cancelar
   const handleCancelClick = () => {
-    // Manejar la acción de cancelar
+    navigate(-1);
   };
 
   const handleEditClick = (id) => {

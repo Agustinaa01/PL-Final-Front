@@ -28,10 +28,10 @@ const EditPedidoForm = () => {
     stateError: '',
     dateError: '',
   });
-
+  
   const handleCancelClick = () => {
-    // Manejar la acción de cancelar
-  };
+    navigate(-1);
+};
 
   const handleDeleteProduct = (productIndex) => {
     // Crea una copia del estado actual de pedidoProductos
