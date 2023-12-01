@@ -22,6 +22,7 @@ import Pedido from "./components/pedidos/Pedidos";
 import Users from "./components/users/users";
 import EditProfileForm from "./components/EditProfileForm/EditProfileForm";
 import EditPedidoForm from "./components/EditPedidoForm/EditPedidoForm";
+import Cart from "./components/carrito/Cart";
 
 function App() {
 
@@ -78,6 +79,10 @@ function App() {
       <RolesAuthentication>
         <ProductForm />
       </RolesAuthentication>,
+    },
+    {
+      path: "/carrito",
+      element:<Cart/>
     },
     {
       path: "/home",
