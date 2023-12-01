@@ -70,7 +70,7 @@ const Headers = () => {
             )}
               {decodedToken && (decodedToken.role === "SuperAdmin") && user && (
               <h2 className={`title ${textClass}`} onClick={handlerUsers}>
-                USUARIOS
+                PANEL
               </h2>
             )}
             <h2 className={`title ${textClass}`} onClick={handlerAboutUs}>

@@ -39,6 +39,7 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
   }, []);
 
   const onLogOutHandler = () => {
+    localStorage.removeItem("authToken");
     handleLogOut();
     navigate("/login");
   };
@@ -84,8 +85,6 @@ const ProfileSidebar = ({ setIsModalOpen }) => {
       console.error("ID del usuario no encontrado en isuser.");
     }
   };
-  
-  
   
 
   const { user, handleLogOut } = useContext(AuthenticationContext);

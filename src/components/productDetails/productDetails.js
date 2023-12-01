@@ -16,7 +16,6 @@ const ProductDetailsForm = () => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [cart, setCart] = useState();
   const [productId, setProductId] = useState(location.state?.productSelected?.id);
-  console.log(productId);
   const [name, setName] = useState(location.state?.productSelected?.name);
   const [price, setPrice] = useState(location.state?.productSelected?.price);
   const [brand, setBrand] = useState(location.state?.productSelected?.brand);
@@ -85,6 +84,7 @@ const ProductDetailsForm = () => {
   const { user } = useContext(AuthenticationContext);
   const handleSeguirComprando = () => {
     setShowCart(false);
+    navigate("/products")
   };
 
   const handleShowCart = () => {
@@ -241,7 +241,7 @@ const ProductDetailsForm = () => {
           {user &&
             (decodedToken.role === "Admin" ||
               decodedToken.role === "SuperAdmin") && (
-              <button className="button-details" onClick={handleShow}>
+              <button className="button-details-delete" onClick={handleShow}>
                 Eliminar producto
               </button>
             )}

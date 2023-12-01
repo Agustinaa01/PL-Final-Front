@@ -1,16 +1,11 @@
-import React, { useContext, useState } from 'react';
+
 import Headers from '../header/Headers';
 import { ThemeContext } from '../services/theme/ThemeContext';
 import { useLocation, useNavigate } from 'react-router';
 import { toast } from "react-toastify";
-// Hook personalizado para manejar la lógica del contexto y temas
-const useThemeContext = () => {
-  const { theme } = useContext(ThemeContext);
-  const isLightTheme = theme === "light";
-  const textProduct = isLightTheme ? "light-form" : "dark-form";
-
-  return { isLightTheme, textProduct };
-};
+import fotoEditar from "./fotoEditar.jpg";
+import "./EditProfileForm.css"
+import React, { useContext, useState } from 'react';
 
 const EditProfileForm = () => {
   const navigate = useNavigate();
@@ -60,7 +55,7 @@ const EditProfileForm = () => {
 
   // Manejador para el botón de cancelar
   const handleCancelClick = () => {
-    // Manejar la acción de cancelar
+    navigate(-1);
   };
 
   const handleEditClick = (id) => {
@@ -125,64 +120,80 @@ const EditProfileForm = () => {
     theme: "colored",
   });
 });
+};
+const { theme } = useContext(ThemeContext);
+const isLightTheme = theme === "light";
+const textProfile = isLightTheme ? "light-form-profile" : "dark-form-profile";
 
-     };
+     return (
+      <>
+        <Headers />
+        <div className="page">
+          <div className={`${textProfile}`}>
+            <div className="container-imag">
+              <img
+                className="img"
+                src={fotoEditar}
+                alt="Descripción de la imagen"
+              />
+            </div>
+            <div className="container">
+              <h2 className="add">Editar Perfil</h2>
+              <label className="label-input">Nombre</label>
+              <input
+                className="input"
+                onChange={handleNameChange}
+                value={name}
+                type="text"
+              />
+              {error.nameError && <p className="input-vacio">{error.nameError}</p>}
+    
+              <label className="label-input">Email</label>
+              <input
+                className="input"
+                onChange={handleEmailChange}
+                value={email}
+                type="email"
+              />
+              {error.emailError && (
+                <p className="input-vacio">{error.emailError}</p>
+              )}
+    
+              <label className="label-input">Contraseña</label>
+              <input
+                className="input"
+                onChange={handlePasswordChange}
+                value={password}
+                type="password"
+              />
+              {error.passwordError && (
+                <p className="input-vacio">{error.passwordError}</p>
+              )}
+  
 
-  return (
-    <> 
-     <Headers />
-     <div className="container">
-        <h2 className="add">Editar Perfil</h2>
-        <label className="label-input">Nombre</label>
-        <input
-          className="input"
-          onChange={handleNameChange}
-          value={name}
-          type="text"
-        />
-        {error.nameError && <p className="input-vacio">{error.nameError}</p>}
 
-        <label className="label-input">Email</label>
-        <input
-          className="input"
-          onChange={handleEmailChange}
-          value={email}
-          type="email"
-        />
-        {error.emailError && <p className="input-vacio">{error.emailError}</p>}
-
-        <label className="label-input">Contraseña</label>
-        <input
-          className="input"
-          onChange={handlePasswordChange}
-          value={password}
-          type="password"
-        />
-        {error.passwordError && (
-          <p className="input-vacio">{error.passwordError}</p>
-        )}
-
-        {/* Agregar campos de entrada similares para otros campos del perfil */}
-
-        <div className="add-button">
-          <button
-            className="button-cancelar"
-            onClick={handleCancelClick}
-            type="button"
-          >
-            Cancelar
-          </button>
-          <button
-            className="button-accept"
-            onClick={() => handleEditClick(id)}
-            type="button"
-          >
-            Editar Perfil
-          </button>
+          <div className="add-button-profile">
+            <button
+              className="button-cancelar"
+              onClick={handleCancelClick}
+              type="button"
+            >
+              Cancelar
+            </button>
+            <button
+              className="button-accept"
+              onClick={() => handleEditClick(id)}
+              type="button"
+            >
+              Editar Perfil
+            </button>
+            </div>
+          </div>
+          </div>
         </div>
-      </div>
       </>
-  );
+    );
+    
 };
 
 export default EditProfileForm;

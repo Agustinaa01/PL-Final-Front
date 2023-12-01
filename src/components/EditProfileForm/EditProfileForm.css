@@ -1,113 +1,25 @@
-/* Estilos para el contenedor principal */
-.container {
+
+.light-form-profile {
   background-color: #E5E5E5;
   border-radius: 5px;
   display: flex;
-  flex-direction: column;
   padding: 30px;
-  margin: 0 auto; /* Center the container horizontally */
+  width: 900px;
+ 
   box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
-  max-width: 600px; /* Limit the container width */
 }
-
-/* Estilos específicos para el formulario oscuro */
-.dark-form {
+.dark-form-profile {
   background-color: #0f0f0f;
+  border-radius: 5px;
+  display: flex;
+  padding: 30px;
+  width: 900px;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
 }
-
-/* Estilos para los campos de entrada */
-.container .input {
-  padding: 10px;
-  background-color: white;
-  border: none;
-  margin: 10px 0; /* Añadido un espacio entre los campos de entrada */
-  border-radius: 15px;
-  outline: none;
-  box-shadow: 0 4px 8px rgba(100, 99, 99, 0.2);
-}
-
-/* Estilos para las etiquetas de entrada */
-.label-input {
-  margin-bottom: 0px;
-  margin-left: 25px;
-}
-
-/* Estilos para los mensajes de error */
-.input-vacio {
-  color: #d9534f; /* Rojo para indicar error */
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-
-/* Estilos para los botones */
-.button-accept,
-.button-cancelar {
+.add-button-profile {
+  margin-top: 10px;
   padding: 10px 20px;
   border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 10px 0; /* Añadido un espacio entre los botones */
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.button-accept:hover {
-  background-color: #0056b3;
-}
-
-.button-cancelar:hover {
-  background-color: #999;
-}
-
-.add-button {
-  margin-top: 10px;
-  padding: 10px 0; /* Añadido un espacio entre el grupo de botones y los campos */
-  border: none;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-}
-
-.button-accept {
-  background-color: #007bff;
-  color: #fff;
-  font-size: 15px;
-}
-
-.button-cancelar {
-  background-color: white;
-  color: #333;
-  font-size: 15px;
-}
-
-/* Estilos para dispositivos móviles */
-@media (max-width: 1140px) {
-  .container {
-    right: 20px;
-    left: 20px;
-    margin: 0 auto;
-  }
-
-  .dark-form,
-  .light-form {
-    order: 2;
-  }
-
-  .add-button {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 10px;
-  }
-
-  .button-accept,
-  .button-cancelar {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 20px 0; /* Añadido un espacio entre los botones */
-  }
-
-  .file-input-container,
-  .img {
-    display: none;
-  }
 }

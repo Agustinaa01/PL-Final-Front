@@ -1,0 +1,82 @@
+.editar-pedido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+.light-editar-pedido {
+  padding: 20px;
+  background-color: #E5E5E5;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
+}
+.dark-editar-pedido {
+  padding: 20px;
+  background-color: #0f0f0f;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
+}
+.light-pedido-text {
+  font-size: 1.2em;
+  color: #050505;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.dark-pedido-text {
+  font-size: 1.2em;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.input-states {
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.order-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-left: 8px;
+}
+.info p {
+  margin-top: 5px;
+  margin-left: 40px;
+}
+.add-button-editar {
+  margin-right: 60px;
+}
+.light-text-pedido {
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  width: 160px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  background-color: #d1d0d0;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
+}
+.dark-text-pedido {
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  width: 160px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  background-color: #222222;
+  box-shadow: 0 0 10px rgba(49, 46, 46, 0.3);
+}
+
+.button-eliminar-producto{
+  background-color: #d42222;
+  border: none;
+  color: white;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+.button-eliminar-producto:hover{
+  background-color: #a50000;
+  border: none;
+  color: white;
+  margin-left: 10px;
+}
