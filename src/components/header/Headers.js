@@ -11,35 +11,6 @@ import { jwtDecode as jwt_decode } from "jwt-decode";
 
 const Headers = () => {
   const navigate = useNavigate();
-  // const goBackHandler = () => {
-  //   navigate("/login");
-  // };
-  const [Profile, setProfile] = useState(false);
-
-  const handlerProducts = () => {
-    navigate("/products");
-  };
-  const handlerHome = () => {
-    navigate("/home");
-  };
-  const handlerAboutUs = () => {
-    navigate("/nosotros");
-  };
-  const handlerPedidos = () => {
-    navigate("/pedidos");
-  };
-  const handlerUsers = () => {
-    navigate("/users");
-  };
-  // Accede al contexto de tema
-  const { theme } = useContext(ThemeContext);
-
-  // Determina si el tema es "light"
-  const isLightTheme = theme === "light";
-
-  // Define la clase CSS para el texto en función del tema
-  const textClass = isLightTheme ? "light-text" : "dark-text";
-  // const {user, handleLogOut}= useContext(AuthenticationContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useContext(AuthenticationContext);
 
@@ -48,6 +19,39 @@ const Headers = () => {
   if (typeof token === "string") {
     decodedToken = jwt_decode(token);
   }
+
+  const handlerProducts = () => {
+    navigate("/products");
+  };
+
+  const handlerHome = () => {
+    navigate("/home");
+  };
+
+  const handlerAboutUs = () => {
+    navigate("/nosotros");
+  };
+
+  const handlerPedidos = () => {
+    navigate("/pedidos");
+  };
+
+  const handlerUsers = () => {
+    navigate("/users");
+  };
+
+  const handlerCart = () => {
+    navigate("/carrito");
+  };
+
+  // Accede al contexto de tema
+  const { theme } = useContext(ThemeContext);
+
+  // Determina si el tema es "light"
+  const isLightTheme = theme === "light";
+
+  // Define la clase CSS para el texto en función del tema
+  const textClass = isLightTheme ? "light-text" : "dark-text";
 
   return (
     <div className="header">
@@ -68,7 +72,7 @@ const Headers = () => {
                 PEDIDOS
               </h2>
             )}
-              {decodedToken && (decodedToken.role === "SuperAdmin") && user && (
+            {decodedToken && (decodedToken.role === "SuperAdmin") && user && (
               <h2 className={`title ${textClass}`} onClick={handlerUsers}>
                 PANEL
               </h2>
@@ -81,6 +85,7 @@ const Headers = () => {
               className="carrito"
               src={carritoImage}
               alt="Carrito de compras"
+              onClick={handlerCart} // Agrega el manejador de clic al icono de carrito
             />
             <img
               className="carrito"
