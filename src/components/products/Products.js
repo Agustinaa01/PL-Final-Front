@@ -5,9 +5,7 @@ import Headers from "../header/Headers";
 import ProductFilter from "../productfilter/ProductFilter";
 import { useState } from "react";
 import SearchBar from "../searchbar/SearchBar";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ToggleTheme from "../toggleTheme/ToggleTheme";
 import { ThemeContext } from "../services/theme/ThemeContext";
 import { jwtDecode as jwt_decode } from "jwt-decode";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
@@ -28,6 +26,7 @@ const Products = () => {
         setProducts(data);
         setProductsFiltered(data);
         setIsLoading(false);
+        console.log(data)
       })
       .catch((error) => {
         console.error("Error fetching products:", error);

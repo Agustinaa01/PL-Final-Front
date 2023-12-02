@@ -8,9 +8,19 @@ import { AuthenticationContext } from "../services/authentication/Authentication
 import ProfileSidebar from "../ProfileSideBar/ProfileSideBar";
 import profile from "./profile.png";
 import { jwtDecode as jwt_decode } from "jwt-decode";
+import { CartContext } from "../carrito/CartContext";
 
 const Headers = () => {
   const navigate = useNavigate();
+
+  const { showModal, setShowModal, showCart, setShowCart, openModal } = useContext(CartContext);
+  const abrirCarrito = () => {
+    setShowCart(true);
+  };
+  const abrirModalDesdeHeaders = () => {
+    openModal();
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useContext(AuthenticationContext);
 
@@ -82,6 +92,7 @@ const Headers = () => {
             </h2>
             {isModalOpen && <ProfileSidebar setIsModalOpen={setIsModalOpen} />}
             <img
+               onClick={abrirCarrito}
               className="carrito"
               src={carritoImage}
               alt="Carrito de compras"
