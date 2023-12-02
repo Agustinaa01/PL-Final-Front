@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Headers from "../header/Headers";
 import homeImage from "./homeA.png";
 import homeImage2 from "./homeB.png";
@@ -10,6 +10,8 @@ import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
+import ProductDetailsForm from "../productDetails/productDetails";
+import { CartContext } from "../carrito/CartContext";
 
 
 const Dashboard = () => {
@@ -17,7 +19,8 @@ const Dashboard = () => {
 
   const handleViewJoystick  = () => {
     navigate("/products");
-  }
+  };
+
   return (
     <div className="content">
       <Headers />
@@ -68,6 +71,8 @@ const Dashboard = () => {
           </a>
         </div>
       </div>
+      {/* <Headers showCart={showCart} setShowCart={setShowCart} /> */}
+    {/* <ProductDetailsForm showCart={showCart} handleCloseCart={handleCloseCart} /> */}
       <Footer />
     </div>
   );

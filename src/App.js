@@ -22,6 +22,7 @@ import Pedido from "./components/pedidos/Pedidos";
 import Users from "./components/users/users";
 import EditProfileForm from "./components/EditProfileForm/EditProfileForm";
 import EditPedidoForm from "./components/EditPedidoForm/EditPedidoForm";
+import Headers from "./components/header/Headers";
 
 function App() {
 
@@ -105,7 +106,11 @@ function App() {
   ]);
   return (
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>      <RouterProvider router={router} />
-    </div>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@100;600&family=PT+Serif&family=Playfair+Display&display=swap" rel="stylesheet">
+      </link>   
+
+       </div>
+    
   );
 }
 

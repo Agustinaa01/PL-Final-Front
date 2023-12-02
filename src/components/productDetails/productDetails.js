@@ -1,15 +1,15 @@
 import "./productDetails.css";
 import "./Modal.css";
-import Headers from "../header/Headers";
-import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Modal, ModalHeader } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 import { ThemeContext } from "../services/theme/ThemeContext";
-import { ToastContainer, toast } from "react-toastify";
+import {toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { jwtDecode as jwt_decode } from "jwt-decode";
 import { CartContext } from "../carrito/CartContext";
+import React, { useContext, useState } from 'react';
+import Headers from "../header/Headers";
 
 const ProductDetailsForm = () => {
   const location = useLocation();
@@ -21,7 +21,8 @@ const ProductDetailsForm = () => {
   const [brand, setBrand] = useState(location.state?.productSelected?.brand);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [pay, setPay] = useState();
-  const [carrito, setCarrito] = useContext(CartContext);
+  const { carrito, setCarrito, showCart, setShowCart } = useContext(CartContext);
+  const { showModal, setShowModal } = useContext(CartContext);
 
   const [category, setCategory] = useState(
     location.state?.productSelected?.category
@@ -33,11 +34,11 @@ const ProductDetailsForm = () => {
     location.state?.productSelected?.imageUrl ?? ""
   );
   const [show, setShow] = useState(false);
-  const [showCart, setShowCart] = useState(false);
+
   const navigate = useNavigate();
 
   const agregarAlCarrito = (producto) => {
-    console.log(producto); // Esto imprimirá el producto en la consola
+    console.log(producto);
     setCarrito(prevCarrito => [...prevCarrito, { id: producto.productId, imageUrl: producto.imageUrl, name: producto.name, price: producto.price }]);
     setShowCart(true);
   };
@@ -49,7 +50,9 @@ const ProductDetailsForm = () => {
       state: { productSelected: location.state.productSelected },
     });
   };
-
+  const handleOpenCart = () => {
+    setShowCart(true);
+  };
   const handleConfirm = () => {
     //const token = localStorage.getItem("authToken");
     fetch(`https://localhost:7108/api/Producto/${productId}`, {
@@ -141,7 +144,7 @@ const ProductDetailsForm = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            "PedidoId": data.id, 
+            "PedidoId": data.id,
             "ProductoId": productIds
           })
         })
@@ -175,27 +178,27 @@ const ProductDetailsForm = () => {
               theme: "colored",
             });
           });
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          toast.error('Ocurrió un error de red. Por favor, inténtelo de nuevo.', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: "colored",
-          });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        toast.error('Ocurrió un error de red. Por favor, inténtelo de nuevo.', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
       });
-      setCarrito([]);
+    setCarrito([]);
   };
   const handleRemoveFromCart = (productId) => {
     const updatedCart = carrito.filter(producto => producto.id !== productId);
     setCarrito(updatedCart);
-    setShowCart(false); 
-    setShow(false); 
+    setShowCart(false);
+    setShow(false);
   };
 
   const isLightTheme = theme === "light";
@@ -205,7 +208,7 @@ const ProductDetailsForm = () => {
   return (
     <div>
       <div className="header-product-details">
-        <Headers />
+      <Headers />
       </div>
       <div className="product-details-container">
         <img
@@ -294,25 +297,25 @@ const ProductDetailsForm = () => {
             <Modal.Body>
               {carrito.map((producto, index) => (
                 <div className="carrito-container" key={index}>
-                    <button
-                  className="button-remove-from-cart"
-                  onClick={() => handleRemoveFromCart(producto.id)}
-                >
+                  <button
+                    className="button-remove-from-cart"
+                    onClick={() => handleRemoveFromCart(producto.id)}
+                  >
                     X
-                </button>
+                  </button>
                   <img
                     className="imagen-details-carrito"
                     src={producto.imageUrl}
                     alt="Producto en el carrito"
                   />
-                  
+
                   <div className="carrito-item-details">
                     <h3 className="name-carrito">{producto.name}</h3>
                     <p>Precio: ${producto.price}</p>
 
-              </div>
-            </div>
-          ))}
+                  </div>
+                </div>
+              ))}
               <p className="total">Total: ${carrito.reduce((total, producto) => total + producto.price, 0)}</p>
             </Modal.Body>
             <Modal.Footer>
@@ -330,6 +333,7 @@ const ProductDetailsForm = () => {
               </button>
             </Modal.Footer>
           </Modal>
+
 
           <Modal show={showPaymentModal}>
             <Modal.Header closeButton>
