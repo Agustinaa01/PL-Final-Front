@@ -143,14 +143,15 @@ const Pedido = ({ }) => {
                     day: "numeric",
                   })}
                 </h4>
-                <p className={`${title}`}>{item.state}</p>
+                <h6 className={`${title}`}>{item.state}</h6>
                 {/* <h4 className="order-state">Productos:</h4> */}
                 {item.pedidoProductos && item.pedidoProductos.map((pedidoProducto, productIndex) => (
                   <div key={productIndex} className={`${product}`}>
                     <img className="order-image" src={pedidoProducto.producto.imageUrl} alt={pedidoProducto.producto.name} />
                     <div>
-                      <p className={`${title}`}>{pedidoProducto.producto.name}</p>
-                      <p className={`${title}`}>${pedidoProducto.producto.price}</p>
+                      <h6 className={`${title}`}>{pedidoProducto.producto.name}</h6>
+                      <h6 className={`${title}`}>${pedidoProducto.producto.price}</h6>
+                      <h6 className={`${title}`}>Cantidad: {pedidoProducto.cantidad}</h6>
                     </div>
                   </div>
                 ))}

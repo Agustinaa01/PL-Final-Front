@@ -4,13 +4,13 @@
 .light-theme {
   background-color: #E5E5E5;
   color: black;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .dark-theme {
   background-color: #0f0f0f;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .switch {

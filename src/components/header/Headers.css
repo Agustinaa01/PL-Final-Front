@@ -12,7 +12,11 @@
   color: #fff; /* Cambia el color del texto para el tema oscuro */
 }
 
-
+.button-modal{
+  background-color: #333;
+  color:white;
+  border: none;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -24,7 +28,9 @@
   margin-left: -90px;
   margin-top: 7px;
 }
-
+.quantity{
+  width: 75px;
+}
 .right {
   display: flex;
   gap: 20px;
