@@ -113,6 +113,7 @@ const Products = () => {
       <Headers />
       <h1 className={`titulo ${textProduct}`}>NUESTROS PRODUCTOS</h1>
       {user &&
+      decodedToken &&
         (decodedToken.role === "Admin" ||
           decodedToken.role === "SuperAdmin") && (
           <button

@@ -1,30 +1,49 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function useApi(apiUrl) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
+const useTokenExpiration = () => {
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-
+    const checkTokenExpiration = () => {
+      const authToken = localStorage.getItem('authToken');
+    
       try {
-        const response = await axios.get(apiUrl);
-        setData(response.data);
+        const decodedToken = JSON.parse(atob(authToken.split('.')[1]));
+        const expirationTime = decodedToken.exp * 1000;
+        const warningTime = 5 * 60 * 1000;
+        if (Date.now() >= expirationTime - warningTime) {
+          toast.warn('Tu sesión está a punto de expirar. Por favor, vuelve a iniciar sesión.', {
+            position: "top-right",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+    
+        if (Date.now() >= expirationTime) {
+          console.log('Token removed due to expiration');
+          setTimeout(() => {
+            localStorage.removeItem('authToken');
+            window.location.href = '/login';
+          }, 5000); 
+        }
+        
       } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
+        console.error('Error decoding or checking token expiration:', error);
+        console.log('Token removed due to decoding error');
+        localStorage.removeItem('authToken');
+        window.location.href = '/login';
       }
-    };
+    };    
+    const intervalId = setInterval(checkTokenExpiration, 60 * 1000);
+    return () => clearInterval(intervalId);
+  }, []);
 
-    fetchData();
-  }, [apiUrl]);
+  return null;
+};
 
-  return { data, loading, error };
-}
-
-export default useApi;
+export default useTokenExpiration;

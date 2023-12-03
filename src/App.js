@@ -23,10 +23,11 @@ import Users from "./components/users/users";
 import EditProfileForm from "./components/EditProfileForm/EditProfileForm";
 import EditPedidoForm from "./components/EditPedidoForm/EditPedidoForm";
 import Headers from "./components/header/Headers";
+import useTokenExpiration from "./hooks/Useapi";
 
 
 function App() {
-
+  useTokenExpiration();
   const { theme } = useContext(ThemeContext)
   const router = createBrowserRouter([
     { path: "/", element: <Navigate to="/home" /> },

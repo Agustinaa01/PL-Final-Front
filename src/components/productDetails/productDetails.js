@@ -4,22 +4,24 @@ import { useLocation, useNavigate } from "react-router";
 import { Modal, ModalHeader } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 import { ThemeContext } from "../services/theme/ThemeContext";
-import {toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { jwtDecode as jwt_decode } from "jwt-decode";
 import { CartContext } from "../carrito/CartContext";
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 import Headers from "../header/Headers";
 
 const ProductDetailsForm = () => {
   const location = useLocation();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [productId, setProductId] = useState(location.state?.productSelected?.id);
+  const [productId, setProductId] = useState(
+    location.state?.productSelected?.id
+  );
   const [name, setName] = useState(location.state?.productSelected?.name);
   const [price, setPrice] = useState(location.state?.productSelected?.price);
   const [brand, setBrand] = useState(location.state?.productSelected?.brand);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const { carrito, setCarrito,  setShowCart } = useContext(CartContext);
+  const { carrito, setCarrito, setShowCart } = useContext(CartContext);
 
   const [category, setCategory] = useState(
     location.state?.productSelected?.category
@@ -36,7 +38,15 @@ const ProductDetailsForm = () => {
 
   const agregarAlCarrito = (producto) => {
     console.log(producto);
-    setCarrito(prevCarrito => [...prevCarrito, { id: producto.productId, imageUrl: producto.imageUrl, name: producto.name, price: producto.price }]);
+    setCarrito((prevCarrito) => [
+      ...prevCarrito,
+      {
+        id: producto.productId,
+        imageUrl: producto.imageUrl,
+        name: producto.name,
+        price: producto.price,
+      },
+    ]);
     setShowCart(true);
   };
 
@@ -90,7 +100,7 @@ const ProductDetailsForm = () => {
   if (typeof token === "string") {
     decodedToken = jwt_decode(token);
   }
-  
+
   const isLightTheme = theme === "light";
   const textClass = isLightTheme ? "light-details" : "dark-details";
   const ClassDetails = isLightTheme ? "light-details-img" : "dark-details-img";
@@ -98,7 +108,7 @@ const ProductDetailsForm = () => {
   return (
     <div>
       <div className="header-product-details">
-      <Headers />
+        <Headers />
       </div>
       <div className="product-details-container">
         <img
@@ -113,16 +123,27 @@ const ProductDetailsForm = () => {
           <br />
           <p>Categoria: {category}</p>
           <p> Marca: {brand}</p>
-          {(decodedToken.role === "User" ||
-            decodedToken.role === "SuperAdmin" ||
-            !user) && (
-              <button className="button-details" onClick={() => agregarAlCarrito({ productId, imageUrl, name, price })}>
-                Agregar al carrito
-              </button>
-            )}
-          <br />
+          {!decodedToken ||
+          (decodedToken &&
+            (decodedToken.role === "User" ||
+              decodedToken.role === "SuperAdmin")) ? (
+            <button
+              className="button-details"
+              onClick={() => {
+                if (!decodedToken) {
+                  setShowConfirmationModal(true);
+                } else {
+                  agregarAlCarrito({ productId, imageUrl, name, price });
+                }
+              }}
+            >
+              Agregar al carrito
+            </button>
+          ) : null}
 
+          <br />
           {user &&
+            decodedToken &&
             (decodedToken.role === "Admin" ||
               decodedToken.role === "SuperAdmin") && (
               <button className="button-details" onClick={handleEditClick}>
@@ -132,6 +153,7 @@ const ProductDetailsForm = () => {
 
           <br />
           {user &&
+            decodedToken &&
             (decodedToken.role === "Admin" ||
               decodedToken.role === "SuperAdmin") && (
               <button className="button-details-delete" onClick={handleShow}>
