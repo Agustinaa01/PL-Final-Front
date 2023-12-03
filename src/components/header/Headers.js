@@ -7,23 +7,125 @@ import { ThemeContext } from "../services/theme/ThemeContext";
 import { AuthenticationContext } from "../services/authentication/AuthenticationContext";
 import ProfileSidebar from "../ProfileSideBar/ProfileSideBar";
 import profile from "./profile.png";
+import { Modal, ModalHeader } from "react-bootstrap";
 import { jwtDecode as jwt_decode } from "jwt-decode";
 import { CartContext } from "../carrito/CartContext";
-
+import { toast } from "react-toastify";
 const Headers = () => {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const { carrito, setCarrito, showCart, setShowCart } =
+    useContext(CartContext);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
-  const { showModal, setShowModal, showCart, setShowCart, openModal } = useContext(CartContext);
   const abrirCarrito = () => {
     setShowCart(true);
   };
-  const abrirModalDesdeHeaders = () => {
-    openModal();
-  };
 
+  const handleCloseCart = () => setShowCart(false);
+
+  const handleRemoveFromCart = (productId) => {
+    const updatedCart = carrito.filter((producto) => producto.id !== productId);
+    setCarrito(updatedCart);
+    setShowCart(false);
+    setShow(false);
+  };
+  const handleClosePaymentMethodsModal = () => {
+    setShowPaymentModal(false);
+  };
+  const handleSeguirComprando = () => {
+    setShowCart(false);
+    navigate("/products");
+  };
+  const handleShowPaymentModal = () => {
+    setShowCart(false); // Cierra el modal existente
+    setShowPaymentModal(true); // Abre el modal de pago
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useContext(AuthenticationContext);
 
+  const handlePay = () => {
+    setShowPaymentModal(false);
+    const productIds = carrito.map((producto) => producto.id);
+    const cantidades = carrito.map((producto) => producto.quantity);
+    fetch(`https://localhost:7108/api/Pedido`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        date: new Date().toISOString(),
+        state: "Created",
+        userId: decodedToken.sub,
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        fetch(`https://localhost:7108/api/Pedido/AddProducto`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            PedidoId: data.id,
+            ProductoId: productIds,
+            Cantidad: cantidades,
+          }),
+        })
+          .then((response) => response.json())
+          .then(() => {
+            console.log({
+              PedidoId: data.id,
+              ProductoId: productIds,
+              Cantidad: cantidades,
+            });
+            toast.success("¡Pedido realizado con éxito!", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+              theme: "colored",
+            });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            toast.error(
+              "Ocurrió un error al realizar el pedido. Por favor, inténtelo de nuevo.",
+              {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "colored",
+              }
+            );
+          });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        toast.error("Ocurrió un error de red. Por favor, inténtelo de nuevo.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
+    setCarrito([]);
+  };
   let decodedToken;
   const token = localStorage.getItem("authToken");
   if (typeof token === "string") {
@@ -50,8 +152,21 @@ const Headers = () => {
     navigate("/users");
   };
 
-  const handlerCart = () => {
-    navigate("/carrito");
+  const handleQuantityChange = (productId, quantity) => {
+    setCarrito((oldCart) => {
+      // Check if product is already in the cart
+      const existingProduct = oldCart.find((item) => item.id === productId);
+
+      if (existingProduct) {
+        // If product is already in the cart, update the quantity
+        return oldCart.map((item) =>
+          item.id === productId ? { ...item, quantity: quantity } : item
+        );
+      } else {
+        // If product is not in the cart, add it with the specified quantity
+        return [...oldCart, { id: productId, quantity: quantity }];
+      }
+    });
   };
 
   // Accede al contexto de tema
@@ -77,12 +192,15 @@ const Headers = () => {
             <h2 className={`title ${textClass}`} onClick={handlerProducts}>
               PRODUCTOS
             </h2>
-            {decodedToken && (decodedToken.role === "SuperAdmin" || decodedToken.role === "User") && user && (
-              <h2 className={`title ${textClass}`} onClick={handlerPedidos}>
-                PEDIDOS
-              </h2>
-            )}
-            {decodedToken && (decodedToken.role === "SuperAdmin") && user && (
+            {decodedToken &&
+              (decodedToken.role === "SuperAdmin" ||
+                decodedToken.role === "User") &&
+              user && (
+                <h2 className={`title ${textClass}`} onClick={handlerPedidos}>
+                  PEDIDOS
+                </h2>
+              )}
+            {decodedToken && decodedToken.role === "SuperAdmin" && user && (
               <h2 className={`title ${textClass}`} onClick={handlerUsers}>
                 PANEL
               </h2>
@@ -92,11 +210,10 @@ const Headers = () => {
             </h2>
             {isModalOpen && <ProfileSidebar setIsModalOpen={setIsModalOpen} />}
             <img
-               onClick={abrirCarrito}
+              onClick={abrirCarrito}
               className="carrito"
               src={carritoImage}
               alt="Carrito de compras"
-              onClick={handlerCart} // Agrega el manejador de clic al icono de carrito
             />
             <img
               className="carrito"
@@ -104,6 +221,159 @@ const Headers = () => {
               alt="perfil"
               onClick={() => setIsModalOpen(true)}
             />
+            <Modal show={showCart} onHide={handleCloseCart}>
+              <Modal.Header>
+                <Modal.Title>Carrito de compra</Modal.Title>
+                <button className="button-modal" onClick={handleCloseCart}>
+                  X
+                </button>
+              </Modal.Header>
+              <Modal.Body>
+                {carrito.length === 0 ? (
+                  <p>No hay productos en el carrito.</p>
+                ) : (
+                  <>
+                    {carrito.map((producto, index) => (
+                      <div className="carrito-container" key={index}>
+                        <button
+                          className="button-remove-from-cart"
+                          onClick={() => handleRemoveFromCart(producto.id)}
+                        >
+                          X
+                        </button>
+                        <img
+                          className="imagen-details-carrito"
+                          src={producto.imageUrl}
+                          alt="Producto en el carrito"
+                        />
+
+                        <div className="carrito-item-details">
+                          <h3 className="name-carrito">{producto.name}</h3>
+                          <p>Precio: ${producto.price}</p>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
+                            <label for={`quantity${index}`}>Cantidad:</label>
+                            <input
+                            className="quantity"
+                              type="number"
+                              id={`quantity${index}`}
+                              name={`quantity${index}`}
+                              min="1"
+                              max="100"
+                              defaultValue={producto.quantity}
+                              onChange={(e) =>
+                                handleQuantityChange(
+                                  producto.id,
+                                  Number(e.target.value)
+                                )
+                              }
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+
+                    <Modal.Footer>
+                      <button
+                        className="button-cancelar"
+                        onClick={handleShowPaymentModal}
+                      >
+                        Pagar
+                      </button>
+                      <button
+                        className="button-confirm"
+                        onClick={handleSeguirComprando}
+                      >
+                        Seguir Comprando
+                      </button>
+                    </Modal.Footer>
+                  </>
+                )}
+              </Modal.Body>
+            </Modal>
+
+            <Modal
+              show={showPaymentModal}
+              onHide={handleClosePaymentMethodsModal}
+            >
+              <Modal.Header>
+                <Modal.Title>Selecciona un método de pago</Modal.Title>
+                <button
+                  className="button-modal"
+                  onClick={handleClosePaymentMethodsModal}
+                >
+                  X
+                </button>
+              </Modal.Header>
+              <Modal.Body>
+                <p>Seleccione su método de pago preferido:</p>
+                <label>
+                  <input type="radio" name="paymentMethod" value="paypal" />
+                  <img
+                    className="img-pay"
+                    src="https://cdn-icons-png.flaticon.com/512/147/147258.png"
+                  ></img>
+                  Tarjeta de Credito
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="paymentMethod" value="paypal" />
+                  <img
+                    className="img-pay"
+                    src="https://cdn-icons-png.flaticon.com/512/301/301657.png"
+                  ></img>
+                  Tarjeta de Debito
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="paymentMethod" value="paypal" />
+                  <img
+                    className="img-pay"
+                    src="https://logospng.org/download/mercado-pago/logo-mercado-pago-icone-1024.png"
+                  ></img>
+                  Mercado Pago
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="paymentMethod" value="paypal" />
+                  <img
+                    className="img-pay"
+                    src="https://png.pngtree.com/png-vector/20220821/ourmid/pngtree-bank-transfer-icon-house-selected-transfer-vector-png-image_19626578.png"
+                  ></img>
+                  Transferencia bancaria
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="paymentMethod" value="paypal" />
+                  <img
+                    className="img-pay"
+                    src="https://cdn-icons-png.flaticon.com/512/174/174861.png"
+                  ></img>
+                  PayPal
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="paymentMethod" value="paypal" />
+                  <img
+                    className="img-pay"
+                    src="https://cdn-icons-png.flaticon.com/512/5968/5968279.png"
+                  ></img>
+                  Apple Pay
+                </label>
+              </Modal.Body>
+              <Modal.Footer>
+                <button
+                  className="button-cancelar"
+                  onClick={handleClosePaymentMethodsModal}
+                >
+                  Cancelar
+                </button>
+                <button className="button-confirm" onClick={handlePay}>
+                  Continuar
+                </button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </div>
       </div>

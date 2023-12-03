@@ -14,15 +14,12 @@ import Headers from "../header/Headers";
 const ProductDetailsForm = () => {
   const location = useLocation();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [cart, setCart] = useState();
   const [productId, setProductId] = useState(location.state?.productSelected?.id);
   const [name, setName] = useState(location.state?.productSelected?.name);
   const [price, setPrice] = useState(location.state?.productSelected?.price);
   const [brand, setBrand] = useState(location.state?.productSelected?.brand);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [pay, setPay] = useState();
-  const { carrito, setCarrito, showCart, setShowCart } = useContext(CartContext);
-  const { showModal, setShowModal } = useContext(CartContext);
+  const { carrito, setCarrito,  setShowCart } = useContext(CartContext);
 
   const [category, setCategory] = useState(
     location.state?.productSelected?.category
@@ -43,16 +40,13 @@ const ProductDetailsForm = () => {
     setShowCart(true);
   };
 
-
   const handleEditClick = () => {
     const productId = location.state?.productSelected?.id;
     navigate(`/productForm/${productId}`, {
       state: { productSelected: location.state.productSelected },
     });
   };
-  const handleOpenCart = () => {
-    setShowCart(true);
-  };
+
   const handleConfirm = () => {
     //const token = localStorage.getItem("authToken");
     fetch(`https://localhost:7108/api/Producto/${productId}`, {
@@ -85,32 +79,10 @@ const ProductDetailsForm = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { user } = useContext(AuthenticationContext);
-  const handleSeguirComprando = () => {
-    setShowCart(false);
-    navigate("/products")
-  };
 
-  const handleShowCart = () => {
-    if (!user) {
-      openConfirmationModal();
-    } else {
-      setShowCart(true);
-    }
-  };
-  const openConfirmationModal = () => {
-    setShowConfirmationModal(true);
-  };
   const closeConfirmationModal = () => {
     setShowConfirmationModal(false);
   };
-  const handleShowPaymentModal = () => {
-    setShowCart(false); // Cierra el modal existente
-    setShowPaymentModal(true); // Abre el modal de pago
-  };
-  const handleClosePaymentMethodsModal = () => {
-    setShowPaymentModal(false);
-  };
-  const handleCloseCart = () => setShowCart(false);
 
   const { theme } = useContext(ThemeContext);
   let decodedToken;
@@ -118,89 +90,7 @@ const ProductDetailsForm = () => {
   if (typeof token === "string") {
     decodedToken = jwt_decode(token);
   }
-  const handlePay = () => {
-    setShowPaymentModal(false);
-    const productIds = carrito.map(producto => producto.id);
-    fetch(`https://localhost:7108/api/Pedido`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "date": new Date().toISOString(),
-        "state": "Created",
-        "userId": decodedToken.sub
-      })
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        fetch(`https://localhost:7108/api/Pedido/AddProducto`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            "PedidoId": data.id,
-            "ProductoId": productIds
-          })
-        })
-          .then(response => response.json())
-          .then(() => {
-            console.log({
-              "PedidoId": data.id, // This should be the order ID
-              "ProductoId": productIds // This should be a list of product IDs
-            });
-            toast.success("¡Pedido realizado con éxito!", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: false,
-              progress: undefined,
-              theme: "colored",
-            });
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            toast.error('Ocurrió un error al realizar el pedido. Por favor, inténtelo de nuevo.', {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: false,
-              progress: undefined,
-              theme: "colored",
-            });
-          });
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        toast.error('Ocurrió un error de red. Por favor, inténtelo de nuevo.', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: false,
-          progress: undefined,
-          theme: "colored",
-        });
-      });
-    setCarrito([]);
-  };
-  const handleRemoveFromCart = (productId) => {
-    const updatedCart = carrito.filter(producto => producto.id !== productId);
-    setCarrito(updatedCart);
-    setShowCart(false);
-    setShow(false);
-  };
-
+  
   const isLightTheme = theme === "light";
   const textClass = isLightTheme ? "light-details" : "dark-details";
   const ClassDetails = isLightTheme ? "light-details-img" : "dark-details-img";
@@ -290,7 +180,7 @@ const ProductDetailsForm = () => {
               </button>
             </Modal.Footer>
           </Modal>
-          <Modal show={showCart} onHide={handleCloseCart}>
+          {/* <Modal show={showCart} onHide={handleCloseCart}>
             <Modal.Header>
               <Modal.Title>Carrito de compra</Modal.Title>
             </Modal.Header>
@@ -404,7 +294,7 @@ const ProductDetailsForm = () => {
               </button>
               <button className="button-confirm" onClick={handlePay}>Continuar</button>
             </Modal.Footer>
-          </Modal>
+          </Modal> */}
         </div>
       </div>
       <div className={`${textClass}`}>
