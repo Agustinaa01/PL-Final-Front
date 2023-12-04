@@ -13,38 +13,104 @@ import { CartContext } from "../carrito/CartContext";
 import { toast } from "react-toastify";
 const Headers = () => {
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
   const { carrito, setCarrito, showCart, setShowCart } =
     useContext(CartContext);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useContext(AuthenticationContext);
+
+  const handleCloseCart = () => setShowCart(false);
+
+  const handleRemoveFromCart = (productId) => {
+    const updatedCart = carrito.filter(
+      (producto) => producto.id !== productId
+    );
+    setCarrito(updatedCart);
+    setShowCart(false);
+  };
+
+  const handleClosePaymentMethodsModal = () => {
+    setShowPaymentModal(false);
+  };
+
+  const handleSeguirComprando = () => {
+    setShowCart(false);
+    navigate("/products");
+  };
+
+  const verificarCantidadesInvalidas = () => {
+    return carrito.some(
+      (producto) =>
+        producto.quantity === undefined ||
+        producto.quantity === 0 ||
+        producto.quantity === ""
+    );
+  };
+
+  const handleShowPaymentModal = () => {
+    if (verificarCantidadesInvalidas()) {
+      toast.warn(
+        "Por favor, ingrese una cantidad válida mayor a 0 para todos los productos en el carrito!",
+        {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+      return;
+    }
+
+    setShowCart(false);
+    setShowPaymentModal(true);
+  };
 
   const abrirCarrito = () => {
     setShowCart(true);
   };
 
-  const handleCloseCart = () => setShowCart(false);
-
-  const handleRemoveFromCart = (productId) => {
-    const updatedCart = carrito.filter((producto) => producto.id !== productId);
-    setCarrito(updatedCart);
-    setShowCart(false);
-    setShow(false);
-  };
-  const handleClosePaymentMethodsModal = () => {
-    setShowPaymentModal(false);
-  };
-  const handleSeguirComprando = () => {
-    setShowCart(false);
-    navigate("/products");
-  };
-  const handleShowPaymentModal = () => {
-    setShowCart(false); // Cierra el modal existente
-    setShowPaymentModal(true); // Abre el modal de pago
-  };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { user } = useContext(AuthenticationContext);
-
   const handlePay = () => {
+    const tieneCantidadInvalida = carrito.some(
+      (producto) =>
+        producto.quantity === undefined ||
+        producto.quantity === 0 ||
+        producto.quantity === ""
+    );
+  
+    if (tieneCantidadInvalida) {
+      toast.warn('Por favor, ingrese una cantidad válida mayor a 0 para todos los productos en el carrito!', {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+  
+    // Verifica si se ha seleccionado un método de pago
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+    if (!paymentMethod) {
+      toast.error('Por favor, seleccione un método de pago.', {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }  
+  
     setShowPaymentModal(false);
     const productIds = carrito.map((producto) => producto.id);
     const cantidades = carrito.map((producto) => producto.quantity);
@@ -158,24 +224,19 @@ const Headers = () => {
       const existingProduct = oldCart.find((item) => item.id === productId);
 
       if (existingProduct) {
-        // If product is already in the cart, update the quantity
+        // If the product is already in the cart, update the quantity
         return oldCart.map((item) =>
           item.id === productId ? { ...item, quantity: quantity } : item
         );
       } else {
-        // If product is not in the cart, add it with the specified quantity
+        // If the product is not in the cart, add it with the specified quantity
         return [...oldCart, { id: productId, quantity: quantity }];
       }
     });
   };
 
-  // Accede al contexto de tema
   const { theme } = useContext(ThemeContext);
-
-  // Determina si el tema es "light"
   const isLightTheme = theme === "light";
-
-  // Define la clase CSS para el texto en función del tema
   const textClass = isLightTheme ? "light-text" : "dark-text";
 
   return (
@@ -255,15 +316,15 @@ const Headers = () => {
                           >
                             <label for={`quantity${index}`}>Cantidad:</label>
                             <input
-                            className="quantity"
+                              className="quantity"
                               type="number"
                               id={`quantity${index}`}
                               name={`quantity${index}`}
                               min="1"
                               max="100"
-                              defaultValue={producto.quantity}
+                              value={producto.quantity} // Use value instead of defaultValue
                               onChange={(e) =>
-                                handleQuantityChange(
+                               handleQuantityChange(
                                   producto.id,
                                   Number(e.target.value)
                                 )
@@ -273,7 +334,16 @@ const Headers = () => {
                         </div>
                       </div>
                     ))}
-                    <h6 className="total">Total: ${carrito.reduce((total, producto) => total + producto.price * producto.quantity, 0)}</h6>
+                    <h6 className="total">
+                      Total: $
+                      {carrito.reduce(
+                        (total, producto) =>
+                          total +
+                          producto.price *
+                            (isNaN(producto.quantity) ? 0 : producto.quantity),
+                        0
+                      )}
+                    </h6>
                     <Modal.Footer>
                       <button
                         className="button-cancelar"

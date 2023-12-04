@@ -70,9 +70,9 @@ function App() {
     },{
     path: "/users",
     element: 
-    <RolesAuthentication>
+    <Protected>
       <Users />
-    </RolesAuthentication>
+    </Protected>
 ,
     },
     {
@@ -108,9 +108,7 @@ function App() {
   ]);
   return (
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>      <RouterProvider router={router} />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@100;600&family=PT+Serif&family=Playfair+Display&display=swap" rel="stylesheet">
-      </link>   
-
+   <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet"></link>
        </div>
     
   );
