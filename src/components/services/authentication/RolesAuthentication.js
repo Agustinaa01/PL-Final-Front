@@ -11,7 +11,7 @@ const RolesAuthentication = ({ children }) => {
     decodedToken = jwt_decode(token);
   }
 
-  if (decodedToken && (decodedToken.role === 'User' || decodedToken.role === 'Admin') || (!user)) {
+  if (decodedToken && (decodedToken.role === 'User') || (!user)) {
     return <Navigate to="*" replace />;
   } else {
     return children;

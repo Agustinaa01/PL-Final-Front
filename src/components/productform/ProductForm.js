@@ -86,10 +86,10 @@ const ProductForm = () => {
       descRef.current.focus();
       setError({ descError: "Por favor complete la descripción" });
       isError = true;
-    } else if (description.length >= 150) {
+    } else if (description.length >= 350) {
       descRef.current.focus();
       setError({
-        descError: "La descripción debe tener como máximo 150 caracteres",
+        descError: "La descripción debe tener como máximo 250 caracteres",
       });
       isError = true;
     }
