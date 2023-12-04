@@ -22,7 +22,10 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.total {
+  font-weight: 900;
+  font-size: 18px;
+}
 .left {
   display: flex;
   margin-left: -90px;

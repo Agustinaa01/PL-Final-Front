@@ -273,7 +273,7 @@ const Headers = () => {
                         </div>
                       </div>
                     ))}
-
+                    <h6 className="total">Total: ${carrito.reduce((total, producto) => total + producto.price * producto.quantity, 0)}</h6>
                     <Modal.Footer>
                       <button
                         className="button-cancelar"
